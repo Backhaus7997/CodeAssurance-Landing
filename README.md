@@ -158,3 +158,25 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Static Export & GitHub Pages Deployment
+
+This project is deployed as a fully static site using GitHub Pages and a custom domain.
+
+Because GitHub Pages only serves static assets, the project uses Next.js static export (output: \"export\") instead of a Node.js runtime.
+
+The contents of the out/ directory are copied to the repository root so GitHub Pages can serve them directly.
+	•	The repository root therefore contains:
+	•	index.html
+	•	_next/ (static JS/CSS chunks)
+	•	404.html
+	•	static assets
+
+This setup mirrors how the previous version of the site was deployed and ensures compatibility with GitHub Pages and custom DNS.
+
+🚫 Jekyll Disabled
+GitHub Pages uses Jekyll by default, which ignores folders starting with _ (such as _next/).
+
+To prevent this behavior, a .nojekyll file is included at the repository root: .nojekyll
+
+This ensures that all Next.js static assets are served correctly.
