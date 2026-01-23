@@ -1,8 +1,11 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { useState } from "react";
+import ContactModal from "@/components/ui/ContactModal";
 
 export default function FinalCTA() {
+  const [isContactOpen, setIsContactOpen] = useState(false);
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 py-32">
       {/* Grid background */}
@@ -42,9 +45,10 @@ export default function FinalCTA() {
           </div>
 
           <motion.button
+            onClick={() => setIsContactOpen(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="group relative inline-flex items-center gap-4 px-12 py-6 bg-accent text-black font-bold text-lg rounded-full overflow-hidden transition-all duration-300"
+            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-accent text-black font-bold text-lg rounded-full overflow-hidden transition-all duration-300"
           >
             <span className="relative z-10">Talk to Engineers</span>
             <svg
@@ -62,15 +66,20 @@ export default function FinalCTA() {
 
           <div className="pt-12 flex items-center justify-center gap-8 text-sm text-gray-600">
             <div>
-              <span className="font-mono">contact@codeassurance.dev</span>
+              <span className="font-mono">info@code-assurance.com</span>
             </div>
             <div className="w-px h-4 bg-gray-800" />
             <div>
-              <span className="font-mono">+1 (555) 123-4567</span>
+              <span className="font-mono">+54 9 351 268 2001</span>
             </div>
           </div>
         </motion.div>
       </div>
+
+      <ContactModal
+        isOpen={isContactOpen}
+        onClose={() => setIsContactOpen(false)}
+      />
 
       {/* Corner accents */}
       <div className="absolute top-12 left-12 w-24 h-24 border-l border-t border-accent/20" />

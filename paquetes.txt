@@ -1,0 +1,356 @@
+# Prompt para generar secciones de paquetes
+
+Usa el siguiente JSON para construir las secciones de paquetes/planes (cards o bloques) en la nueva landing. Crea componentes con títulos, subtítulos, listas de bullets y badges por plan. Mantén el orden y el contenido tal cual.
+
+## JSON
+
+```json
+{
+  "es": {
+    "qualityCheck": {
+      "title": "QUALITY CHECK",
+      "subtitle": "QA Manual Funcional por Proyecto",
+      "objective": [
+        "Detectar defectos funcionales antes del go-live.",
+        "Reducir riesgos en cambios grandes o módulos nuevos."
+      ],
+      "scope": [
+        "Relevamiento rápido del sistema y entendimiento del módulo.",
+        "Diseño de casos de prueba funcionales.",
+        "Ejecución de pruebas manuales funcionales.",
+        "Registro de bugs en la herramienta del cliente.",
+        "Retesteo de bugs corregidos y reporte final al cliente."
+      ],
+      "notIncluded": [
+        "Automatización de pruebas.",
+        "Pruebas de performance o seguridad.",
+        "Soporte 24/7."
+      ],
+      "deliverables": [
+        "Matriz o documento de casos de prueba.",
+        "Reporte de ejecución y resultados."
+      ],
+      "contractingModel": [
+        "Por proyecto, estimando esfuerzo en horas/días según alcance.",
+        "Posibilidad de monto cerrado o rango estimado.",
+        "Opcional: combinación con bolsa de horas para soporte post go-live."
+      ],
+      "plans": [
+        {
+          "name": "Plan Standard",
+          "badge": "Módulo chico/mediano",
+          "bullets": [
+            "Un módulo nuevo o varias funcionalidades relacionadas.",
+            "5–10 pantallas/flujos, reglas de negocio moderadas.",
+            "Equipo típico: 1 QA Senior + 1 QA Junior."
+          ]
+        },
+        {
+          "name": "Plan Medium",
+          "badge": "Módulo complejo",
+          "bullets": [
+            "Módulos de negocio importantes o complejos.",
+            "10–20 pantallas/flujos, varias reglas de negocio.",
+            "Varias integraciones (APIs, pasarelas, servicios internos).",
+            "Equipo típico: 1 QA Senior + 2 QA Juniors."
+          ]
+        },
+        {
+          "name": "Plan Premium",
+          "badge": "Alto impacto",
+          "bullets": [
+            "Cambios de altísimo impacto en el negocio.",
+            "> 20 pantallas/flujos, múltiples integraciones y escenarios.",
+            "Necesidad de probar flujos end-to-end de principio a fin.",
+            "Equipo típico: 1 QA Senior + 2–3 QA Juniors."
+          ]
+        }
+      ]
+    },
+    "qualityBooster": {
+      "title": "QUALITY BOOSTER",
+      "subtitle": "Regresión Continua + Kickstart de Automatización",
+      "phase1": {
+        "title": "Fase 1 – Kickstart de Regresión Continua",
+        "goal": [
+          "Dejar un framework de automatización funcionando.",
+          "Contar con un set inicial de casos automatizados de regresión crítica.",
+          "Definir regresión manual complementaria cuando haga falta.",
+          "Entregar documentación para correr y mantener la suite."
+        ],
+        "plans": [
+          {
+            "name": "Kickstart Básico",
+            "badge": "Producto chico",
+            "bullets": [
+              "Apps o módulos relativamente chicos.",
+              "1–2 flujos críticos principales y pocas integraciones.",
+              "Relevamiento de flujos críticos y definición del alcance de regresión (automática + manual).",
+              "Selección de herramientas e implementación del framework base.",
+              "Automatización de set inicial + documentación básica y handoff al equipo del cliente.",
+              "Equipo típico: 1 QA Automation Senior + 1 QA Automation Junior/Semi."
+            ]
+          },
+          {
+            "name": "Kickstart Estándar",
+            "badge": "Producto mediano",
+            "bullets": [
+              "Productos con varios módulos y flujos, 2–3 roles de usuario.",
+              "Algunas integraciones relevantes.",
+              "Relevamiento funcional + análisis de riesgos.",
+              "Framework con estructura, reporting y pipelines básicos.",
+              "Automatización de set inicial + estabilización tras primeras corridas.",
+              "Documentación y guías de extensión + sesiones de handoff/capacitación.",
+              "Equipo típico: 1 QA Automation Senior + 1–2 QA Automation Juniors/Semi."
+            ]
+          },
+          {
+            "name": "Kickstart Completo",
+            "badge": "Producto complejo",
+            "bullets": [
+              "Sistemas core del negocio, con muchos flujos, reglas complejas e integraciones múltiples.",
+              "Relevamiento profundo + workshops con negocio y devs.",
+              "Definición detallada del alcance de regresión por prioridades y riesgos.",
+              "Framework robusto + automatización de set inicial.",
+              "Estabilización (corridas múltiples, ajustes por flakiness, tiempos, etc.).",
+              "Documentación completa (manual técnico + buenas prácticas) y training al equipo del cliente.",
+              "Equipo típico: 1 QA Automation Senior + 2 QA Automation Juniors/Semi."
+            ]
+          }
+        ]
+      },
+      "phase2": {
+        "title": "Fase 2 – Regresión Continua Automatizada",
+        "monthlyPlans": [
+          {
+            "name": "Plan Mensual Lite",
+            "badge": "Producto chico",
+            "bullets": [
+              "Productos chicos o medianos con pocos cambios mensuales.",
+              "Revisión de cambios del mes y planificación de cobertura.",
+              "Ejecución de la suite automatizada por release (total o parcial).",
+              "Mantenimiento liviano: ajustes de scripts y pequeños agregados.",
+              "Reportes por release + consolidado mensual (bugs, % pasada, etc.).",
+              "Equipo típico: 1 QA Automation Senior + 1 QA Automation Junior/Semi."
+            ]
+          },
+          {
+            "name": "Plan Mensual Estándar",
+            "badge": "Producto en crecimiento",
+            "bullets": [
+              "Productos con releases frecuentes y cambios funcionales moderados.",
+              "Revisión de sprints/releases y planificación de regresión.",
+              "Ejecución de la suite automatizada + retesteos.",
+              "Mantenimiento y extensión de la suite.",
+              "Reportes por release + resumen mensual con métricas.",
+              "Equipo típico: 1 QA Automation Senior + 1 QA Automation Junior/Semi."
+            ]
+          },
+          {
+            "name": "Plan Mensual Avanzado",
+            "badge": "Producto crítico",
+            "bullets": [
+              "Productos core del negocio con releases semanales o cambios grandes.",
+              "Revisión y planificación de regresión semanal o por release grande.",
+              "Ejecución de suites automatizadas + regresiones adicionales específicas.",
+              "Mantenimiento, refactor y extensión significativa de casos automatizados.",
+              "Reportes detallados por release + reporte mensual ejecutivo con métrricas e insights.",
+              "Equipo típico: 1 QA Automation Senior + 2 QA Automation Juniors/Semi."
+            ]
+          }
+        ]
+      }
+    },
+    "qualitySquad": {
+      "title": "QUALITY SQUAD",
+      "subtitle": "Equipo Dedicado de QA",
+      "objective": [
+        "Aportar capacidad de QA estable y especializada.",
+        "Dar soporte a equipos de desarrollo que no tienen QA interno suficiente."
+      ],
+      "scope": [
+        "QA asignado full-time o part-time a uno o más proyectos.",
+        "Participación en dailies, plannings, refinements y demás ceremonias.",
+        "Diseño y ejecución de pruebas funcionales y exploratorias.",
+        "Reporte y seguimiento de bugs.",
+        "Coordinación con el equipo de desarrollo y producto."
+      ],
+      "deliverables": [
+        "Trabajo continuo: casos de prueba, ejecución, bugs y reportes.",
+        "Reportes periódicos de avance y valor entregado (por ejemplo, mensuales)."
+      ]
+    }
+  },
+  "en": {
+    "qualityCheck": {
+      "title": "QUALITY CHECK",
+      "subtitle": "Manual Functional QA per Project",
+      "goal": [
+        "Detect functional defects before go-live.",
+        "Reduce risk in large changes or new modules."
+      ],
+      "scope": [
+        "Quick system review and understanding of the module.",
+        "Design of functional test cases.",
+        "Execution of manual functional tests.",
+        "Defect logging in the client’s tracking tool.",
+        "Retesting of fixed defects and final report to the client."
+      ],
+      "notIncluded": [
+        "Test automation.",
+        "Performance or security testing.",
+        "24/7 support."
+      ],
+      "deliverables": [
+        "Test case matrix or document.",
+        "Execution report and results."
+      ],
+      "plans": [
+        {
+          "name": "Standard Plan",
+          "badge": "Small / medium module",
+          "bullets": [
+            "New module or several related features.",
+            "5–10 screens/flows, moderate business rules.",
+            "Typical team: 1 Senior QA + 1 Junior QA."
+          ]
+        },
+        {
+          "name": "Medium Plan",
+          "badge": "Complex module",
+          "bullets": [
+            "Important or complex business modules.",
+            "10–20 screens/flows, multiple business rules.",
+            "Several integrations (APIs, gateways, internal services).",
+            "Typical team: 1 Senior QA + 2 Junior QAs."
+          ]
+        },
+        {
+          "name": "Premium Plan",
+          "badge": "High impact",
+          "bullets": [
+            "Very high business impact changes.",
+            "> 20 screens/flows, multiple integrations and scenarios.",
+            "End-to-end flows that must be validated from start to finish.",
+            "Typical team: 1 Senior QA + 2–3 Junior QAs."
+          ]
+        }
+      ]
+    },
+    "qualityBooster": {
+      "title": "QUALITY BOOSTER",
+      "subtitle": "Continuous Regression + Automation Kickstart",
+      "phase1": {
+        "title": "Phase 1 – Regression Kickstart",
+        "goal": [
+          "Have an automation framework up and running.",
+          "Provide an initial set of automated regression tests for critical flows.",
+          "Define complementary manual regression when needed.",
+          "Deliver documentation so your team can run and maintain the suite."
+        ],
+        "plans": [
+          {
+            "name": "Kickstart Basic",
+            "badge": "Small product",
+            "bullets": [
+              "Small apps or modules.",
+              "1–2 main critical flows and few integrations.",
+              "Review of critical flows and regression scope definition (what to automate vs. manual).",
+              "Tool selection and base framework implementation.",
+              "Automation of the initial set + basic documentation and handoff.",
+              "Typical team: 1 Senior QA Automation + 1 Junior/Semi QA Automation."
+            ]
+          },
+          {
+            "name": "Kickstart Standard",
+            "badge": "Medium product",
+            "bullets": [
+              "Products with several modules and flows, 2–3 user roles.",
+              "Some relevant integrations.",
+              "Functional review + risk analysis.",
+              "Definition of regression scope (automated + manual).",
+              "Framework with structure, reporting and basic pipelines.",
+              "Automation of the initial set + stabilization after first runs.",
+              "Documentation and extension guidelines + handoff/training sessions.",
+              "Typical team: 1 Senior QA Automation + 1–2 Junior/Semi QA Automation."
+            ]
+          },
+          {
+            "name": "Kickstart Full",
+            "badge": "Complex product",
+            "bullets": [
+              "Core business systems with many flows, complex rules and multiple integrations.",
+              "In-depth discovery + workshops with business and dev teams.",
+              "Detailed regression scope based on priorities and risk.",
+              "Robust framework design and implementation.",
+              "Automation of the initial set + stabilization (flakiness, timings, etc.).",
+              "Complete documentation (technical manual + best practices) and training.",
+              "Typical team: 1 Senior QA Automation + 2 Junior/Semi QA Automation."
+            ]
+          }
+        ]
+      },
+      "phase2": {
+        "title": "Phase 2 – Automated Continuous Regression",
+        "monthlyPlans": [
+          {
+            "name": "Lite Monthly Plan",
+            "badge": "Small product",
+            "bullets": [
+              "Small or medium products with few monthly changes.",
+              "Review of changes and regression planning.",
+              "Suite execution per release (full or partial).",
+              "Light maintenance: script tweaks and small additions.",
+              "Release reports + monthly summary (defects, pass rate, etc.).",
+              "Typical team: 1 Senior QA Automation + 1 Junior/Semi QA Automation."
+            ]
+          },
+          {
+            "name": "Standard Monthly Plan",
+            "badge": "Growing product",
+            "bullets": [
+              "Products with frequent releases and moderate functional changes.",
+              "Review of sprints/releases and regression planning.",
+              "Suite execution + retesting.",
+              "Maintenance and extension of the suite.",
+              "Release reports + monthly KPI summary.",
+              "Typical team: 1 Senior QA Automation + 1 Junior/Semi QA Automation."
+            ]
+          },
+          {
+            "name": "Advanced Monthly Plan",
+            "badge": "Critical product",
+            "bullets": [
+              "Core business products with weekly releases or large changes.",
+              "Weekly (or major-release) regression planning.",
+              "Automation suite execution + additional specific regressions.",
+              "Maintenance, refactor and significant extension of automated cases.",
+              "Detailed reports per release + executive monthly report with metrics and insights.",
+              "Typical team: 1 Senior QA Automation + 2 Junior/Semi QA Automation."
+            ]
+          }
+        ]
+      }
+    },
+    "qualitySquad": {
+      "title": "QUALITY SQUAD",
+      "subtitle": "Dedicated QA Team",
+      "goal": [
+        "Provide stable, specialized QA capacity.",
+        "Support development teams that have little or no QA in-house."
+      ],
+      "scope": [
+        "QA assigned full-time or part-time to one or more projects.",
+        "Participation in dailies, plannings, refinements and other ceremonies.",
+        "Design and execution of functional and exploratory tests.",
+        "Defect reporting and follow-up.",
+        "Coordination with development and product teams."
+      ],
+      "deliverables": [
+        "Continuous work: test cases, execution, defect logs and reports.",
+        "Regular progress reports and value delivered (e.g. monthly)."
+      ]
+    }
+  }
+}
+```

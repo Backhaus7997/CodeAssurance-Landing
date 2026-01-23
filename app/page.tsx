@@ -7,6 +7,7 @@ import Problem from '@/components/sections/Problem';
 import Transition from '@/components/sections/Transition';
 import Process from '@/components/sections/Process';
 import Services from '@/components/sections/Services';
+import Packages from '@/components/sections/Packages';
 import Differentiators from '@/components/sections/Differentiators';
 import FinalCTA from '@/components/sections/FinalCTA';
 import { useLenis } from '@/hooks/useLenis';
@@ -27,6 +28,7 @@ export default function Home() {
           <Transition />
           <Process />
           <Services />
+          <Packages />
           <Differentiators />
           <FinalCTA />
         </main>

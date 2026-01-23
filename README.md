@@ -165,18 +165,18 @@ This project is deployed as a fully static site using GitHub Pages and a custom 
 
 Because GitHub Pages only serves static assets, the project uses Next.js static export (output: \"export\") instead of a Node.js runtime.
 
-The contents of the out/ directory are copied to the repository root so GitHub Pages can serve them directly.
+The contents of the "out/" directory are copied to the repository root so GitHub Pages can serve them directly.
 	•	The repository root therefore contains:
 	•	index.html
 	•	_next/ (static JS/CSS chunks)
 	•	404.html
 	•	static assets
 
-This setup mirrors how the previous version of the site was deployed and ensures compatibility with GitHub Pages and custom DNS.
+This setup mirrors how the previous version of the site (old page, before the landing page) was deployed and ensures compatibility with GitHub Pages and custom DNS.
 
 🚫 Jekyll Disabled
-GitHub Pages uses Jekyll by default, which ignores folders starting with _ (such as _next/).
+GitHub Pages uses Jekyll by default, which ignores folders starting with "_" (such as _next/).
 
-To prevent this behavior, a .nojekyll file is included at the repository root: .nojekyll
+To prevent this behavior, a ".nojekyll" file is included at the repository root: ".nojekyll"
 
 This ensures that all Next.js static assets are served correctly.
