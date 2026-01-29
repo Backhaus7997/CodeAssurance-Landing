@@ -39,7 +39,7 @@ export default function FinalCTA() {
               <br />
               <span className="text-accent">something flawless</span>
             </h2>
-            <p className="text-xl text-gray-400 max-w-2xl mx-auto font-light text-center">
+            <p className="text-xl text-gray-400 font-light" style={{ textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto', width: '100%' }}>
               Talk to our engineering team about your quality assurance needs
             </p>
           </div>
@@ -48,7 +48,17 @@ export default function FinalCTA() {
             onClick={() => setIsContactOpen(true)}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="group relative inline-flex items-center gap-3 px-8 py-4 bg-accent text-black font-bold text-lg rounded-full overflow-hidden transition-all duration-300"
+            className="group relative inline-flex items-center bg-accent text-black font-bold rounded-full overflow-hidden transition-all duration-300"
+            style={{
+              paddingLeft: '20px',
+              paddingRight: '20px',
+              paddingTop: '10px',
+              paddingBottom: '10px',
+              gap: '12px',
+              fontSize: '16px',
+              marginTop: '20px',
+              marginBottom: '32px'
+            }}
           >
             <span className="relative z-10">Talk to Engineers</span>
             <svg
@@ -64,7 +74,7 @@ export default function FinalCTA() {
             <div className="absolute inset-0 bg-accent-dim scale-x-0 group-hover:scale-x-100 transition-transform origin-left duration-300" />
           </motion.button>
 
-          <div className="pt-12 flex items-center justify-center gap-8 text-sm text-gray-600">
+          <div className="flex items-center justify-center gap-8 text-sm text-gray-600">
             <div>
               <span className="font-mono">info@code-assurance.com</span>
             </div>

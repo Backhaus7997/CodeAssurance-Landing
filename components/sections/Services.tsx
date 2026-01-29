@@ -40,7 +40,7 @@ export default function Services() {
       </div>
 
       <div className="flex justify-center">
-        <div className="grid md:grid-cols-2 gap-6 max-w-[1280px]">
+        <div className="grid md:grid-cols-2 max-w-[1360px]" style={{ gap: '24px' }}>
           {services.map((service, index) => (
             <motion.div
               key={index}
@@ -49,24 +49,25 @@ export default function Services() {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
               whileHover={{ y: -8 }}
-              className="group relative border border-border rounded-lg p-8 bg-gradient-to-br from-white/5 to-transparent hover:border-accent/50 transition-all duration-500"
+              className="group relative border border-border rounded-lg bg-gradient-to-br from-white/15 to-transparent hover:border-accent/50 transition-all duration-500"
+              style={{ padding: '40px' }}
             >
               {/* Glow effect on hover */}
               <div className="absolute inset-0 rounded-lg bg-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
               <div className="relative z-10">
-                <div className="flex items-start justify-between mb-6">
-                  <h3 className="text-2xl font-bold">{service.title}</h3>
+                <div className="flex items-start justify-between" style={{ marginBottom: '32px' }}>
+                  <h3 className="font-bold" style={{ fontSize: '1.875rem', lineHeight: '1.2' }}>{service.title}</h3>
                   <div className="w-2 h-2 rounded-full bg-accent" />
                 </div>
 
-                <p className="text-gray-400 mb-8 leading-relaxed">{service.description}</p>
+                <p className="text-gray-300 leading-relaxed" style={{ fontSize: '1.125rem', marginBottom: '40px' }}>{service.description}</p>
 
-                <div className="space-y-2">
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                   {service.specs.map((spec, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <div className="w-1 h-1 rounded-full bg-accent/50" />
-                      <span className="text-sm text-gray-500 font-mono">{spec}</span>
+                      <span className="text-base text-gray-300 font-mono leading-snug">{spec}</span>
                     </div>
                   ))}
                 </div>

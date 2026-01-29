@@ -71,7 +71,7 @@ export default function Hero() {
             <span className="text-accent">ASSURANCE</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mb-12 font-light tracking-wide">
+          <p className="text-lg md:text-xl text-gray-400 font-light tracking-wide" style={{ textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto', marginBottom: '48px', width: '100%' }}>
             Engineering excellence through obsessive quality control
           </p>
 

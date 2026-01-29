@@ -27,6 +27,7 @@ export default function Home() {
           <Problem />
           <Transition />
           <Process />
+          <div className="h-32 lg:h-40 xl:h-48" />
           <Services />
           <Packages />
           <Differentiators />

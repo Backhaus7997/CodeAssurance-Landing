@@ -180,3 +180,21 @@ GitHub Pages uses Jekyll by default, which ignores folders starting with "_" (su
 To prevent this behavior, a ".nojekyll" file is included at the repository root: ".nojekyll"
 
 This ensures that all Next.js static assets are served correctly.
+
+## Important if you made changes this is the way to upload them in the real page (no in localhost)
+🧱 Build & Deploy Process (Step by Step)
+
+1️⃣ Build the static site
+Every time you make changes to the website, follow these steps exactly: "npm run build"
+This will generate the following folder: "/out"
+2️⃣ Clean previous root files: "rm -rf _next index.html 404.html"
+3️⃣ Copy the contents of out to the root: "cp -R out/* ."
+4️⃣ Commit and push the changes
+EXAMPLE
+git add .
+git commit -m "Update static site"
+git push
+🌍 Viewing changes in production
+	1.	Wait 1–2 minutes
+	2.	Open the site: https://code-assurance.com
+If you don’t see the changes, hard refresh the page or open it in an incognito window.

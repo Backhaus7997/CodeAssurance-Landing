@@ -6,100 +6,100 @@ import { useState } from 'react';
 const packagesData = {
   qualityCheck: {
     title: "QUALITY CHECK",
-    subtitle: "QA Manual Funcional por Proyecto",
-    description: "Detectar defectos funcionales antes del go-live y reducir riesgos en cambios grandes o módulos nuevos.",
+    subtitle: "Manual Functional QA per Project",
+    description: "Detect functional defects before go-live and reduce risk in large changes or new modules.",
     plans: [
       {
-        name: "Plan Standard",
-        badge: "Módulo chico/mediano",
+        name: "Standard Plan",
+        badge: "Small / medium module",
         bullets: [
-          "Un módulo nuevo o varias funcionalidades relacionadas",
-          "5–10 pantallas/flujos, reglas de negocio moderadas",
-          "Equipo: 1 QA Senior + 1 QA Junior"
+          "New module or several related features",
+          "5–10 screens/flows, moderate business rules",
+          "Typical team: 1 Senior QA + 1 Junior QA"
         ]
       },
       {
-        name: "Plan Medium",
-        badge: "Módulo complejo",
+        name: "Medium Plan",
+        badge: "Complex module",
         bullets: [
-          "Módulos de negocio importantes o complejos",
-          "10–20 pantallas/flujos, varias reglas de negocio",
-          "Varias integraciones (APIs, pasarelas, servicios internos)",
-          "Equipo: 1 QA Senior + 2 QA Juniors"
+          "Important or complex business modules",
+          "10–20 screens/flows, multiple business rules",
+          "Several integrations (APIs, gateways, internal services)",
+          "Typical team: 1 Senior QA + 2 Junior QAs"
         ]
       },
       {
-        name: "Plan Premium",
-        badge: "Alto impacto",
+        name: "Premium Plan",
+        badge: "High impact",
         bullets: [
-          "Cambios de altísimo impacto en el negocio",
-          "> 20 pantallas/flujos, múltiples integraciones y escenarios",
-          "Necesidad de probar flujos end-to-end de principio a fin",
-          "Equipo: 1 QA Senior + 2–3 QA Juniors"
+          "Very high business impact changes",
+          "> 20 screens/flows, multiple integrations and scenarios",
+          "End-to-end flows that must be validated from start to finish",
+          "Typical team: 1 Senior QA + 2–3 Junior QAs"
         ]
       }
     ]
   },
   qualityBooster: {
     title: "QUALITY BOOSTER",
-    subtitle: "Regresión Continua + Kickstart de Automatización",
-    description: "Framework de automatización funcionando con un set inicial de casos automatizados de regresión crítica.",
+    subtitle: "Continuous Regression + Automation Kickstart",
+    description: "Have an automation framework up and running with an initial set of automated regression tests for critical flows.",
     plans: [
       {
-        name: "Kickstart Básico",
-        badge: "Producto chico",
+        name: "Kickstart Basic",
+        badge: "Small product",
         bullets: [
-          "Apps o módulos relativamente chicos",
-          "1–2 flujos críticos principales y pocas integraciones",
-          "Framework base + automatización de set inicial",
-          "Equipo: 1 QA Automation Senior + 1 QA Automation Junior/Semi"
+          "Small apps or modules",
+          "1–2 main critical flows and few integrations",
+          "Base framework + automation of the initial set",
+          "Typical team: 1 Senior QA Automation + 1 Junior/Semi QA Automation"
         ]
       },
       {
-        name: "Kickstart Estándar",
-        badge: "Producto mediano",
+        name: "Kickstart Standard",
+        badge: "Medium product",
         bullets: [
-          "Productos con varios módulos y flujos, 2–3 roles de usuario",
-          "Framework con estructura, reporting y pipelines básicos",
-          "Automatización + estabilización + documentación",
-          "Equipo: 1 QA Automation Senior + 1–2 QA Automation Juniors/Semi"
+          "Products with several modules and flows, 2–3 user roles",
+          "Framework with structure, reporting and basic pipelines",
+          "Automation + stabilization + documentation",
+          "Typical team: 1 Senior QA Automation + 1–2 Junior/Semi QA Automation"
         ]
       },
       {
-        name: "Kickstart Completo",
-        badge: "Producto complejo",
+        name: "Kickstart Full",
+        badge: "Complex product",
         bullets: [
-          "Sistemas core del negocio con flujos y reglas complejas",
-          "Framework robusto + automatización + estabilización completa",
-          "Documentación completa + training al equipo",
-          "Equipo: 1 QA Automation Senior + 2 QA Automation Juniors/Semi"
+          "Core business systems with many flows and complex rules",
+          "Robust framework + automation + full stabilization",
+          "Complete documentation + team training",
+          "Typical team: 1 Senior QA Automation + 2 Junior/Semi QA Automation"
         ]
       }
     ]
   },
   qualitySquad: {
     title: "QUALITY SQUAD",
-    subtitle: "Equipo Dedicado de QA",
-    description: "Capacidad de QA estable y especializada para dar soporte a equipos de desarrollo que no tienen QA interno suficiente.",
+    subtitle: "Dedicated QA Team",
+    description: "Provide stable, specialized QA capacity to support development teams that have little or no in-house QA.",
     plans: [
       {
         name: "Squad Part-Time",
-        badge: "Soporte flexible",
+        badge: "Flexible support",
         bullets: [
-          "QA asignado part-time a uno o más proyectos",
-          "Participación en ceremonias clave",
-          "Diseño y ejecución de pruebas funcionales",
-          "Reportes periódicos de avance"
+          "QA assigned part-time to one or more projects",
+          "Participation in key ceremonies",
+          "Design and execution of functional tests",
+          "Regular progress reports"
         ]
       },
       {
         name: "Squad Full-Time",
-        badge: "Dedicación completa",
+        badge: "Full dedication",
         bullets: [
-          "QA asignado full-time a proyectos críticos",
-          "Participación en dailies, plannings, refinements",
-          "Pruebas funcionales y exploratorias continuas",
-          "Reporte y seguimiento exhaustivo de bugs"
+          "QA assigned full-time to critical projects",
+          "Participation in dailies, plannings, refinements",
+          "Ongoing functional and exploratory testing",
+          "Comprehensive defect reporting and follow-up"
         ]
       }
     ]
@@ -131,15 +131,15 @@ export default function Packages() {
         {/* Header */}
         <div className="mb-20 flex flex-col items-center">
           <p className="text-xs tracking-[0.3em] uppercase text-accent mb-6 font-mono">
-            Nuestros Servicios
+            Our Services
           </p>
           <h2 className="text-[clamp(2.5rem,8vw,5rem)] font-bold leading-[1.1] tracking-tighter mb-6 text-center">
-            Paquetes de
+            Packages for
             <br />
             <span className="text-accent">Quality Assurance</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl text-center" style={{ marginTop: '32px', marginBottom: '32px' }}>
-            Soluciones diseñadas para cada etapa de tu producto
+            Solutions designed for every stage of your product
           </p>
         </div>
 
@@ -149,13 +149,13 @@ export default function Packages() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-4 mb-16"
+          className="flex flex-wrap justify-center gap-4 mb-16 px-4"
         >
           {Object.entries(packagesData).map(([key, pkg]) => (
             <button
               key={key}
               onClick={() => setSelectedPackage(key as any)}
-              className={`px-6 py-3 rounded-full font-bold transition-all duration-300 ${
+              className={`px-6 py-3 rounded-full font-bold text-sm whitespace-nowrap transition-all duration-300 ${
                 selectedPackage === key
                   ? 'bg-accent text-black'
                   : 'bg-white/5 text-white hover:bg-white/10'
@@ -180,37 +180,54 @@ export default function Packages() {
           </div>
 
           {/* Plans Grid */}
-          <div className={`${currentPackage.plans.length === 2 ? 'flex flex-wrap justify-center' : 'grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3'} gap-6`}>
+          <div className="flex flex-wrap justify-center gap-6 md:gap-8">
             {currentPackage.plans.map((plan, index) => (
               <motion.div
                 key={plan.name}
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className={`group relative bg-black/50 border border-white/10 rounded-2xl p-8 hover:border-accent/50 transition-all duration-300 ${currentPackage.plans.length === 2 ? 'w-full md:w-[calc(50%-12px)] lg:w-[500px]' : ''}`}
+                className="group relative bg-black/50 border border-white/10 rounded-2xl hover:border-accent/50 transition-all duration-300 w-full"
+                style={{ 
+                  paddingLeft: '32px', 
+                  paddingRight: '32px', 
+                  paddingTop: '32px', 
+                  paddingBottom: '36px',
+                  maxWidth: '480px',
+                  width: '100%'
+                }}
               >
                 {/* Badge */}
-                <div className="inline-block px-4 py-1 bg-accent/10 border border-accent/30 rounded-full mb-6">
+                <div 
+                  className="inline-block bg-accent/10 border border-accent/30 rounded-full" 
+                  style={{ 
+                    marginBottom: '24px',
+                    paddingLeft: '20px',
+                    paddingRight: '20px',
+                    paddingTop: '6px',
+                    paddingBottom: '6px'
+                  }}
+                >
                   <span className="text-accent text-sm font-mono">{plan.badge}</span>
                 </div>
 
                 {/* Plan Name */}
-                <h4 className="text-2xl font-bold mb-6 group-hover:text-accent transition-colors">
+                <h4 className="text-2xl font-bold group-hover:text-accent transition-colors" style={{ marginBottom: '24px' }}>
                   {plan.name}
                 </h4>
 
                 {/* Bullets */}
-                <ul className="space-y-4">
+                <ul style={{ paddingLeft: '12px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
                   {plan.bullets.map((bullet, i) => (
-                    <li key={i} className="flex items-start gap-3 text-gray-400">
-                      <div className="w-1.5 h-1.5 rounded-full bg-accent mt-2 flex-shrink-0" />
+                    <li key={i} className="flex items-center text-gray-400" style={{ gap: '12px' }}>
+                      <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0" />
                       <span className="text-sm leading-relaxed">{bullet}</span>
                     </li>
                   ))}
                 </ul>
 
                 {/* Hover effect */}
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
               </motion.div>
             ))}
           </div>

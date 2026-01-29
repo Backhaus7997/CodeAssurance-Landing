@@ -1,3 +1,7 @@
+¡¡¡ESTE TXT SE PUEDE BORRAR, ME SIRVIO DE BASE PARA HACER EL PROMPT PARA CREAR LOS PAQUETES DE VENTA DE LA 
+PAGINA VIEJA A LA NUEVA. SE PUEDE BORRAR, ES SOLO UN TXT!!!
+
+
 # Prompt para generar secciones de paquetes
 
 Usa el siguiente JSON para construir las secciones de paquetes/planes (cards o bloques) en la nueva landing. Crea componentes con títulos, subtítulos, listas de bullets y badges por plan. Mantén el orden y el contenido tal cual.
