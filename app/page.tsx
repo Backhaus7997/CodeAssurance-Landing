@@ -10,6 +10,7 @@ import Services from '@/components/sections/Services';
 import Packages from '@/components/sections/Packages';
 import Differentiators from '@/components/sections/Differentiators';
 import FinalCTA from '@/components/sections/FinalCTA';
+import Footer from '@/components/sections/Footer';
 import { useLenis } from '@/hooks/useLenis';
 
 export default function Home() {
@@ -32,6 +33,7 @@ export default function Home() {
           <Packages />
           <Differentiators />
           <FinalCTA />
+          <Footer />
         </main>
       )}
     </>
