@@ -7,108 +7,87 @@ const steps = [
   {
     id: 1,
     number: '01',
-    title: 'Analyze',
-    subtitle: 'Deep code analysis and architecture review',
+    title: 'Assess',
+    subtitle: 'Risk assessment + reality check (product, CI, failure points)',
     queHacemos: [
-      'Audit critical flows and risk points',
-      'Review bug patterns and CI failures',
-      'Prioritize by impact'
+      'Identify critical user flows and failure points (auth, payments, roles, integrations)',
+      'Analyze CI history, regressions, and flake signals (what breaks, how often, why)',
+      'Rank risk by impact × likelihood (rank what to cover first)'
     ],
     entregables: [
-      'Risk map by module',
-      'Quick wins list',
-      'Prioritized QA backlog'
+      'Risk map by area/module',
+      'Top issues & quick wins list (highest ROI fixes)',
+      'Prioritized test backlog by level (smoke/regression/E2E/API/contract)'
     ],
     impacto: [
-      'Fewer surprises at release',
-      'Focus on critical issues',
-      'Clear plan in days'
+      'Fewer release surprises',
+      'Clear priorities aligned to business risk',
+      'Actionable plan in days, not weeks'
     ]
   },
   {
     id: 2,
     number: '02',
-    title: 'Design',
-    subtitle: 'Test strategy and coverage planning',
+    title: 'Plan',
+    subtitle: 'Test strategy + coverage plan + measurable quality gates',
     queHacemos: [
-      'Define strategy by levels (smoke/regression/E2E/API)',
-      'Establish go/no-go criteria',
-      'Design data strategy and coverage'
+      'Define test levels and execution scope',
+      'Set explicit go/no-go criteria (explicit gates: critical bugs, smoke pass rate)',
+      'Define environments and test data approach (reset strategy, accounts, mocks vs real)'
     ],
     entregables: [
-      'Test strategy document',
-      'Coverage↔risk matrix',
-      'CI plan with gates'
+      'Test strategy (1–2 pages, execution-ready)',
+      'Risk ↔ Coverage matrix (risk mapped to test types)',
+      'CI/CD gates proposal (what blocks merge/release + ownership)'
     ],
     impacto: [
-      'Measurable quality',
-      'Consistent feedback',
-      'Clear exit rules'
+      'Measurable quality (clear pass/fail signals)',
+      'Consistent feedback loop for dev/product',
+      'Faster release decisions (less debate, more evidence)'
     ]
   },
   {
     id: 3,
     number: '03',
-    title: 'Execute',
-    subtitle: 'Automated and manual testing protocols',
+    title: 'Deliver',
+    subtitle: 'Focused execution + automation where it pays off',
     queHacemos: [
-      'Automate E2E where it adds most value',
-      'Execute focused regression',
-      'Record clear evidence (logs/screens)'
+      'Execute risk-based regression (scoped to changes, not "infinite regression")',
+      'Automate high-value coverage (prefer API/contract when cheaper; E2E only where needed)',
+      'Produce audit-ready evidence (steps, logs, screenshots, run links, test data used)'
     ],
     entregables: [
-      'Stable test suite',
-      'Reports per PR/release',
-      'Exit checklist'
+      'Release/PR test report (scope, results, severity, links to evidence)',
+      'Automation increment (new tests + maintenance rules/ownership)',
+      'Exit checklist (pre-deploy validations)'
     ],
     impacto: [
-      'Fewer bugs in prod',
-      'Release with confidence',
-      'Faster cycle'
+      'Fewer bugs in production',
+      'Less back-and-forth with engineering',
+      'Shorter cycles through reduced rework'
     ]
   },
   {
     id: 4,
     number: '04',
-    title: 'Monitor',
-    subtitle: 'Continuous integration and performance tracking',
+    title: 'Stabilize',
+    subtitle: 'Observability + flake triage + pipeline hardening',
     queHacemos: [
-      'Monitor early signals (CI/health checks)',
-      'Track flaky tests',
-      'Configure alerts for critical failures'
+      'Track pipeline stability metrics (pass rate, flake rate, runtime, failures by component)',
+      'Triage flaky tests with a consistent policy (fix / quarantine / remove + owner)',
+      'Improve CI reliability and speed (parallelization, caching, thresholds, noise reduction)'
     ],
     entregables: [
-      'Trends dashboard',
-      'Stability alerts',
-      'Weekly report'
+      'Stability dashboard (trends: flakes/failures/runtime)',
+      'Flakiness action list (root cause + decision + owner + ETA)',
+      'CI hardening summary (before/after metrics)'
     ],
     impacto: [
-      'Fewer incidents',
-      'Visible stability',
-      'Less flakiness'
+      'Fewer "false red" builds and less noise',
+      'Faster, more reliable CI',
+      'QA becomes sustainable (lower maintenance cost)'
     ]
-  },
-  {
-    id: 5,
-    number: '05',
-    title: 'Optimize',
-    subtitle: 'Refinement and quality assurance loops',
-    queHacemos: [
-      'Refine suites based on product changes',
-      'Reduce maintenance and flakiness',
-      'Improve pipeline performance'
-    ],
-    entregables: [
-      'QA roadmap',
-      'Test refactors and hardening',
-      'CI time improvements'
-    ],
-    impacto: [
-      'Faster CI',
-      'Lower QA cost',
-      'Sustainable process'
-    ]
-  },
+  }
 ];
 
 export default function Process() {
@@ -119,7 +98,7 @@ export default function Process() {
 
   return (
     <section className="relative pt-[280px] pb-[400px] px-12 lg:px-16 xl:px-24 mb-32 lg:mb-40 xl:mb-48">
-      <div className="mb-20 text-center">
+      <div className="text-center" style={{ marginBottom: '80px' }}>
         <p className="text-xs tracking-[0.3em] uppercase text-accent mb-6 font-mono">
           Our Process
         </p>
@@ -177,7 +156,7 @@ export default function Process() {
 
           {/* Right: Content Panel */}
           <div className="lg:sticky lg:top-32">
-            <div className="relative border border-border rounded-lg overflow-hidden bg-gradient-to-br from-accent/15 to-transparent" style={{ padding: '48px' }}>
+            <div className="relative border border-border rounded-lg overflow-hidden bg-gradient-to-br from-accent/15 to-transparent" style={{ padding: '32px' }}>
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeStep}
@@ -185,14 +164,14 @@ export default function Process() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.3 }}
-                  style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}
+                  style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}
                 >
                   {/* What we do */}
                   <div>
-                    <h4 className="text-accent text-sm font-mono uppercase tracking-wider font-bold" style={{ marginBottom: '20px' }}>
+                    <h4 className="text-accent text-sm font-mono uppercase tracking-wider font-bold" style={{ marginBottom: '16px' }}>
                       What we do
                     </h4>
-                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                       {currentStep.queHacemos.map((item, i) => (
                         <li key={i} className="flex items-start gap-3">
                           <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0 self-start translate-y-[0.45rem]" />
@@ -204,10 +183,10 @@ export default function Process() {
 
                   {/* Deliverables */}
                   <div>
-                    <h4 className="text-accent text-sm font-mono uppercase tracking-wider font-bold" style={{ marginBottom: '20px' }}>
+                    <h4 className="text-accent text-sm font-mono uppercase tracking-wider font-bold" style={{ marginBottom: '16px' }}>
                       Deliverables
                     </h4>
-                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+                    <ul style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
                       {currentStep.entregables.map((item, i) => (
                         <li key={i} className="flex items-start gap-3">
                           <div className="w-1.5 h-1.5 rounded-full bg-accent flex-shrink-0 self-start translate-y-[0.45rem]" />
@@ -219,10 +198,10 @@ export default function Process() {
 
                   {/* Impact */}
                   <div>
-                    <h4 className="text-accent text-sm font-mono uppercase tracking-wider font-bold" style={{ marginBottom: '20px' }}>
+                    <h4 className="text-accent text-sm font-mono uppercase tracking-wider font-bold" style={{ marginBottom: '16px' }}>
                       Impact
                     </h4>
-                    <div className="flex flex-wrap" style={{ gap: '14px' }}>
+                    <div className="flex flex-wrap" style={{ gap: '12px' }}>
                       {currentStep.impacto.map((item, i) => (
                         <div
                           key={i}
@@ -236,7 +215,7 @@ export default function Process() {
                   </div>
 
                   {/* Progress Bar */}
-                  <div className="border-t border-white/10" style={{ marginTop: '16px', paddingTop: '32px' }}>
+                  <div className="border-t border-white/10" style={{ marginTop: '8px', paddingTop: '24px' }}>
                     <div className="space-y-2">
                       <div className="flex justify-between items-center">
                         <span className="text-xs text-gray-500 font-mono">Progress</span>
