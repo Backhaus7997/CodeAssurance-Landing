@@ -59,7 +59,7 @@ export default function Problem() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center py-[240px] px-12 lg:px-16 xl:px-24 bg-black"
+      className="relative min-h-screen flex items-center justify-center py-[128px] px-12 lg:px-16 xl:px-24 bg-black"
     >
       <div className="max-w-[1280px] mx-auto w-full">
         <div className="mb-24 text-center">

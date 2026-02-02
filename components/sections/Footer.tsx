@@ -37,7 +37,7 @@ export default function Footer() {
           <div className="flex flex-col items-center">
             <h4 className="text-sm font-bold mb-4 uppercase tracking-wider">Contact</h4>
             <div className="space-y-2 text-sm text-gray-400">
-              <p>info@code-assurance.com</p>
+              <p>martin.backhaus@code-assurance.com</p>
               <p>+54 9 351 268 2001</p>
             </div>
           </div>
