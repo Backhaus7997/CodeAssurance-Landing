@@ -48,7 +48,7 @@ export default function Services() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -8 }}
+              whileHover={{ y: -8, transition: { duration: 0.2 } }}
               className="group relative border border-border rounded-lg bg-gradient-to-br from-white/15 to-transparent hover:border-accent/50 transition-all duration-500"
               style={{ padding: '40px' }}
             >

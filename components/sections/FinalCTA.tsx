@@ -7,7 +7,7 @@ import ContactModal from "@/components/ui/ContactModal";
 export default function FinalCTA() {
   const [isContactOpen, setIsContactOpen] = useState(false);
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 py-32">
+    <section className="relative min-h-screen flex items-center justify-center px-6" style={{ paddingTop: '128px', paddingBottom: '32px' }}>
       {/* Grid background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div

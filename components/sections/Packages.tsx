@@ -149,7 +149,8 @@ export default function Packages() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-4 mb-16 px-4"
+          className="flex flex-wrap justify-center gap-4 px-4"
+          style={{ marginBottom: '32px' }}
         >
           {Object.entries(packagesData).map(([key, pkg]) => (
             <button
