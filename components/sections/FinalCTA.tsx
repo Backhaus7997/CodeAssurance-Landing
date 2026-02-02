@@ -76,7 +76,7 @@ export default function FinalCTA() {
 
           <div className="flex items-center justify-center gap-8 text-sm text-gray-600">
             <div>
-              <span className="font-mono">info@code-assurance.com</span>
+              <span className="font-mono">martin.backhaus@code-assurance.com</span>
             </div>
             <div className="w-px h-4 bg-gray-800" />
             <div>
