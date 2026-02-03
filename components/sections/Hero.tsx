@@ -72,7 +72,7 @@ export default function Hero() {
           </h1>
 
           <p className="text-lg md:text-xl text-gray-400 font-light tracking-wide" style={{ textAlign: 'center', maxWidth: '48rem', marginLeft: 'auto', marginRight: 'auto', marginBottom: '48px', width: '100%' }}>
-            Engineering excellence through obsessive quality control
+            Quality assurance services, test automation, and release confidence
           </p>
 
           <motion.div
