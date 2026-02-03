@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.code-assurance.com"),
   title: "Code Assurance - Engineering Excellence Through Quality",
-  description: "Premium quality assurance and testing services for enterprise tech companies. Built by engineers, for engineers.",
+  description: "Quality assurance services and test automation for enterprise teams. Built by engineers, for engineers — reduce release risk with reliable regression and CI stability.",
   alternates: {
     canonical: "https://www.code-assurance.com/",
   },
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     url: "https://www.code-assurance.com/",
     siteName: "Code Assurance",
     title: "Code Assurance - Engineering Excellence Through Quality",
-    description: "Premium quality assurance and testing services for enterprise tech companies. Built by engineers, for engineers.",
+    description: "Quality assurance services and test automation for enterprise teams. Built by engineers, for engineers — reduce release risk with reliable regression and CI stability.",
     images: [
       {
         url: "/og-image.png",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Code Assurance - Engineering Excellence Through Quality",
-    description: "Premium quality assurance and testing services for enterprise tech companies. Built by engineers, for engineers.",
+    description: "Quality assurance services and test automation for enterprise teams. Built by engineers, for engineers — reduce release risk with reliable regression and CI stability.",
     images: ["/og-image.png"],
   },
 };
