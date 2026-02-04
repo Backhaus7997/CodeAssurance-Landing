@@ -8,6 +8,14 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
   const [isComplete, setIsComplete] = useState(false);
 
   useEffect(() => {
+    const hasSeenPreloader = typeof window !== 'undefined' && sessionStorage.getItem('hasSeenPreloader') === 'true';
+
+    if (hasSeenPreloader) {
+      setIsComplete(true);
+      onComplete();
+      return;
+    }
+
     const duration = 6000;
     const steps = 100;
     const interval = duration / steps;
@@ -20,6 +28,9 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       if (currentProgress >= 100) {
         clearInterval(timer);
         setTimeout(() => {
+          if (typeof window !== 'undefined') {
+            sessionStorage.setItem('hasSeenPreloader', 'true');
+          }
           setIsComplete(true);
           setTimeout(onComplete, 800);
         }, 500);

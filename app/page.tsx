@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Preloader from '@/components/sections/Preloader';
 import Hero from '@/components/sections/Hero';
 import Problem from '@/components/sections/Problem';
@@ -17,6 +17,24 @@ export default function Home() {
   const [showContent, setShowContent] = useState(false);
 
   useLenis();
+
+  useEffect(() => {
+    if (!showContent) return;
+
+    const { hash } = window.location;
+    if (!hash) return;
+
+    const id = hash.replace('#', '');
+    const target = document.getElementById(id);
+
+    if (!target) return;
+
+    const timeout = window.setTimeout(() => {
+      target.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }, 100);
+
+    return () => window.clearTimeout(timeout);
+  }, [showContent]);
 
   return (
     <>

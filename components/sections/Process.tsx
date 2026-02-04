@@ -53,7 +53,7 @@ const steps = [
     subtitle: 'Focused execution + automation where it pays off',
     queHacemos: [
       'Execute risk-based regression (scoped to changes, not "infinite regression")',
-      'Automate high-value coverage (prefer API/contract when cheaper; E2E only where needed)',
+      'Automate high-value coverage (E2E + API where it makes sense)',
       'Produce audit-ready evidence (steps, logs, screenshots, run links, test data used)'
     ],
     entregables: [

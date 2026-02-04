@@ -1,25 +1,30 @@
 'use client';
 
+import Link from 'next/link';
 import { motion } from 'framer-motion';
 
 const services = [
   {
     title: 'Automated Testing',
+    href: '/services/automated-testing/',
     description: 'End-to-end test automation with comprehensive coverage',
     specs: ['Unit Testing', 'Integration Tests', 'E2E Scenarios'],
   },
   {
     title: 'Performance Audit',
+    href: '/services/performance-audit/',
     description: 'Deep performance analysis and optimization protocols',
     specs: ['Load Testing', 'Stress Analysis', 'Bottleneck ID'],
   },
   {
     title: 'Security Review',
+    href: '/services/security-review/',
     description: 'Vulnerability assessment and penetration testing',
     specs: ['Code Scanning', 'Threat Modeling', 'Compliance Check'],
   },
   {
     title: 'Code Quality',
+    href: '/services/code-quality/',
     description: 'Standards enforcement and technical debt management',
     specs: ['Static Analysis', 'Architecture Review', 'Refactoring'],
   },
@@ -27,7 +32,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="relative py-[240px] px-12 lg:px-16 xl:px-24">
+    <section id="services" className="relative py-[240px] px-12 lg:px-16 xl:px-24">
       <div className="mb-20 text-center">
         <p className="text-xs tracking-[0.3em] uppercase text-accent mb-6 font-mono">
           Core Capabilities
@@ -70,6 +75,22 @@ export default function Services() {
                       <span className="text-base text-gray-300 font-mono leading-snug">{spec}</span>
                     </div>
                   ))}
+                </div>
+
+                <div className="mt-8 flex justify-end">
+                  <Link
+                    href={service.href}
+                    className="inline-flex items-center gap-2 bg-accent/10 border border-accent/30 rounded-full transition-all duration-300 hover:border-accent/50 hover:bg-accent/20"
+                    style={{
+                      paddingLeft: '20px',
+                      paddingRight: '20px',
+                      paddingTop: '6px',
+                      paddingBottom: '6px'
+                    }}
+                  >
+                    <span className="text-accent text-sm font-mono">Learn more</span>
+                    <span className="text-accent text-sm font-mono">→</span>
+                  </Link>
                 </div>
               </div>
 
