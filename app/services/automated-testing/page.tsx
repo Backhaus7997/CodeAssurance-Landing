@@ -86,11 +86,11 @@ export default function AutomatedTestingPage() {
               },
               {
                 title: 'Test suite increment',
-                detail: 'New tests + ownership + maintenance rules',
+                detail: 'New tests + clear ownership + rules that keep the suite stable over time',
               },
               {
                 title: 'CI execution profile',
-                detail: 'Runtime targets',
+                detail: 'Runtime targets + execution strategy to keep CI fast and reliable',
               },
             ].map((item) => (
               <div
@@ -142,7 +142,7 @@ export default function AutomatedTestingPage() {
                       <h3 className="text-2xl font-bold group-hover:text-accent transition-colors" style={{ marginBottom: isOpen ? '16px' : '0px' }}>
                         {card.title}
                       </h3>
-                      <span className="text-accent font-mono text-sm">{isOpen ? '−' : '+'}</span>
+                      <span className="text-accent font-mono text-2xl">{isOpen ? '−' : '+'}</span>
                     </div>
                   </button>
 
