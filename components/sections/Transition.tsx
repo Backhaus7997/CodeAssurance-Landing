@@ -40,7 +40,7 @@ export default function Transition() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center py-[280px] px-12 lg:px-16 xl:px-24"
+      className="relative min-h-screen flex items-center justify-center py-[280px] px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 overflow-x-hidden"
     >
       {/* Animated grid background */}
       <div
@@ -73,7 +73,7 @@ export default function Transition() {
             </p>
           </div>
 
-          <h2 className="text-[clamp(2.5rem,10vw,7rem)] font-bold leading-[0.95] tracking-tighter">
+          <h2 className="text-[clamp(2.5rem,10vw,7rem)] font-bold leading-[0.95] tracking-tighter max-w-full">
             Precision.
             <br />
             <span className="text-accent">Control.</span>
@@ -87,17 +87,17 @@ export default function Transition() {
             Every line tested. Every edge case covered.
           </p>
 
-          <div className="pt-8 flex items-center justify-center gap-12">
+          <div className="pt-8 flex flex-wrap items-center justify-center gap-8 md:gap-12">
             <div className="text-center">
               <div className="text-5xl font-bold text-accent mb-2">99.9%</div>
               <div className="text-sm text-gray-500 uppercase tracking-wider">Bug Detection</div>
             </div>
-            <div className="w-px h-16 bg-gray-800" />
+            <div className="hidden md:block w-px h-16 bg-gray-800" />
             <div className="text-center">
               <div className="text-5xl font-bold text-accent mb-2">10x</div>
               <div className="text-sm text-gray-500 uppercase tracking-wider">Faster Delivery</div>
             </div>
-            <div className="w-px h-16 bg-gray-800" />
+            <div className="hidden md:block w-px h-16 bg-gray-800" />
             <div className="text-center">
               <div className="text-5xl font-bold text-accent mb-2">Zero</div>
               <div className="text-sm text-gray-500 uppercase tracking-wider">Downtime</div>

@@ -59,14 +59,14 @@ export default function Problem() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center py-[128px] px-12 lg:px-16 xl:px-24 bg-black"
+      className="relative min-h-screen flex items-center justify-center py-[128px] px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 bg-black overflow-x-hidden"
     >
       <div className="max-w-[1280px] mx-auto w-full">
-        <div className="mb-24 text-center">
+        <div className="mb-10 md:mb-24 text-center">
           <p className="text-xs tracking-[0.3em] uppercase text-red-500 mb-4 font-mono">
             System Failure
           </p>
-          <h2 className="text-[clamp(2rem,8vw,6rem)] font-bold leading-[0.95] tracking-tighter">
+          <h2 className="text-[clamp(2rem,8vw,6rem)] font-bold leading-[0.95] tracking-tighter max-w-full">
             Without proper QA,
             <br />
             <span className="text-red-500">everything breaks</span>
@@ -95,7 +95,9 @@ export default function Problem() {
                       {error.impact}
                     </span>
                   </div>
-                  <p className="text-sm text-gray-400 font-mono">{error.message}</p>
+                  <p className="text-sm text-gray-400 font-mono break-words whitespace-normal">
+                    {error.message}
+                  </p>
                 </div>
                 <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
               </div>
@@ -111,7 +113,7 @@ export default function Problem() {
       </div>
 
       {/* Glitch overlay */}
-      <div className="absolute inset-0 pointer-events-none opacity-20 mix-blend-overlay">
+      <div className="absolute inset-0 pointer-events-none opacity-20 mix-blend-overlay overflow-hidden">
         <div className="absolute inset-0 bg-red-500 animate-glitch" />
       </div>
     </section>
