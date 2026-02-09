@@ -1,3 +1,8 @@
+export const metadata = {
+  alternates: {
+    canonical: 'https://www.code-assurance.com/services/automated-testing/',
+  },
+};
 'use client';
 
 import { useState } from 'react';

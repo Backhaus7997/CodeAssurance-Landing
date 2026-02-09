@@ -5,9 +5,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.code-assurance.com"),
   title: "Code Assurance - Engineering Excellence Through Quality",
   description: "Quality assurance services and test automation for enterprise teams. Built by engineers, for engineers — reduce release risk with reliable regression and CI stability.",
-  alternates: {
-    canonical: "https://www.code-assurance.com/",
-  },
+  // alternates.canonical eliminado para evitar herencia global
   openGraph: {
     type: "website",
     locale: "en_US",
