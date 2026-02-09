@@ -19,21 +19,23 @@ export default function PerformanceAuditPage() {
       title: 'Baseline first (what we measure)',
       bullets: [
         'Critical journeys first (login, checkout/payment, approvals, search, key dashboards)',
-        'Define success targets (p95 < Xs, error rate < Y%) + note constraints',
+        'Define performance expectations (p95/p99 goals, error rate) + constraints (env/data/traffic patterns)',
       ],
     },
     {
-      title: 'Bottleneck identification (how we isolate causes)',
+      title: 'Bottleneck isolation (how we narrow causes)',
       bullets: [
-        'Split by layer: frontend vs backend vs DB vs network vs third-party',
-        'Endpoint-level profiling: slow queries, payload size, N+1 patterns',
+        'Triage across layers: UI vs API vs DB signals vs third-party dependencies',
+        'API-level measurements: slow endpoints, payload size, inefficient calls, timeouts',
+        'Data validation where relevant (SQL checks / consistency signals) to confirm impact',
       ],
     },
     {
       title: 'Verification mindset (how we keep it real)',
       bullets: [
         'Evidence-driven findings (numbers + reproducible runs)',
-        'Clear next experiments if root cause needs confirmation',
+        'Prioritized next steps: quick wins vs deeper investigation',
+        'Re-test plan to validate improvements after changes',
       ],
     },
   ];
@@ -61,8 +63,8 @@ export default function PerformanceAuditPage() {
             </p>
             <div className="mt-4 space-y-3 text-center">
               {[
-                'Baseline metrics you can track (p95/p99, error rate, throughput)',
-                'Bottlenecks tied to endpoints and user journeys (not vague guesses)',
+                'Baseline metrics you can track (p95/p99, error rate, slowest pages/endpoints)',
+                'Findings tied to journeys and endpoints (not vague guesses)',
                 'Prioritized optimization plan (quick wins + high-impact fixes)',
               ].map((item) => (
                 <div key={item} className="flex items-center justify-center text-gray-300" style={{ gap: '12px' }}>
@@ -82,7 +84,7 @@ export default function PerformanceAuditPage() {
             {[
               {
                 title: 'Baseline & metrics report',
-                detail: 'Key pages/endpoints, p95/p99, throughput, error rate, and performance trends.',
+                detail: 'Key pages/endpoints, p95/p99, error rate, and performance trends.',
               },
               {
                 title: 'Bottlenecks & root-cause hypotheses',
@@ -170,7 +172,7 @@ export default function PerformanceAuditPage() {
           <h2 className="text-4xl font-bold text-accent text-center" style={{ marginTop: '20px', marginBottom: '20px' }}>Evidence you will actually see</h2>
           {(() => {
             const evidenceItems = [
-              'PR-friendly baseline snapshot: p95/p99, throughput, error rate',
+              'Baseline snapshot (shareable for PRs): p95/p99, latency + error rate + slowest endpoints.',
               'Top bottlenecks ranked by impact',
               'Before/after comparison template for engineers',
               'Constraints notes (data, environment, third parties)',
@@ -203,7 +205,7 @@ export default function PerformanceAuditPage() {
                   </div>
                 </div>
                 <p className="text-gray-100 font-mono font-semibold text-center" style={{ marginTop: '20px' }}>
-                  Principle: If it can’t be measured and reproduced, we don’t claim it.
+                  Evidence over opinions: every claim is backed by measured runs.
                 </p>
               </div>
             );

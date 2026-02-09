@@ -202,7 +202,7 @@ export default function AutomatedTestingPage() {
                     ))}
                   </div>
                 </div>
-                <p className="text-gray-100 font-mono font-semibold text-center">
+                <p className="text-gray-100 font-mono font-semibold text-center" style={{ marginTop: '20px' }}>
                   Evidence over opinions: every claim is backed by a run.
                 </p>
               </div>
