@@ -214,42 +214,96 @@ export default function SecurityReviewPage() {
         </section>
 
         <section className="w-full space-y-6 text-center">
-          <h2 className="text-4xl font-bold text-accent text-center" style={{ marginTop: '20px', marginBottom: '20px' }}>Scope examples</h2>
-          <div className="grid gap-4 md:grid-cols-3 justify-items-center">
-            {[
-              {
-                title: 'Small scope',
-                body: 'Targeted review of critical flows + baseline scan + test cases',
-              },
-              {
-                title: 'Medium scope',
-                body: 'Deeper manual testing + vulnerability report + retest checklist',
-              },
-              {
-                title: 'High scope',
-                body: 'Multi-module review + cross-team alignment + retest cycle',
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="group relative w-full max-w-[480px] bg-black/50 border border-accent/70 shadow-[0_0_0_1px_rgba(0,255,136,0.25)] rounded-2xl hover:border-accent transition-all duration-300 text-left"
-                style={{
-                  paddingLeft: '32px',
-                  paddingRight: '32px',
-                  paddingTop: '32px',
-                  paddingBottom: '36px',
-                }}
-              >
-                <h3 className="text-2xl font-bold group-hover:text-accent transition-colors" style={{ marginBottom: '16px' }}>
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-300 font-mono">{item.body}</p>
+  <h2 className="text-4xl font-bold text-accent text-center" style={{ marginTop: '20px', marginBottom: '20px' }}>
+    Tools & stack
+  </h2>
+  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
+    {[
+      { title: 'Nmap (Discovery & exposure)', detail: 'Port/service discovery, network footprint, verification of unintended exposure.' },
+      { title: 'Nikto (Web server baseline checks)', detail: 'Quick detection of common server misconfigurations and risky defaults.' },
+      { title: 'Burp Suite / OWASP ZAP (Manual validation)', detail: 'Intercept traffic, reproduce issues, validate exploitability (reduce scanner noise).' },
+      { title: 'Code scanning (SAST + dependencies)', detail: 'Identify risky patterns and vulnerable libraries early in PRs.' },
+      { title: 'Threat modeling (STRIDE-lite)', detail: 'Map entry points, trust boundaries, and “what matters” before testing deeper.' },
+      { title: 'Tracking & evidence (Jira + reports)', detail: 'Clear reproduction steps, severity, expected secure behavior, and retest notes.' },
+    ].map((item) => (
+      <div
+        key={item.title}
+        className="group relative w-full max-w-[480px] bg-black/50 border border-accent/70 shadow-[0_0_0_1px_rgba(0,255,136,0.25)] rounded-2xl hover:border-accent transition-all duration-300 text-left"
+        style={{ paddingLeft: '32px', paddingRight: '32px', paddingTop: '32px', paddingBottom: '36px' }}
+      >
+        <h3 className="text-2xl font-bold group-hover:text-accent transition-colors" style={{ marginBottom: '16px' }}>
+          {item.title}
+        </h3>
+        <p className="text-sm text-gray-300 font-mono">{item.detail}</p>
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
+      </div>
+    ))}
+  </div>
+</section>
 
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
-              </div>
-            ))}
-          </div>
-        </section>
+<section className="w-full space-y-8 text-center">
+  <h2
+    className="text-4xl font-bold text-accent text-center"
+    style={{ marginTop: '20px', marginBottom: '20px' }}
+  >
+    FAQs
+  </h2>
+
+  <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-3 px-2" style={{ marginTop: '20px', marginBottom: '20px', marginLeft: 'auto', marginRight: 'auto' }}>
+    {[
+      {
+        q: 'What’s included in a Security Review?',
+        a: 'Attack surface mapping + baseline scanning + manual security testing to validate real exploitability, with clear remediation guidance and fix verification.',
+      },
+      {
+        q: 'Do you do penetration testing or just vulnerability scanning?',
+        a: 'Both. Scans help find signals fast; manual testing confirms what’s truly exploitable and removes false positives.',
+      },
+      {
+        q: 'How do you decide what to test first?',
+        a: 'We prioritize deployment-critical flows: auth, roles/permissions, sensitive actions, integrations, and any data that creates legal or business risk.',
+      },
+      {
+        q: 'Will this affect production or user data?',
+        a: 'We plan safe execution: test environments when possible, rate limits, non-destructive techniques, agreed scope, and clear stop conditions.',
+      },
+      {
+        q: 'What evidence do we get from findings?',
+        a: 'Repro steps, impacted endpoints/flows, severity, proof-of-concept (safe), and expected secure behavior—plus retest results after fixes.',
+      },
+      {
+        q: 'Can you work with React frontends and .NET / API backends?',
+        a: 'Yes. We test end-to-end flows and API surfaces, and we communicate findings in a way engineers can act on quickly.',
+      },
+      {
+        q: 'Do you cover OWASP Top 10 and common web risks?',
+        a: 'Yes—auth/session issues, access control, injection, misconfigurations, sensitive data exposure, and insecure integrations are core focus areas.',
+      },
+      {
+        q: 'Can you integrate security checks into CI/CD?',
+        a: 'We can recommend lightweight gates (SAST/dependency scans) and a cadence for deeper manual reviews before high-visibility releases.',
+      },
+    ].map((item) => (
+      <details
+        key={item.q}
+        className="group w-full max-w-3xl rounded-2xl border border-accent/30 bg-black/40 px-6 py-4 text-left"
+      >
+        <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+          <span className="text-accent font-mono text-base leading-snug">
+            {item.q}
+          </span>
+          <span className="text-accent font-mono text-2xl shrink-0 group-open:rotate-45 transition-transform">
+            +
+          </span>
+        </summary>
+
+        <div className="mt-3 text-gray-300 font-mono text-sm leading-relaxed">
+          {item.a}
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
 
         <div className="flex justify-center pt-4">
           <Link

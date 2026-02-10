@@ -211,42 +211,96 @@ export default function AutomatedTestingPage() {
         </section>
 
         <section className="w-full space-y-6 text-center">
-          <h2 className="text-4xl font-bold text-accent text-center" style={{ marginTop: '20px', marginBottom: '20px' }}>Scope examples</h2>
-          <div className="grid gap-4 md:grid-cols-3 justify-items-center">
-            {[
-              {
-                title: 'Small scope',
-                body: '3–5 critical flows + PR smoke suite + baseline stability metrics',
-              },
-              {
-                title: 'Medium scope',
-                body: '8–15 flows + flake policy + reporting',
-              },
-              {
-                title: 'High scope',
-                body: 'multiple modules + roles/permissions matrix + CI optimization + cross-browser',
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="group relative w-full max-w-[480px] bg-black/50 border border-accent/70 shadow-[0_0_0_1px_rgba(0,255,136,0.25)] rounded-2xl hover:border-accent transition-all duration-300 text-left"
-                style={{
-                  paddingLeft: '32px',
-                  paddingRight: '32px',
-                  paddingTop: '32px',
-                  paddingBottom: '36px',
-                }}
-              >
-                <h3 className="text-2xl font-bold group-hover:text-accent transition-colors" style={{ marginBottom: '16px' }}>
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-300 font-mono">{item.body}</p>
+  <h2 className="text-4xl font-bold text-accent text-center" style={{ marginTop: '20px', marginBottom: '20px' }}>
+    Tools & stack
+  </h2>
+  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
+    {[
+      { title: 'Playwright', detail: 'E2E for critical journeys + traces/video to debug failures fast.' },
+      { title: 'Cypress / Selenium', detail: 'When teams already have suites or need compatibility with existing tooling.' },
+      { title: 'Postman / API testing', detail: 'Fast feedback on endpoints and integrations—before UI breaks.' },
+      { title: 'CI/CD (Jenkins + Git)', detail: 'PR gates, smoke suites, and run evidence tied to merges/releases.' },
+      { title: 'Jira + TestRail', detail: 'Traceability: plans, regression packs, and clear defect lifecycle.' },
+      { title: 'SQL validation', detail: 'Backend integrity checks (CRUD, consistency) where the system needs it.' },
+    ].map((item) => (
+      <div
+        key={item.title}
+        className="group relative w-full max-w-[480px] bg-black/50 border border-accent/70 shadow-[0_0_0_1px_rgba(0,255,136,0.25)] rounded-2xl hover:border-accent transition-all duration-300 text-left"
+        style={{ paddingLeft: '32px', paddingRight: '32px', paddingTop: '32px', paddingBottom: '36px' }}
+      >
+        <h3 className="text-2xl font-bold group-hover:text-accent transition-colors" style={{ marginBottom: '16px' }}>
+          {item.title}
+        </h3>
+        <p className="text-sm text-gray-300 font-mono">{item.detail}</p>
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
+      </div>
+    ))}
+  </div>
+</section>
 
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
-              </div>
-            ))}
-          </div>
-        </section>
+<section className="w-full space-y-8 text-center">
+  <h2
+    className="text-4xl font-bold text-accent text-center"
+    style={{ marginTop: '20px', marginBottom: '20px' }}
+  >
+    FAQs
+  </h2>
+
+  <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-3 px-2" style={{ marginTop: '20px', marginBottom: '20px', marginLeft: 'auto', marginRight: 'auto' }}>
+    {[
+      {
+        q: 'How long does it take to get a CI-ready automated regression suite?',
+        a: 'Depends on scope and maturity. We start with 3–5 critical flows + PR smoke gates, then expand iteratively while tracking pass rate, flake rate, and runtime.',
+      },
+      {
+        q: 'What do you automate first in a new product?',
+        a: 'Critical journeys: authentication, roles/permissions, approvals, payments, integrations. We prioritize flows that block revenue or create release risk.',
+      },
+      {
+        q: 'How do you reduce flaky tests in Playwright/Cypress?',
+        a: 'Stable-first selectors, deterministic waits (no sleep), controlled test data, and a clear flake policy (fix/quarantine/remove) with ownership.',
+      },
+      {
+        q: 'Do you focus on API/contract testing or E2E?',
+        a: 'Both. API/contract where it’s cheaper and more stable; E2E only where UI integration is the real risk. Right layer per risk.',
+      },
+      {
+        q: 'How do you run test automation in CI/CD?',
+        a: 'Fast PR suite to gate merges (smoke + critical flows) plus scheduled runs for broader regression. Gates are explicit and evidence-backed.',
+      },
+      {
+        q: 'Can you work with React / .NET backends and complex workflows?',
+        a: 'Yes. We’ve validated complex business workflows and multi-module systems; we align test scope with business-critical paths.',
+      },
+      {
+        q: 'What evidence do engineers get?',
+        a: 'Run links, logs, screenshots, traces/video (when applicable), and trend snapshots (pass rate, flake rate, runtime).',
+      },
+      {
+        q: 'How do you handle test data and environments safely?',
+        a: 'We define test data strategy up front (fixtures/seed/reset), isolate risky operations, and avoid production impact by design.',
+      },
+    ].map((item) => (
+      <details
+        key={item.q}
+        className="group w-full max-w-3xl rounded-2xl border border-accent/30 bg-black/40 px-6 py-4 text-left"
+      >
+        <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+          <span className="text-accent font-mono text-base leading-snug">
+            {item.q}
+          </span>
+          <span className="text-accent font-mono text-2xl shrink-0 group-open:rotate-45 transition-transform">
+            +
+          </span>
+        </summary>
+
+        <div className="mt-3 text-gray-300 font-mono text-sm leading-relaxed">
+          {item.a}
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
 
         <div className="flex justify-center pt-4">
           <Link

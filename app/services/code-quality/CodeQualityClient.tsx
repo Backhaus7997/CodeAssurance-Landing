@@ -211,42 +211,96 @@ export default function CodeQualityPage() {
         </section>
 
         <section className="w-full space-y-6 text-center">
-          <h2 className="text-4xl font-bold text-accent text-center" style={{ marginTop: '20px', marginBottom: '20px' }}>Scope examples</h2>
-          <div className="grid gap-4 md:grid-cols-3 justify-items-center">
-            {[
-              {
-                title: 'Small scope',
-                body: 'Baseline + quick wins + PR checklist/Definition of Done.',
-              },
-              {
-                title: 'Medium scope',
-                body: 'CI gates + prioritized debt backlog + recurring review cadence.',
-              },
-              {
-                title: 'High scope',
-                body: 'Multi-module hotspots + refactor rollout plan + guardrails + adoption support.',
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="group relative w-full max-w-[480px] bg-black/50 border border-accent/70 shadow-[0_0_0_1px_rgba(0,255,136,0.25)] rounded-2xl hover:border-accent transition-all duration-300 text-left"
-                style={{
-                  paddingLeft: '32px',
-                  paddingRight: '32px',
-                  paddingTop: '32px',
-                  paddingBottom: '36px',
-                }}
-              >
-                <h3 className="text-2xl font-bold group-hover:text-accent transition-colors" style={{ marginBottom: '16px' }}>
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-300 font-mono">{item.body}</p>
+  <h2 className="text-4xl font-bold text-accent text-center" style={{ marginTop: '20px', marginBottom: '20px' }}>
+    Tools & stack
+  </h2>
+  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
+    {[
+      { title: 'Static Analysis & Type Safety (ESLint / SonarQube / TypeScript)', detail: 'Lint + strict rules to prevent risky patterns, catch regressions early (contracts, nullability, unsafe calls).' },
+      { title: 'CI Quality Gates (Jenkins + Git workflows)', detail: 'Merge-ready rules: lint, tests, coverage thresholds, and quality checks enforced on every PR.' },
+      { title: 'Automation Signals (Playwright / Cypress / Selenium)', detail: 'CI quality signals from critical journeys/regression to keep maintainability and prevent silent breakage.' },
+      { title: 'API & Contract Checks (Postman / contract checks)', detail: 'Faster feedback loops; validate integration behavior without the cost/flake risk of UI-only coverage.' },
+      { title: 'Tracking & Test Management (Jira + TestRail)', detail: 'Traceability, recurring defect hotspots, ownership, and regression packs that stay actionable.' },
+      { title: 'Safe Refactoring + Data Integrity (small PRs + guardrails + SQL validation)', detail: 'Refactor safely with measurable impact; verify data integrity and detect broken flows caused by backend changes.' },
+    ].map((item) => (
+      <div
+        key={item.title}
+        className="group relative w-full max-w-[480px] bg-black/50 border border-accent/70 shadow-[0_0_0_1px_rgba(0,255,136,0.25)] rounded-2xl hover:border-accent transition-all duration-300 text-left"
+        style={{ paddingLeft: '32px', paddingRight: '32px', paddingTop: '32px', paddingBottom: '36px' }}
+      >
+        <h3 className="text-2xl font-bold group-hover:text-accent transition-colors" style={{ marginBottom: '16px' }}>
+          {item.title}
+        </h3>
+        <p className="text-sm text-gray-300 font-mono">{item.detail}</p>
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
+      </div>
+    ))}
+  </div>
+</section>
 
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
-              </div>
-            ))}
-          </div>
-        </section>
+<section className="w-full space-y-8 text-center">
+  <h2
+    className="text-4xl font-bold text-accent text-center"
+    style={{ marginTop: '20px', marginBottom: '20px' }}
+  >
+    FAQs
+  </h2>
+
+  <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-3 px-2" style={{ marginTop: '20px', marginBottom: '20px', marginLeft: 'auto', marginRight: 'auto' }}>
+    {[
+      {
+        q: 'What do you mean by “Code Quality” in practice?',
+        a: 'Code quality is how safe it is to change the code. We focus on standards + fast CI feedback to reduce regressions.',
+      },
+      {
+        q: 'How do you find quality hotspots quickly?',
+        a: 'We target high-churn modules, repeated bug areas, and fragile boundaries (UI/API/DB). Then we map each hotspot to a concrete control.',
+      },
+      {
+              q: 'Do you enforce standards without slowing delivery?',
+              a: 'Yes, PR gates stay minimal but effective (format/lint + key tests). We phase in stricter rules gradually.',
+            },
+            {
+              q: 'What should be a merge blocker vs a warning?',
+              a: 'Blockers: broken lint/format, failing critical tests, failing types/security checks.\nWarnings: style improvements and non-critical rule violations.',
+            },
+            {
+              q: 'How do you reduce technical debt without massive rewrites?',
+              a: 'We prioritize debt by business risk, then refactor in small PRs with guardrails. Every change ships with CI evidence.',
+            },
+            {
+              q: 'Can you work with React and .NET backends / complex workflows?',
+              a: 'Yes. We focus controls on real boundaries: permissions, integrations, and data consistency.',
+            },
+            {
+              q: 'What deliverables do engineers actually get?',
+              a: 'A PR gate setup, a hotspot map, prioritized refactor targets, and reusable checklists. Everything is actionable.',
+            },
+            {
+              q: 'How do you measure improvement over time?',
+              a: 'Fewer regressions and lower rework, plus more stable CI (better pass/flake rate). Faster PR throughput because issues are caught earlier.',
+            },
+    ].map((item) => (
+      <details
+        key={item.q}
+        className="group w-full max-w-3xl rounded-2xl border border-accent/30 bg-black/40 px-6 py-4 text-left"
+      >
+        <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+          <span className="text-accent font-mono text-base leading-snug">
+            {item.q}
+          </span>
+          <span className="text-accent font-mono text-2xl shrink-0 group-open:rotate-45 transition-transform">
+            +
+          </span>
+        </summary>
+
+        <div className="mt-3 text-gray-300 font-mono text-sm leading-relaxed">
+          {item.a}
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
 
         <div className="flex justify-center pt-4">
           <Link

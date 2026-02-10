@@ -213,42 +213,96 @@ export default function PerformanceAuditPage() {
         </section>
 
         <section className="w-full space-y-6 text-center">
-          <h2 className="text-4xl font-bold text-accent text-center" style={{ marginTop: '20px', marginBottom: '20px' }}>Scope examples</h2>
-          <div className="grid gap-4 md:grid-cols-3 justify-items-center">
-            {[
-              {
-                title: 'Small scope',
-                body: '1–2 journeys + baseline + top 3 bottlenecks + quick wins plan',
-              },
-              {
-                title: 'Medium scope',
-                body: '3–5 journeys + deeper bottleneck map + retest checklist',
-              },
-              {
-                title: 'High scope',
-                body: 'multi-module flows + layered analysis + phased roadmap',
-              },
-            ].map((item) => (
-              <div
-                key={item.title}
-                className="group relative w-full max-w-[480px] bg-black/50 border border-accent/70 shadow-[0_0_0_1px_rgba(0,255,136,0.25)] rounded-2xl hover:border-accent transition-all duration-300 text-left"
-                style={{
-                  paddingLeft: '32px',
-                  paddingRight: '32px',
-                  paddingTop: '32px',
-                  paddingBottom: '36px',
-                }}
-              >
-                <h3 className="text-2xl font-bold group-hover:text-accent transition-colors" style={{ marginBottom: '16px' }}>
-                  {item.title}
-                </h3>
-                <p className="text-sm text-gray-300 font-mono">{item.body}</p>
+  <h2 className="text-4xl font-bold text-accent text-center" style={{ marginTop: '20px', marginBottom: '20px' }}>
+    Tools & stack
+  </h2>
+  <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
+    {[
+      { title: 'Load & performance testing (k6 / JMeter)', detail: 'Baselines for key journeys, p95/p99, throughput, and error rate under realistic traffic.' },
+      { title: 'Browser performance profiling (Chrome DevTools / Lighthouse)', detail: 'Frontend bottlenecks: render cost, long tasks, asset weight, Core Web Vitals signals.' },
+      { title: 'API & endpoint diagnostics (Postman / curl)', detail: 'Reproducible endpoint measurements, payload checks, timeout patterns, integration behavior.' },
+      { title: 'Backend & DB investigation (SQL checks)', detail: 'Validate slow queries, N+1 patterns, data consistency signals, and “is it the DB?” confirmations.' },
+      { title: 'Monitoring & tracing (APM: Datadog / New Relic / OpenTelemetry)', detail: 'Correlate slow requests across services, dependencies, and third parties with trace evidence.' },
+      { title: 'CI execution & reporting (Jenkins + Git workflows)', detail: 'Repeatable runs, PR-friendly evidence, and “before/after” comparisons after changes.' },
+    ].map((item) => (
+      <div
+        key={item.title}
+        className="group relative w-full max-w-[480px] bg-black/50 border border-accent/70 shadow-[0_0_0_1px_rgba(0,255,136,0.25)] rounded-2xl hover:border-accent transition-all duration-300 text-left"
+        style={{ paddingLeft: '32px', paddingRight: '32px', paddingTop: '32px', paddingBottom: '36px' }}
+      >
+        <h3 className="text-2xl font-bold group-hover:text-accent transition-colors" style={{ marginBottom: '16px' }}>
+          {item.title}
+        </h3>
+        <p className="text-sm text-gray-300 font-mono">{item.detail}</p>
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
+      </div>
+    ))}
+  </div>
+</section>
 
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl pointer-events-none" />
-              </div>
-            ))}
-          </div>
-        </section>
+<section className="w-full space-y-8 text-center">
+  <h2
+    className="text-4xl font-bold text-accent text-center"
+    style={{ marginTop: '20px', marginBottom: '20px' }}
+  >
+    FAQs
+  </h2>
+
+  <div className="mx-auto flex w-full max-w-4xl flex-col items-center gap-3 px-2" style={{ marginTop: '20px', marginBottom: '20px', marginLeft: 'auto', marginRight: 'auto' }}>
+    {[
+      {
+              q: 'What do you measure in a Performance Audit?',
+              a: 'We baseline real journeys with p95/p99, throughput, and error rate—plus the slowest pages/endpoints.',
+            },
+            {
+              q: 'How do you choose which journeys to test first?',
+              a: 'We start with release-critical flows (login, checkout/payment, approvals, search, key dashboards).',
+            },
+            {
+              q: 'Do you test UI performance or API performance?',
+              a: 'Both—UI for user-perceived latency and API/DB for the underlying bottlenecks.',
+            },
+            {
+              q: 'How do you isolate where the bottleneck is?',
+              a: 'We triage by layer (UI vs API vs DB vs third-party) and validate with reproducible runs.',
+            },
+            {
+              q: 'Will this impact production traffic?',
+              a: 'Not by default—we use safe test plans, controlled load, and staging where possible.',
+            },
+            {
+              q: 'What do engineers actually get at the end?',
+              a: 'A baseline report, a ranked bottleneck map with likely causes, and a prioritized action plan.',
+            },
+            {
+              q: 'How do you prove improvements after fixes?',
+              a: 'We re-run the same scenarios and provide before/after comparisons using the same metrics.',
+            },
+            {
+              q: 'How long does a typical audit take?',
+              a: 'Small scopes can be quick; larger systems take longer—but we deliver value early with a baseline + top bottlenecks first.',
+            },
+    ].map((item) => (
+      <details
+        key={item.q}
+        className="group w-full max-w-3xl rounded-2xl border border-accent/30 bg-black/40 px-6 py-4 text-left"
+      >
+        <summary className="cursor-pointer list-none flex items-start justify-between gap-4">
+          <span className="text-accent font-mono text-base leading-snug">
+            {item.q}
+          </span>
+          <span className="text-accent font-mono text-2xl shrink-0 group-open:rotate-45 transition-transform">
+            +
+          </span>
+        </summary>
+
+        <div className="mt-3 text-gray-300 font-mono text-sm leading-relaxed">
+          {item.a}
+        </div>
+      </details>
+    ))}
+  </div>
+</section>
 
         <div className="flex justify-center pt-4">
           <Link
