@@ -172,7 +172,7 @@ export default function PerformanceAuditPage() {
           <h2 className="text-4xl font-bold text-accent text-center" style={{ marginTop: '20px', marginBottom: '20px' }}>Evidence you will actually see</h2>
           {(() => {
             const evidenceItems = [
-              'Baseline snapshot (shareable for PRs): p95/p99, latency + error rate + slowest endpoints.',
+              'Baseline snapshot: p95/p99, latency + error rate + slowest endpoints.',
               'Top bottlenecks ranked by impact',
               'Before/after comparison template for engineers',
               'Constraints notes (data, environment, third parties)',
@@ -219,7 +219,7 @@ export default function PerformanceAuditPage() {
   <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
     {[
       { title: 'Load & performance testing (k6 / JMeter)', detail: 'Baselines for key journeys, p95/p99, throughput, and error rate under realistic traffic.' },
-      { title: 'Browser performance profiling (Chrome DevTools / Lighthouse)', detail: 'Frontend bottlenecks: render cost, long tasks, asset weight, Core Web Vitals signals.' },
+      { title: 'Frontend profiling (DevTools / Lighthouse)', detail: 'Identify render/JS/asset bottlenecks and user-perceived latency (CWV signals when relevant).' },
       { title: 'API & endpoint diagnostics (Postman / curl)', detail: 'Reproducible endpoint measurements, payload checks, timeout patterns, integration behavior.' },
       { title: 'Backend & DB investigation (SQL checks)', detail: 'Validate slow queries, N+1 patterns, data consistency signals, and “is it the DB?” confirmations.' },
       { title: 'Monitoring & tracing (APM: Datadog / New Relic / OpenTelemetry)', detail: 'Correlate slow requests across services, dependencies, and third parties with trace evidence.' },

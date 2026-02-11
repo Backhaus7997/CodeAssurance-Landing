@@ -218,7 +218,7 @@ export default function AutomatedTestingPage() {
     {[
       { title: 'Playwright', detail: 'E2E for critical journeys + traces/video to debug failures fast.' },
       { title: 'Cypress / Selenium', detail: 'When teams already have suites or need compatibility with existing tooling.' },
-      { title: 'Postman / API testing', detail: 'Fast feedback on endpoints and integrations—before UI breaks.' },
+      { title: 'Postman / API testing', detail: 'Fast feedback on endpoints and integrations before UI breaks.' },
       { title: 'CI/CD (Jenkins + Git)', detail: 'PR gates, smoke suites, and run evidence tied to merges/releases.' },
       { title: 'Jira + TestRail', detail: 'Traceability: plans, regression packs, and clear defect lifecycle.' },
       { title: 'SQL validation', detail: 'Backend integrity checks (CRUD, consistency) where the system needs it.' },
