@@ -7,6 +7,11 @@ export const metadata: Metadata = {
     'Manual security testing + vulnerability discovery focused on real deployment risk backed by reproducible evidence.',
   alternates: {
     canonical: 'https://www.code-assurance.com/services/security-review/',
+    languages: {
+      en: 'https://www.code-assurance.com/services/security-review/',
+      es: 'https://www.code-assurance.com/es/services/security-review/',
+      'x-default': 'https://www.code-assurance.com/services/security-review/',
+    },
   },
   robots: { index: true, follow: true },
   openGraph: {
