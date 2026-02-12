@@ -7,6 +7,11 @@ export const metadata: Metadata = {
     'E2E + API/contract coverage focused on critical flows—built to be stable in CI.',
   alternates: {
     canonical: 'https://www.code-assurance.com/services/automated-testing/',
+    languages: {
+      en: 'https://www.code-assurance.com/services/automated-testing/',
+      es: 'https://www.code-assurance.com/es/services/automated-testing/',
+      'x-default': 'https://www.code-assurance.com/services/automated-testing/'
+    },
   },
   robots: {
     index: true,

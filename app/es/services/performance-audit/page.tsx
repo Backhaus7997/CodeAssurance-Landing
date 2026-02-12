@@ -2,11 +2,11 @@ import type { Metadata } from 'next';
 import PerformanceAuditClient from './PerformanceAuditClient';
 
 export const metadata: Metadata = {
-  title: 'Performance Audit | Code Assurance',
+  title: 'Auditoría de Performance | Code Assurance',
   description:
-    'Baseline + bottleneck identification focused on real user journeys backed by measurable evidence.',
+    'Baseline + identificación de bottlenecks enfocada en journeys reales, respaldada por evidencia medible.',
   alternates: {
-    canonical: 'https://www.code-assurance.com/services/performance-audit/',
+    canonical: 'https://www.code-assurance.com/es/services/performance-audit/',
     languages: {
       en: 'https://www.code-assurance.com/services/performance-audit/',
       es: 'https://www.code-assurance.com/es/services/performance-audit/',
@@ -15,25 +15,26 @@ export const metadata: Metadata = {
   },
   robots: { index: true, follow: true },
   openGraph: {
-    title: 'Performance Audit | Code Assurance',
+    title: 'Auditoría de Performance | Code Assurance',
     description:
-      'Baseline + bottleneck identification focused on real user journeys backed by measurable evidence.',
-    url: 'https://www.code-assurance.com/services/performance-audit/',
+      'Baseline + identificación de bottlenecks enfocada en journeys reales, respaldada por evidencia medible.',
+    url: 'https://www.code-assurance.com/es/services/performance-audit/',
     type: 'website',
+    locale: 'es_ES',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Code Assurance - Performance Audit',
+        alt: 'Code Assurance - Auditoría de Performance',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Performance Audit | Code Assurance',
+    title: 'Auditoría de Performance | Code Assurance',
     description:
-      'Baseline + bottleneck identification focused on real user journeys backed by measurable evidence.',
+      'Baseline + identificación de bottlenecks enfocada en journeys reales, respaldada por evidencia medible.',
     images: ['/og-image.png'],
   },
 };

@@ -7,6 +7,11 @@ export const metadata: Metadata = {
     'Standards, risk hotspots, and technical debt control so your delivery stays predictable.',
   alternates: {
     canonical: 'https://www.code-assurance.com/services/code-quality/',
+    languages: {
+      en: 'https://www.code-assurance.com/services/code-quality/',
+      es: 'https://www.code-assurance.com/es/services/code-quality/',
+      'x-default': 'https://www.code-assurance.com/services/code-quality/',
+    },
   },
   robots: { index: true, follow: true },
   openGraph: {
