@@ -81,7 +81,7 @@ export default function SecurityReviewPageEs() {
               <div className="mt-4 space-y-3 text-center">
                 {[
                   'Testing manual de seguridad alineado a riesgo crítico de despliegue',
-                  'Evaluación asistida por herramientas (Nmap, Nikto) + casos de prueba estructurados',
+                  'Evaluación asistida por herramientas (Nmap, Nikto) + casos de prueba',
                   'Hallazgos claros + guía de remediación para el equipo de ingeniería',
                 ].map((item) => (
                   <div

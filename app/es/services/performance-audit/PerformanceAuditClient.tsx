@@ -79,7 +79,7 @@ export default function PerformanceAuditPageEs() {
 
               <div className="mt-4 space-y-3 text-center">
                 {[
-                  'Métricas baseline para trackear (p95/p99, error rate, páginas/endpoints más lentos)',
+                  'Métricas baseline para trackear (error rate, páginas/endpoints más lentos)',
                   'Hallazgos ligados a journeys y endpoints (sin conjeturas vagas)',
                   'Plan de optimización priorizado (quick wins + fixes de alto impacto)',
                 ].map((item) => (
@@ -349,7 +349,7 @@ export default function PerformanceAuditPageEs() {
               {[
                 {
                   q: '¿Qué medís en una Auditoría de Performance?',
-                  a: 'Baselinemoss journeys reales con p95/p99, throughput y error rate — más las páginas/endpoints más lentos.',
+                  a: 'Journeys reales con p95/p99, throughput y error rate más las páginas/endpoints más lentos.',
                 },
                 {
                   q: '¿Cómo elegís qué journeys testear primero?',

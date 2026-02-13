@@ -18,7 +18,7 @@ export default function CodeQualityClientEs() {
     {
       title: 'Evaluar el riesgo de calidad (dónde se rompe)',
       bullets: [
-        'Identificar hotspots: módulos con alto churn, zonas con bugs recurrentes, límites frágiles',
+        'Identificar hotspots: módulos que cambian mucho (alto churn), zonas con bugs recurrentes, límites frágiles',
         'Mapear riesgo → controles recomendados (tests, checks, targets de refactor)',
       ],
     },
