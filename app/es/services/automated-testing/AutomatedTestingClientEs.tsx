@@ -66,7 +66,7 @@ export default function AutomatedTestingClientEs() {
                 className="text-lg text-gray-300 text-center"
                 style={{ marginTop: '20px', marginBottom: '20px' }}
               >
-                Cobertura E2E + API/contract enfocada en flujos críticos—con estabilidad real en CI.
+                Cobertura E2E + API/contract enfocada en flujos críticos con estabilidad real en CI.
               </p>
             </div>
 
