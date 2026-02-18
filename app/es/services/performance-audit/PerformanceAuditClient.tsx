@@ -68,7 +68,7 @@ export default function PerformanceAuditPageEs() {
                 className="text-lg text-gray-300 text-center"
                 style={{ marginTop: '20px', marginBottom: '20px' }}
               >
-                Baseline + identificación de bottlenecks enfocada en journeys reales, respaldada por evidencia medible.
+                Baseline + identificación de cuellos de botella enfocada en journeys reales, respaldada por evidencia medible.
               </p>
             </div>
 
@@ -113,7 +113,7 @@ export default function PerformanceAuditPageEs() {
                 {
                   title: 'Bottlenecks + hipótesis de causa raíz',
                   detail:
-                    'Top puntos lentos + causas probables (API/DB/query/render/terceros) con guía de “dónde mirar”.',
+                    'Principales puntos + causas probables (API/DB/query/render/terceros) con guía de “dónde mirar”.',
                 },
                 {
                   title: 'Plan de acción + validación',
@@ -219,8 +219,8 @@ export default function PerformanceAuditPageEs() {
             {(() => {
               const evidenceItems = [
                 'Snapshot baseline: p95/p99, latencia + error rate + endpoints más lentos.',
-                'Top bottlenecks rankeados por impacto',
-                'Template de comparación before/after para el equipo',
+                'Principales cuellos de botella rankeados por impacto',
+                'Modelo de comparación before/after para el equipo',
                 'Notas de restricciones (datos, entorno, terceros)',
               ];
               const left = evidenceItems.slice(0, 2);

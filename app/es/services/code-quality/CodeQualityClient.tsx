@@ -64,7 +64,7 @@ export default function CodeQualityClientEs() {
                 className="text-lg text-gray-300 text-center"
                 style={{ marginTop: '20px', marginBottom: '20px' }}
               >
-                Estándares, hotspots de riesgo y control de deuda técnica para que tu
+                Estándares, puntos críticos de riesgo y control de deuda técnica para que tu
                 delivery sea predecible.
               </p>
             </div>

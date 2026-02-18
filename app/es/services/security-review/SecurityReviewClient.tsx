@@ -69,7 +69,7 @@ export default function SecurityReviewPageEs() {
                 className="text-lg text-gray-300 text-center"
                 style={{ marginTop: '20px', marginBottom: '20px' }}
               >
-                Testing manual + discovery de vulnerabilidades enfocado en riesgo real de despliegue, respaldado por evidencia reproducible.
+                Testing manual + descubrimiento de vulnerabilidades enfocado en riesgo real de despliegue, respaldado por evidencia reproducible.
               </p>
             </div>
 
@@ -109,7 +109,7 @@ export default function SecurityReviewPageEs() {
               {[
                 {
                   title: 'Reporte de hallazgos de seguridad',
-                  detail: 'Issues validados con severidad, impacto y pasos de reproducción.',
+                  detail: 'Problemas validados con severidad, impacto y pasos de reproducción.',
                 },
                 {
                   title: 'Casos de prueba de seguridad',
@@ -257,7 +257,7 @@ export default function SecurityReviewPageEs() {
                     className="text-gray-100 font-mono font-semibold text-center"
                     style={{ marginTop: '20px' }}
                   >
-                    Principio: evidencia sobre opiniones — cada afirmación se respalda con un resultado reproducible.
+                    Evidencia sobre opiniones: cada afirmación se respalda con un resultado reproducible.
                   </p>
                 </div>
               );

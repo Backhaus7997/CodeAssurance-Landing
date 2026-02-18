@@ -61,8 +61,8 @@ export default function AutomatedTestingPage() {
             </p>
             <div className="mt-4 space-y-3 text-center">
               {[
-                'Risk-based coverage (not “test everything”)',
-                'CI-ready evidence (runs, logs, screenshots)',
+                'Risk based coverage (not “test everything”)',
+                'CI ready evidence (runs, logs, screenshots)',
                 'Flake triage + maintenance rules',
               ].map((item) => (
                 <div key={item} className="flex items-center justify-center text-gray-300" style={{ gap: '12px' }}>
