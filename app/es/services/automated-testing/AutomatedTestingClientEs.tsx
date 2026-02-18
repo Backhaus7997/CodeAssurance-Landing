@@ -78,7 +78,7 @@ export default function AutomatedTestingClientEs() {
                 {[
                   'Cobertura basada en riesgo (no “testear todo”)',
                   'Evidencia lista para CI (runs, logs, screenshots)',
-                  'Triage de flakes + reglas de mantenimiento',
+                  'Triage de pruebas inestables + reglas de mantenimiento',
                 ].map((item) => (
                   <div
                     key={item}
@@ -108,7 +108,7 @@ export default function AutomatedTestingClientEs() {
                 {
                   title: 'Plan de automatización',
                   detail:
-                    'Qué automatizar primero + por qué, incluyendo flake rate / pass rate / tendencias de runtime',
+                    'Qué automatizar primero + por qué, incluyendo flakiness / pass rate / tendencias de runtime',
                 },
                 {
                   title: 'Incremento de suite',
@@ -262,7 +262,7 @@ export default function AutomatedTestingClientEs() {
                     className="text-gray-100 font-mono font-semibold text-center"
                     style={{ marginTop: '20px' }}
                   >
-                    Evidencia sobre opiniones: cada claim se respalda con un run.
+                    Evidencia sobre opiniones: cada afirmación se respalda con un run.
                   </p>
                 </div>
               );

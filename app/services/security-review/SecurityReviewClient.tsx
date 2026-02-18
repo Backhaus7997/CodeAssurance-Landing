@@ -65,7 +65,7 @@ export default function SecurityReviewPage() {
             <div className="mt-4 space-y-3 text-center">
               {[
                 'Manual security testing aligned to deployment-critical risk',
-                'Tool-assisted assessments (Nmap, Nikto) + structured test cases',
+                'Tool assisted assessments (Nmap, Nikto) + structured test cases',
                 'Clear findings + remediation guidance for engineering teams',
               ].map((item) => (
                 <div key={item} className="flex items-center justify-center text-gray-300" style={{ gap: '12px' }}>
