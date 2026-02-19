@@ -36,34 +36,121 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the landing page.
 
+### Folder structure (App Router)
+- `app/page.tsx` → Home (EN)
+- `app/es/page.tsx` → Home (ES)
+- `app/services/<slug>/page.tsx` → Service landing (EN)
+- `app/es/services/<slug>/page.tsx` → Service landing (ES)
+
+Each page defines:
+- `alternates.canonical`
+- `alternates.languages` (`en`, `es`, `x-default`)
+- OpenGraph locale (`en_US` / `es_ES`)
+
 ## 🏗️ Project Structure
 
 ```
 app/
-├── layout.tsx          # Root layout with metadata
-├── page.tsx            # Main landing page
-└── globals.css         # Global styles and animations
+├── layout.tsx                # Root layout (shared)
+├── globals.css               # Global styles
+├── page.tsx                  # Home route (EN) - server component + metadata
+├── HomeClient.tsx            # Home UI (EN) - client component (sections + animations + smooth scroll)
+├── services/                 # Service landings (EN)
+│   ├── automated-testing/
+│   │   ├── page.tsx          # Metadata + server wrapper
+│   │   └── AutomatedTestingClient.tsx  # Client UI for the landing
+│   ├── code-quality/
+│   │   ├── page.tsx
+│   │   └── CodeQualityClient.tsx
+│   ├── performance-audit/
+│   │   ├── page.tsx
+│   │   └── PerformanceAuditClient.tsx
+│   └── security-review/
+│       ├── page.tsx
+│       └── SecurityReviewClient.tsx
+└── es/                       # Spanish version (same structure/content as EN, translated only)
+    ├── layout.tsx            # (If present) ES layout overrides/shared wrapper
+    ├── page.tsx              # Home route (ES) - server component + metadata (hreflang/canonical)
+    ├── HomeClientEs.tsx       # Home UI (ES) - client component
+    ├── components/            # ES home sections (translated duplicates of EN sections)
+    │   └── section-es/
+    │       ├── HeroEs.tsx
+    │       ├── ProblemEs.tsx
+    │       ├── TransitionEs.tsx
+    │       ├── ProcessEs.tsx
+    │       ├── ServicesEs.tsx
+    │       ├── PackagesEs.tsx
+    │       ├── DifferentiatorsEs.tsx
+    │       ├── FinalCTAEs.tsx
+    │       └── FooterEs.tsx
+    └── services/              # Service landings (ES)
+        ├── automated-testing/
+        │   ├── page.tsx
+        │   └── AutomatedTestingClient.tsx
+        ├── code-quality/
+        │   ├── page.tsx
+        │   └── CodeQualityClient.tsx
+        ├── performance-audit/
+        │   ├── page.tsx
+        │   └── PerformanceAuditClient.tsx
+        └── security-review/
+            ├── page.tsx
+            └── SecurityReviewClient.tsx
 
 components/
 ├── sections/
-│   ├── Preloader.tsx       # System initialization loader
-│   ├── Hero.tsx            # Hero section with 3D mesh
-│   ├── Problem.tsx         # Problem visualization (chaos)
-│   ├── Transition.tsx      # Chaos to control transition
-│   ├── Process.tsx         # QA process steps
-│   ├── Services.tsx        # Service cards
-│   ├── Differentiators.tsx # Key differentiators
-│   └── FinalCTA.tsx        # Call to action
+│   ├── Preloader.tsx          # System initialization loader
+│   ├── Hero.tsx               # Hero section with 3D mesh
+│   ├── Problem.tsx            # Problem visualization (chaos)
+│   ├── Transition.tsx         # Chaos to control transition
+│   ├── Process.tsx            # QA process steps
+│   ├── Services.tsx           # Service cards
+│   ├── Differentiators.tsx    # Key differentiators
+│   └── FinalCTA.tsx           # Call to action
 ├── three/
-│   └── AbstractMesh.tsx    # 3D animated sphere
-└── ui/                     # Reusable UI components
+│   └── AbstractMesh.tsx       # 3D animated sphere
+└── ui/                        # Reusable UI components
 
 hooks/
-└── useLenis.ts        # Smooth scrolling hook
+└── useLenis.ts                # Smooth scrolling hook
 
 lib/
-└── utils.ts           # Utility functions
+└── utils.ts                   # Utility functions
 ```
+
+## 🔎 SEO
+
+Implemented technical SEO foundations:
+
+- `public/robots.txt` → allows crawling and references the sitemap
+- `public/sitemap.xml` → includes EN + ES routes
+- Canonical URLs per page (`alternates.canonical`)
+- hreflang per page (`alternates.languages`: `en`, `es`, `x-default`)
+- Open Graph / Twitter metadata + `public/og-image.png` (1200×630)
+
+✅ When adding a new page/landing:
+1) add the URL to `public/sitemap.xml`
+2) add canonical + `alternates.languages` in `page.tsx`
+3) validate with Google Search Console (URL Inspection)
+
+
+## 🌍 Languages & Routes (EN / ES)
+
+This site is bilingual:
+
+- **English (default):**
+  - `/`
+  - `/services/automated-testing/`
+  - `/services/performance-audit/`
+  - `/services/security-review/`
+  - `/services/code-quality/`
+
+- **Español:**
+  - `/es`
+  - `/es/services/automated-testing/`
+  - `/es/services/performance-audit/`
+  - `/es/services/security-review/`
+  - `/es/services/code-quality/`
 
 ## 🎨 Design Principles
 
