@@ -16,7 +16,7 @@ export default function Preloader({ onComplete }: { onComplete: () => void }) {
       return;
     }
 
-    const duration = 6000;
+    const duration = 2000;
     const steps = 100;
     const interval = duration / steps;
 
