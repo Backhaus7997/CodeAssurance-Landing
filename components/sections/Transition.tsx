@@ -40,7 +40,7 @@ export default function Transition() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center py-[280px] px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 overflow-x-hidden"
+      className="relative min-h-screen flex items-start md:items-center justify-center pt-24 pb-10 md:py-[128px] px-4 sm:px-6 md:px-10 lg:px-16 xl:px-24 bg-black overflow-x-hidden"
     >
       {/* Animated grid background */}
       <div

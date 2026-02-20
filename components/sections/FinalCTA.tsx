@@ -31,7 +31,7 @@ export default function FinalCTA() {
           className="space-y-12"
         >
           <div>
-            <p className="text-xs tracking-[0.3em] uppercase text-accent mb-6 font-mono text-center">
+            <p className="text-xs tracking-[0.3em] uppercase text-accent mb-12 font-mono text-center" style={{ marginBottom: '24px' }}>
               Ready to elevate your code
             </p>
             <h2 className="text-[clamp(2.5rem,10vw,6rem)] font-bold leading-[1.1] tracking-tighter mb-8 text-center">
