@@ -73,7 +73,12 @@ export default function Problem() {
           </h2>
         </div>
 
-        <div ref={contentRef} className="space-y-4">
+        <div ref={contentRef}
+  className="space-y-4 px-4 sm:px-0"
+  style={{
+    paddingLeft: 'max(16px, env(safe-area-inset-left))',
+    paddingRight: 'max(16px, env(safe-area-inset-right))',
+  }}>
           {errors.map((error, index) => (
             <div
               key={index}
