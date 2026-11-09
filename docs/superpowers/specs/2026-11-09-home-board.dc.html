@@ -1,0 +1,787 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Code Assurance home, full page</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap">
+<style>
+body{margin:0;background:#000}
+a{color:#f3f5f2}
+.m{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace}
+.lbl{font-family:'IBM Plex Mono',ui-monospace,Menlo,monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#9aa39c}
+.dsp{font-stretch:125%;text-transform:uppercase;font-weight:700;letter-spacing:-0.01em}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.ch{display:inline-block}
+.btn{transition:transform 160ms cubic-bezier(.23,1,.32,1),background-color 160ms cubic-bezier(.23,1,.32,1),border-color 160ms cubic-bezier(.23,1,.32,1);cursor:pointer}
+.btn:active{transform:scale(.97)}
+.cell{transition:background-color 160ms cubic-bezier(.23,1,.32,1);cursor:pointer}
+.btn:focus-visible,.lnk:focus-visible,.field:focus-visible,.cell:focus-visible{outline:2px solid #67d69e;outline-offset:2px}
+.cta .arr{display:inline-block;transition:transform 200ms cubic-bezier(.23,1,.32,1)}
+.wm-hot{opacity:0;transition:opacity 200ms cubic-bezier(.23,1,.32,1);-webkit-mask-image:radial-gradient(240px circle at var(--x,-500px) var(--y,-500px),#000 15%,transparent 70%);mask-image:radial-gradient(240px circle at var(--x,-500px) var(--y,-500px),#000 15%,transparent 70%)}
+@media (hover:hover) and (pointer:fine){
+.btn-p:hover{background:#84e4b5;border-color:#84e4b5}
+.btn-g:hover{border-color:#9aa39c}
+.lnk:hover{color:#f3f5f2}
+.cell:hover{background:#0c0f0d}
+.spot{background-image:radial-gradient(280px circle at var(--x,-600px) var(--y,-600px),rgba(103,214,158,.09),transparent 70%)}
+.cta:hover .arr{transform:translateX(4px)}
+.wm:hover .wm-hot{opacity:1}
+.mq-row:hover .mq{animation-play-state:paused}
+}
+@media (max-width:760px){.hide-sm{display:none !important}}
+@keyframes land{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+@keyframes tick{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes ch{from{opacity:0;transform:translateY(.45em)}to{opacity:1;transform:none}}
+@keyframes scan{from{transform:translateX(-100%);opacity:1}85%{opacity:1}to{transform:translateX(500%);opacity:0}}
+@keyframes type{from{width:0}}
+@property --n{syntax:'<integer>';inherits:false;initial-value:0}
+@keyframes count{from{--n:0}}
+@property --a{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes spin{to{--a:360deg}}
+@keyframes flow{from{stroke-dashoffset:640}to{stroke-dashoffset:0}}
+@keyframes mq{to{transform:translateX(-50%)}}
+@keyframes rise{from{opacity:0;transform:translateY(12px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+@keyframes grow{from{transform:scaleY(0)}}
+@keyframes growx{from{transform:scaleX(0)}}
+@keyframes fill{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes dot{to{background:#67d69e;box-shadow:0 0 0 5px rgba(103,214,158,.16)}}
+@keyframes word{from{opacity:.16}to{opacity:1}}
+@keyframes fix{0%,50%{transform:scaleY(1);background:#f87171}100%{transform:scaleY(.36);background:#67d69e}}
+@keyframes shine{from{background-position:200% 0}to{background-position:-200% 0}}
+.num{--n:var(--to);counter-reset:n var(--n);font-variant-numeric:tabular-nums}
+.num::after{content:counter(n)}
+.num.plus::before{content:'+'}
+.beam{position:relative}
+.beam::before{content:'';position:absolute;inset:-1px;border-radius:inherit;padding:1px;background:conic-gradient(from var(--a),transparent 0 78%,#67d69e 90%,transparent 100%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);pointer-events:none}
+.shine{background:linear-gradient(110deg,#0c0f0d 40%,#1a2a21 50%,#0c0f0d 60%) 0 0/200% 100%}
+.typ{display:inline-block;overflow:hidden;white-space:nowrap;vertical-align:bottom;width:23ch}
+.play .st{animation:land 220ms cubic-bezier(.23,1,.32,1) both}
+.play .num{animation:count 900ms cubic-bezier(.23,1,.32,1) both}
+.play .scanband{animation:scan 1200ms cubic-bezier(.4,0,.2,1) 120ms both}
+.play .ch{animation:ch 260ms cubic-bezier(.23,1,.32,1) both}
+.play .beam::before{animation:spin 6s linear infinite}
+.play .shine{animation:shine 2.4s linear infinite}
+.play .flow{animation:flow 2.8s linear infinite}
+.play .mq{animation:mq 42s linear infinite}
+.play .mq.rev{animation-direction:reverse}
+.play .term:not(.run) .tl,.play .term:not(.run) .tick{opacity:0}
+.play .term:not(.run) .typ{width:0}
+.play .run .typ{animation:type 650ms steps(23) both}
+.play .run .tl{animation:land 220ms cubic-bezier(.23,1,.32,1) both}
+.play .run .tick{animation:tick 200ms cubic-bezier(.23,1,.32,1) both}
+@supports (animation-timeline: view()){
+.play .rv{animation:rise linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+.play .tlfill{animation:fill linear both;animation-timeline:view();animation-range:cover 15% cover 70%}
+.play .tdot{animation:dot linear both;animation-timeline:view();animation-range:entry 80% entry 100%}
+.play .bar{animation:grow linear both;animation-timeline:view();animation-range:entry 10% entry 80%}
+.play .barx{animation:growx linear both;animation-timeline:view();animation-range:entry 10% entry 80%}
+.play .hotbar{animation:fix linear both;animation-timeline:view();animation-range:entry 30% cover 55%}
+.play .wd{animation:word linear both;animation-timeline:--tr}
+}
+@media (prefers-reduced-motion:reduce){.play *{animation:none !important}.play .beam::before{animation:none !important}.play .term:not(.run) .tl,.play .term:not(.run) .tick{opacity:1}.play .term:not(.run) .typ{width:23ch}}
+</style>
+</helmet>
+<div class="{{ playClass }}" style="background: #000000; color: #f3f5f2; font-family: 'Archivo', -apple-system, 'Segoe UI', Arial, sans-serif; font-size: 16.5px; line-height: 1.55">
+
+  <header style="position: sticky; top: 0; z-index: 20; background: rgba(0, 0, 0, 0.74); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid #252a26">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 12px clamp(16px, 3.2vw, 40px); box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; gap: 12px 28px">
+      <a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; font-size: 18px; letter-spacing: -0.01em">
+        <img src="/_blob/94060485768a19d7c83e33a6311065b7" alt="" width="30" height="34" style="display: block; width: 30px; height: 34px">
+        <span>Code Assurance</span>
+      </a>
+      <nav class="hide-sm" style="display: flex; align-items: center; gap: 28px">
+        <a class="lnk lbl" href="#agent" style="text-decoration: none">Agent</a>
+        <a class="lnk lbl" href="#process" style="text-decoration: none">Process</a>
+        <a class="lnk lbl" href="#plans" style="text-decoration: none">Plans</a>
+        <a class="lnk lbl" href="#audits" style="text-decoration: none">Audits</a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 6px">
+        <a class="lnk m" href="#" style="display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; color: #9aa39c; text-decoration: none; font-size: 12px">ES</a>
+        <a class="btn btn-p" href="#start" style="display: inline-flex; align-items: center; min-height: 44px; box-sizing: border-box; padding: 0 16px; background: #67d69e; border: 1px solid #67d69e; color: #000000; border-radius: 2px; text-decoration: none; font-weight: 600; font-size: 15px">Book a call</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="top" style="position: relative; overflow: hidden">
+    <canvas ref="{{ canvasRef }}" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; -webkit-mask-image: radial-gradient(ellipse 75% 70% at 75% 20%, #000 20%, transparent 72%); mask-image: radial-gradient(ellipse 75% 70% at 75% 20%, #000 20%, transparent 72%)"></canvas>
+    <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: 0 clamp(16px, 3.2vw, 40px); box-sizing: border-box">
+      <div style="display: flex; flex-wrap: wrap; gap: 24px 56px; padding: clamp(36px, 6vw, 88px) 0 clamp(32px, 4vw, 48px); border-bottom: 1px solid #252a26; align-items: flex-end">
+        <div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+          <p class="lbl" style="margin: 0">00 / Overview</p>
+          <h1 class="dsp" style="margin: 0; font-size: clamp(31px, 4.9vw, 62px); line-height: 0.98"><span>QA built around your </span><span class="sr">product</span><span aria-hidden="true" style="color: #67d69e; white-space: nowrap"><sc-for list="{{ rot }}" as="w" hint-placeholder-count="1"><sc-if value="{{ w.on }}" hint-placeholder-val="{{ false }}"><span><sc-for list="{{ w.letters }}" as="l" hint-placeholder-count="7"><span class="ch" style="animation-delay: {{ l.d }}">{{ l.c }}</span></sc-for></span></sc-if></sc-for></span><span>, not a template</span></h1>
+        </div>
+        <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
+          <p style="margin: 0; color: #c9cfca; text-wrap: pretty">Senior QA engineers plus an AI QA agent that works inside your repositories, your tickets and the test framework you already use. We test manually, automate what's worth automating and keep the suite healthy release after release.</p>
+          <div style="display: flex; flex-direction: column; gap: 10px">
+            <a class="btn btn-p cta" href="#start" style="display: flex; align-items: center; justify-content: space-between; min-height: 50px; box-sizing: border-box; padding: 0 18px; background: #67d69e; border: 1px solid #67d69e; color: #000000; border-radius: 2px; text-decoration: none; font-weight: 600; font-size: 16px"><span>Book a 15-minute call</span><span class="arr" aria-hidden="true">→</span></a>
+            <a class="btn btn-g cta" href="#agent" style="display: flex; align-items: center; justify-content: space-between; min-height: 50px; box-sizing: border-box; padding: 0 18px; background: rgba(0, 0, 0, 0.6); border: 1px solid #252a26; border-radius: 2px; text-decoration: none; font-weight: 600; font-size: 16px"><span>See how the agent works</span><span class="arr" aria-hidden="true">↓</span></a>
+          </div>
+          <p class="m" style="margin: 0; color: #9aa39c; font-size: 13px">or <a href="#">martin.backhaus@code-assurance.com</a></p>
+        </div>
+      </div>
+
+      <div style="padding: 22px 0 0">
+        <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; padding-bottom: 16px">
+          <p class="lbl" style="margin: 0">Coverage map <span style="color: #5b635c">— example product, select a module</span></p>
+          <ul class="m" style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 12px; color: #c9cfca">
+            <li style="display: flex; align-items: center; gap: 8px"><span style="width: 10px; height: 10px; background: #67d69e; display: inline-block"></span>covered</li>
+            <li style="display: flex; align-items: center; gap: 8px"><span style="width: 10px; height: 10px; box-sizing: border-box; border: 1.5px solid #67d69e; display: inline-block"></span>tests added</li>
+            <li style="display: flex; align-items: center; gap: 8px"><span style="width: 10px; height: 10px; background: #f87171; display: inline-block"></span>application bug</li>
+            <li style="display: flex; align-items: center; gap: 8px"><span style="width: 10px; height: 10px; background: #fbbf24; display: inline-block"></span>awaiting approval</li>
+            <li style="display: flex; align-items: center; gap: 8px"><span style="width: 10px; height: 10px; box-sizing: border-box; border: 1.5px solid #5b635c; display: inline-block"></span>gap, in backlog</li>
+          </ul>
+        </div>
+
+        <div style="position: relative">
+          <div class="m" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(160px, 100%), 1fr)); gap: 1px; background: #252a26; border: 1px solid #252a26">
+            <sc-for list="{{ cells }}" as="c" hint-placeholder-count="14">
+              <button type="button" class="cell" onClick="{{ c.pick }}" aria-pressed="{{ c.pressed }}" aria-label="{{ c.aria }}" style="background: {{ c.bg }}; box-shadow: inset 0 0 0 1px {{ c.ring }}; border: 0; margin: 0; padding: 14px 14px 16px; min-height: 132px; box-sizing: border-box; display: flex; flex-direction: column; align-items: stretch; gap: 10px; text-align: left; color: #f3f5f2; font: inherit">
+                <span style="font-size: 12.5px; color: #c9cfca">{{ c.path }}</span>
+                <span class="st" style="animation-delay: {{ c.d }}; margin-top: auto; display: flex; flex-direction: column; gap: 6px">
+                  <b class="{{ c.numClass }}" aria-hidden="true" style="--to: {{ c.to }}; animation-delay: {{ c.d }}; font-family: 'Archivo', sans-serif; font-size: 30px; line-height: 1; font-weight: 600; font-stretch: 112%; color: {{ c.numColor }}"></b>
+                  <span style="display: flex; align-items: flex-start; gap: 7px; font-size: 11.5px; line-height: 1.35; color: {{ c.labelColor }}"><span style="width: 9px; height: 9px; margin-top: 2px; box-sizing: border-box; background: {{ c.swBg }}; border: 1.5px solid {{ c.swBd }}; display: inline-block; flex-shrink: 0"></span>{{ c.label }}</span>
+                </span>
+              </button>
+            </sc-for>
+          </div>
+          <div aria-hidden="true" style="position: absolute; inset: 0; overflow: hidden; pointer-events: none">
+            <div class="scanband" style="position: absolute; top: 0; bottom: 0; left: 0; width: 20%; opacity: 0; background: linear-gradient(90deg, transparent, rgba(103, 214, 158, 0.16), transparent)"></div>
+          </div>
+        </div>
+
+        <div aria-live="polite" style="display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; padding: 14px 16px; border: 1px solid #252a26; border-top: 0; background: #0c0f0d">
+          <span class="m" style="font-size: 13px; color: #f3f5f2">{{ detail.path }}</span>
+          <span class="m" style="font-size: 12px; color: {{ detail.color }}">{{ detail.label }}</span>
+          <span style="flex: 1 1 320px; color: #c9cfca; font-size: 15px">{{ detail.note }}</span>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 24px; padding: 16px 0 28px">
+          <p class="m" style="margin: 0; font-size: 13px; color: #c9cfca; font-variant-numeric: tabular-nums">14 modules mapped · 31 tests added · 2 application bugs flagged · 1 fix awaiting approval</p>
+          <p style="margin: 0; color: #9aa39c; font-size: 15px; max-width: 46ch; text-wrap: pretty">The first deliverable of every engagement is this map, built from your code.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="agent" style="border-top: 1px solid #252a26">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) clamp(16px, 3.2vw, 40px); box-sizing: border-box">
+      <div class="rv" style="display: flex; flex-wrap: wrap; gap: 16px 48px; margin-bottom: 40px">
+        <p class="lbl" style="margin: 0; flex: 0 0 160px">01 / Agent</p>
+        <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+          <h2 class="dsp" style="margin: 0; font-size: clamp(27px, 3.4vw, 42px); line-height: 1; text-wrap: balance">How the agent works on your codebase</h2>
+          <p style="margin: 0; color: #c9cfca; max-width: 62ch; text-wrap: pretty">A pipeline of specialized agents, each responsible for one stage. A senior QA engineer from our team runs it, reviews the output and decides what goes to your repository.</p>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 32px; align-items: stretch">
+        <div ref="{{ termRef }}" class="{{ termClass }}" style="flex: 1 1 460px; min-width: 0; background: #0c0f0d; border: 1px solid #252a26; border-radius: 4px; overflow: hidden; display: flex; flex-direction: column">
+          <div style="display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid #252a26">
+            <span aria-hidden="true" style="display: flex; gap: 6px"><span style="width: 9px; height: 9px; border-radius: 50%; background: #3a403b; display: inline-block"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #3a403b; display: inline-block"></span><span style="width: 9px; height: 9px; border-radius: 50%; background: #3a403b; display: inline-block"></span></span>
+            <span class="m" style="font-size: 12px; color: #9aa39c">agent run · acme/web</span>
+          </div>
+          <div class="m" style="padding: 16px 16px 20px; font-size: 13px; line-height: 1.6; display: flex; flex-direction: column; gap: 6px">
+            <div style="color: #f3f5f2"><span style="color: #67d69e">› </span><span class="typ">run qa agent · acme/web</span></div>
+            <div class="tl" style="animation-delay: 750ms; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px"><span style="color: #67d69e">scan</span><span style="color: #c9cfca">Playwright + Jest, TypeScript</span></div>
+            <div class="tl" style="animation-delay: 1000ms; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px"><span style="color: #67d69e">map</span><span style="color: #c9cfca">14 modules · 120 existing tests · 5 untested</span></div>
+            <div class="tl" style="animation-delay: 1250ms; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px"><span style="color: #67d69e">research</span><span style="color: #c9cfca">current Playwright and Jest docs checked</span></div>
+            <div class="tl" style="animation-delay: 1500ms; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px"><span style="color: #67d69e">analyze</span><span style="color: #c9cfca">4 untested modules ranked high risk, 1 low</span></div>
+            <div class="tl" style="animation-delay: 1750ms; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px"><span style="color: #67d69e">plan</span><span style="color: #c9cfca">31 test cases across 4 features</span></div>
+            <div class="tl" style="animation-delay: 2000ms; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px"><span style="color: #67d69e">generate</span><span style="color: #c9cfca">31 tests in 4 files, 1 shared fixture</span></div>
+            <div class="tl" style="animation-delay: 2250ms; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px"><span style="color: #67d69e">validate</span><span style="color: #c9cfca">29 passing · <span style="color: #f87171">2 application bugs</span> · <span style="color: #fbbf24">1 locator fix proposed</span></span></div>
+            <div class="tl" style="animation-delay: 2500ms; display: grid; grid-template-columns: 76px minmax(0, 1fr); gap: 10px"><span style="color: #67d69e">deliver</span><span style="color: #c9cfca">draft PR opened: qa/password-reset-refunds</span></div>
+            <div style="margin-top: 6px; color: #67d69e"><span class="tick" style="animation-delay: 2800ms; display: inline-block">✓ waiting for your review</span></div>
+          </div>
+        </div>
+
+        <figure style="flex: 1 1 520px; min-width: 0; margin: 0; display: flex; flex-direction: column; gap: 12px">
+          <div class="beam" style="background: #0c0f0d; border: 1px solid #252a26; border-radius: 4px; font-size: 15px">
+            <div style="padding: 18px 20px 14px; border-bottom: 1px solid #252a26; display: flex; flex-direction: column; gap: 10px">
+              <p style="margin: 0; font-weight: 600; font-size: 18px; line-height: 1.35">qa: password reset and refunds coverage <span style="color: #9aa39c; font-weight: 400">PROJ-123</span></p>
+              <div style="display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; color: #9aa39c; font-size: 14px">
+                <span style="border: 1px solid #3a403b; color: #c9cfca; border-radius: 999px; padding: 1px 10px; font-size: 13px">Draft</span>
+                <code class="m" style="font-size: 12.5px; color: #c9cfca; background: #151916; padding: 2px 6px; border-radius: 3px">qa/password-reset-refunds → main</code>
+                <span>waiting for your review</span>
+              </div>
+            </div>
+            <div style="padding: 16px 20px 4px">
+              <ul style="margin: 0 0 14px; padding-left: 18px; display: flex; flex-direction: column; gap: 6px">
+                <li>Mapped 14 modules. Password reset, refunds, roles and webhooks had no tests.</li>
+                <li>Added 31 tests in your existing Playwright and Jest setup, following your naming and folder conventions.</li>
+                <li style="color: #f87171">2 failures look like application bugs. Flagged for your developers, not patched over.</li>
+                <li style="color: #fbbf24">1 broken checkout locator re-matched against the live page. Fix proposed, waiting for approval.</li>
+              </ul>
+            </div>
+            <div class="m" style="border-top: 1px solid #252a26; padding: 12px 20px; display: flex; flex-direction: column; font-size: 13px; line-height: 1.85">
+              <div style="display: flex; justify-content: space-between; gap: 16px"><span style="color: #c9cfca; overflow-wrap: anywhere">tests/e2e/password-reset.spec.ts</span><span style="color: #67d69e">+84</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px"><span style="color: #c9cfca; overflow-wrap: anywhere">tests/e2e/refunds.spec.ts</span><span style="color: #67d69e">+121</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px"><span style="color: #c9cfca; overflow-wrap: anywhere">tests/api/roles.test.ts</span><span style="color: #67d69e">+96</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px"><span style="color: #c9cfca; overflow-wrap: anywhere">tests/api/webhooks.test.ts</span><span style="color: #67d69e">+38</span></div>
+              <div style="display: flex; justify-content: space-between; gap: 16px"><span style="color: #c9cfca; overflow-wrap: anywhere">tests/fixtures/users.ts</span><span style="color: #67d69e">+22</span></div>
+            </div>
+            <div class="m" style="border-top: 1px solid #252a26; padding: 12px 20px 16px; display: flex; flex-direction: column; font-size: 13px; line-height: 1.9; color: #c9cfca">
+              <div style="display: flex; gap: 10px; align-items: center"><span style="color: #67d69e">✓</span><span>unit (Jest) passed</span></div>
+              <div style="display: flex; gap: 10px; align-items: center"><span style="color: #67d69e">✓</span><span>e2e (Playwright) passed</span></div>
+              <div style="display: flex; gap: 10px; align-items: center"><span style="color: #67d69e">✓</span><span>test standards check passed</span></div>
+            </div>
+          </div>
+          <figcaption style="color: #9aa39c; font-size: 14px">What lands in your repository. An example: nothing is merged until your team approves it.</figcaption>
+        </figure>
+      </div>
+
+      <p class="lbl rv" style="margin: 64px 0 16px">Bug or test mistake? It tells you which</p>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: stretch">
+        <article class="rv" style="flex: 1 1 420px; min-width: 0; border: 1px solid #252a26; background: #0c0f0d; border-radius: 4px">
+          <div style="padding: 12px 16px; border-bottom: 1px solid #252a26; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px">
+            <span class="m" style="font-size: 12.5px; color: #c9cfca">refunds.spec.ts › partial refund updates order total</span>
+            <span class="m" style="font-size: 12px; color: #f87171; display: flex; align-items: center; gap: 7px"><span style="width: 9px; height: 9px; background: #f87171; display: inline-block"></span>application bug</span>
+          </div>
+          <div style="padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+            <code class="m" style="font-size: 12.5px; color: #c9cfca">Expected order total 80.00, received 100.00</code>
+            <p style="margin: 0; color: #c9cfca">The refund API answers 200, but the order total never changes. Reproduced by hand on staging.</p>
+            <p style="margin: 0; color: #9aa39c">Sent to your developers with steps and logs. The test stays red on purpose.</p>
+          </div>
+        </article>
+
+        <article class="{{ fixClass }}" style="flex: 1 1 420px; min-width: 0; border: 1px solid #252a26; border-radius: 4px">
+          <div style="padding: 12px 16px; border-bottom: 1px solid #252a26; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 6px 12px">
+            <span class="m" style="font-size: 12.5px; color: #c9cfca">checkout.spec.ts › place order</span>
+            <sc-if value="{{ pending }}" hint-placeholder-val="{{ true }}">
+              <span class="m" style="font-size: 12px; color: #fbbf24; display: flex; align-items: center; gap: 7px"><span style="width: 9px; height: 9px; background: #fbbf24; display: inline-block"></span>test mistake, awaiting approval</span>
+            </sc-if>
+            <sc-if value="{{ approved }}" hint-placeholder-val="{{ false }}">
+              <span class="m" style="font-size: 12px; color: #67d69e; display: flex; align-items: center; gap: 7px; animation: land 200ms cubic-bezier(.23,1,.32,1) both"><span style="width: 9px; height: 9px; background: #67d69e; display: inline-block"></span>fixed, re-run passed</span>
+            </sc-if>
+          </div>
+          <div style="padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 12px; font-size: 15px">
+            <code class="m" style="font-size: 12.5px; color: #c9cfca">Timeout: getByTestId('checkout-btn') not found</code>
+            <p style="margin: 0; color: #c9cfca">The button is still there. A refactor removed its test id, so the agent re-matched it against the live page.</p>
+            <div class="m" style="font-size: 12.5px; border: 1px solid #252a26; border-radius: 3px; overflow-x: auto">
+              <div style="padding: 6px 10px; background: #1d1212; color: #fca5a5; white-space: pre">- await page.getByTestId('checkout-btn').click();</div>
+              <div style="padding: 6px 10px; background: #0f1d16; color: #a7e9c6; white-space: pre">+ await page.getByRole('button', { name: 'Place order' }).click();</div>
+            </div>
+            <sc-if value="{{ pending }}" hint-placeholder-val="{{ true }}">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px">
+                <button type="button" class="btn btn-p" onClick="{{ approve }}" style="min-height: 44px; padding: 0 16px; background: #67d69e; border: 1px solid #67d69e; color: #000000; border-radius: 2px; font: inherit; font-weight: 600; font-size: 15px">Approve fix</button>
+                <span style="color: #9aa39c; font-size: 14px">Nothing changes until someone on your team says yes.</span>
+              </div>
+            </sc-if>
+            <sc-if value="{{ approved }}" hint-placeholder-val="{{ false }}">
+              <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; animation: land 200ms cubic-bezier(.23,1,.32,1) both">
+                <span class="m" style="font-size: 13px; color: #67d69e">✓ Applied in the draft PR. Re-run passed.</span>
+                <button type="button" class="btn btn-g" onClick="{{ undo }}" style="min-height: 44px; padding: 0 14px; background: transparent; border: 1px solid #252a26; color: #f3f5f2; border-radius: 2px; font: inherit; font-size: 14px">Undo</button>
+              </div>
+            </sc-if>
+          </div>
+        </article>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 32px 56px; margin-top: 80px; align-items: center">
+        <div class="rv" style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+          <h3 style="margin: 0; font-size: 24px; font-weight: 600; line-height: 1.2">Inside your stack, by your rules</h3>
+          <p style="margin: 0; color: #c9cfca; text-wrap: pretty">These are examples, not requirements. Every engagement starts by learning how your team ships. If you already have rules for how tests are written, we follow them, and the agent keeps following them.</p>
+          <dl style="margin: 6px 0 0; display: flex; flex-direction: column; border-top: 1px solid #252a26">
+            <div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid #252a26"><dt class="lbl" style="padding-top: 2px">Code</dt><dd style="margin: 0; font-size: 15px; color: #c9cfca">GitHub, GitLab or Azure DevOps. Tests arrive as pull requests.</dd></div>
+            <div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid #252a26"><dt class="lbl" style="padding-top: 2px">Tickets</dt><dd style="margin: 0; font-size: 15px; color: #c9cfca">Jira, Linear or GitHub Issues. A ticket can become a test plan and its tests.</dd></div>
+            <div style="display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 12px; padding: 10px 0; border-bottom: 1px solid #252a26"><dt class="lbl" style="padding-top: 2px">Test cases</dt><dd style="margin: 0; font-size: 15px; color: #c9cfca">In the tool you already use, Azure DevOps Test Plans included.</dd></div>
+          </dl>
+        </div>
+        <div style="flex: 1 1 420px; min-width: 0">
+          <div style="position: relative; width: 100%; max-width: 620px; aspect-ratio: 620 / 300; margin: 0 auto">
+            <svg viewBox="0 0 620 300" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible" fill="none">
+              <path d="M70 50C190 50 190 150 310 150" stroke="#252a26" stroke-width="1.5"></path>
+              <path d="M70 150C190 150 190 150 310 150" stroke="#252a26" stroke-width="1.5"></path>
+              <path d="M70 250C190 250 190 150 310 150" stroke="#252a26" stroke-width="1.5"></path>
+              <path d="M310 150C430 150 430 50 550 50" stroke="#252a26" stroke-width="1.5"></path>
+              <path d="M310 150C430 150 430 150 550 150" stroke="#252a26" stroke-width="1.5"></path>
+              <path d="M310 150C430 150 430 250 550 250" stroke="#252a26" stroke-width="1.5"></path>
+              <path class="flow" d="M70 50C190 50 190 150 310 150" stroke="#67d69e" stroke-width="2" stroke-linecap="round" stroke-dasharray="28 612" stroke-dashoffset="640" style="animation-delay: 0s"></path>
+              <path class="flow" d="M70 150C190 150 190 150 310 150" stroke="#67d69e" stroke-width="2" stroke-linecap="round" stroke-dasharray="28 612" stroke-dashoffset="640" style="animation-delay: 0.45s"></path>
+              <path class="flow" d="M70 250C190 250 190 150 310 150" stroke="#67d69e" stroke-width="2" stroke-linecap="round" stroke-dasharray="28 612" stroke-dashoffset="640" style="animation-delay: 0.9s"></path>
+              <path class="flow" d="M310 150C430 150 430 50 550 50" stroke="#67d69e" stroke-width="2" stroke-linecap="round" stroke-dasharray="28 612" stroke-dashoffset="640" style="animation-delay: 1.4s"></path>
+              <path class="flow" d="M310 150C430 150 430 150 550 150" stroke="#67d69e" stroke-width="2" stroke-linecap="round" stroke-dasharray="28 612" stroke-dashoffset="640" style="animation-delay: 1.85s"></path>
+              <path class="flow" d="M310 150C430 150 430 250 550 250" stroke="#67d69e" stroke-width="2" stroke-linecap="round" stroke-dasharray="28 612" stroke-dashoffset="640" style="animation-delay: 2.3s"></path>
+            </svg>
+            <span class="m" style="position: absolute; left: 11.29%; top: 16.67%; transform: translate(-50%, -50%); background: #000000; border: 1px solid #3a403b; border-radius: 2px; padding: 4px 9px; font-size: clamp(10.5px, 1.8vw, 12px); color: #c9cfca; white-space: nowrap">repo</span>
+            <span class="m" style="position: absolute; left: 11.29%; top: 50%; transform: translate(-50%, -50%); background: #000000; border: 1px solid #3a403b; border-radius: 2px; padding: 4px 9px; font-size: clamp(10.5px, 1.8vw, 12px); color: #c9cfca; white-space: nowrap">tickets</span>
+            <span class="m" style="position: absolute; left: 11.29%; top: 83.33%; transform: translate(-50%, -50%); background: #000000; border: 1px solid #3a403b; border-radius: 2px; padding: 4px 9px; font-size: clamp(10.5px, 1.8vw, 12px); color: #c9cfca; white-space: nowrap">test plans</span>
+            <span style="position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: clamp(56px, 11vw, 72px); height: clamp(56px, 11vw, 72px); display: flex; align-items: center; justify-content: center; background: #000000; border: 1px solid #67d69e; border-radius: 4px; box-shadow: 0 0 0 6px rgba(103, 214, 158, 0.08)"><img src="/_blob/94060485768a19d7c83e33a6311065b7" alt="" width="30" height="34" style="display: block; width: 30px; height: 34px"></span>
+            <span class="m" style="position: absolute; left: 88.71%; top: 16.67%; transform: translate(-50%, -50%); background: #000000; border: 1px solid #3a403b; border-radius: 2px; padding: 4px 9px; font-size: clamp(10.5px, 1.8vw, 12px); color: #c9cfca; white-space: nowrap">draft PRs</span>
+            <span class="m" style="position: absolute; left: 88.71%; top: 50%; transform: translate(-50%, -50%); background: #000000; border: 1px solid #3a403b; border-radius: 2px; padding: 4px 9px; font-size: clamp(10.5px, 1.8vw, 12px); color: #c9cfca; white-space: nowrap">test cases</span>
+            <span class="m" style="position: absolute; left: 88.71%; top: 83.33%; transform: translate(-50%, -50%); background: #000000; border: 1px solid #3a403b; border-radius: 2px; padding: 4px 9px; font-size: clamp(10.5px, 1.8vw, 12px); color: #c9cfca; white-space: nowrap">bug reports</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 56px; border-top: 1px solid #252a26; border-bottom: 1px solid #252a26; padding: 18px 0; display: flex; flex-direction: column; gap: 14px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent)">
+        <div class="mq-row m" style="overflow: hidden; font-size: 14px; color: #c9cfca">
+          <div class="mq" style="display: flex; gap: 36px; width: max-content; white-space: nowrap">
+            <span>Playwright</span><span style="color: #67d69e">▪</span><span>Cypress</span><span style="color: #67d69e">▪</span><span>Selenium</span><span style="color: #67d69e">▪</span><span>Robot Framework</span><span style="color: #67d69e">▪</span><span>Jest</span><span style="color: #67d69e">▪</span><span>Vitest</span><span style="color: #67d69e">▪</span><span>pytest</span><span style="color: #67d69e">▪</span><span>Azure DevOps</span><span style="color: #67d69e">▪</span><span>Jira</span><span style="color: #67d69e">▪</span><span>Linear</span><span style="color: #67d69e">▪</span><span>GitHub</span><span style="color: #67d69e">▪</span><span>GitLab</span><span style="color: #67d69e">▪</span>
+            <span>Playwright</span><span style="color: #67d69e">▪</span><span>Cypress</span><span style="color: #67d69e">▪</span><span>Selenium</span><span style="color: #67d69e">▪</span><span>Robot Framework</span><span style="color: #67d69e">▪</span><span>Jest</span><span style="color: #67d69e">▪</span><span>Vitest</span><span style="color: #67d69e">▪</span><span>pytest</span><span style="color: #67d69e">▪</span><span>Azure DevOps</span><span style="color: #67d69e">▪</span><span>Jira</span><span style="color: #67d69e">▪</span><span>Linear</span><span style="color: #67d69e">▪</span><span>GitHub</span><span style="color: #67d69e">▪</span><span>GitLab</span><span style="color: #67d69e">▪</span>
+          </div>
+        </div>
+        <div class="mq-row m" style="overflow: hidden; font-size: 14px; color: #9aa39c">
+          <div class="mq rev" style="display: flex; gap: 36px; width: max-content; white-space: nowrap">
+            <span>TypeScript</span><span>·</span><span>JavaScript</span><span>·</span><span>Python</span><span>·</span><span>Java</span><span>·</span><span>.NET</span><span>·</span><span>Go</span><span>·</span><span>Ruby</span><span>·</span><span>PHP</span><span>·</span><span>Web</span><span>·</span><span>Android</span><span>·</span><span>iOS</span><span>·</span><span>real devices and emulators</span><span>·</span>
+            <span>TypeScript</span><span>·</span><span>JavaScript</span><span>·</span><span>Python</span><span>·</span><span>Java</span><span>·</span><span>.NET</span><span>·</span><span>Go</span><span>·</span><span>Ruby</span><span>·</span><span>PHP</span><span>·</span><span>Web</span><span>·</span><span>Android</span><span>·</span><span>iOS</span><span>·</span><span>real devices and emulators</span><span>·</span>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 1px; background: #252a26; border: 1px solid #252a26">
+        <div class="spot rv" onMouseMove="{{ spot }}" style="background-color: #000000; padding: 22px 20px 24px; display: flex; flex-direction: column; gap: 8px"><span class="m" style="font-size: 12px; color: #67d69e">no tests yet</span><h3 style="margin: 0; font-size: 19px; font-weight: 600">We start the suite</h3><p style="margin: 0; color: #c9cfca; font-size: 15.5px">We design the test repository from scratch and deliver a first suite on your critical flows.</p></div>
+        <div class="spot rv" onMouseMove="{{ spot }}" style="background-color: #000000; padding: 22px 20px 24px; display: flex; flex-direction: column; gap: 8px"><span class="m" style="font-size: 12px; color: #fbbf24">tests that keep breaking</span><h3 style="margin: 0; font-size: 19px; font-weight: 600">We stabilize it</h3><p style="margin: 0; color: #c9cfca; font-size: 15.5px">We fix what's broken, standardize the rest and fill the coverage gaps that matter.</p></div>
+        <div class="spot rv" onMouseMove="{{ spot }}" style="background-color: #000000; padding: 22px 20px 24px; display: flex; flex-direction: column; gap: 8px"><span class="m" style="font-size: 12px; color: #9aa39c">a mature suite</span><h3 style="margin: 0; font-size: 19px; font-weight: 600">We add where it's thin</h3><p style="margin: 0; color: #c9cfca; font-size: 15.5px">Targeted additions only, where coverage is thin. Working tests stay untouched.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" style="border-top: 1px solid #252a26">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) clamp(16px, 3.2vw, 40px); box-sizing: border-box">
+      <div class="rv" style="display: flex; flex-wrap: wrap; gap: 16px 48px; margin-bottom: 56px">
+        <p class="lbl" style="margin: 0; flex: 0 0 160px">02 / Process</p>
+        <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+          <h2 class="dsp" style="margin: 0; font-size: clamp(27px, 3.4vw, 42px); line-height: 1; text-wrap: balance">Assess, plan, deliver, stabilize</h2>
+          <p style="margin: 0; color: #c9cfca; max-width: 62ch; text-wrap: pretty">The same four steps on every engagement, sized to your product and your release rhythm.</p>
+        </div>
+      </div>
+
+      <div style="position: relative; display: flex; flex-direction: column">
+        <div aria-hidden="true" style="position: absolute; left: 7px; top: 10px; bottom: 40px; width: 2px; background: #252a26"></div>
+        <div aria-hidden="true" class="tlfill" style="position: absolute; left: 7px; top: 10px; bottom: 40px; width: 2px; background: #67d69e; transform-origin: top"></div>
+
+        <div style="position: relative; padding: 0 0 64px 48px; display: flex; flex-wrap: wrap; gap: 14px 48px">
+          <span class="tdot" aria-hidden="true" style="position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #252a26; border: 3px solid #000000; box-sizing: border-box"></span>
+          <div style="flex: 1 1 260px; min-width: 0; position: sticky; top: 96px; align-self: flex-start; display: flex; align-items: baseline; gap: 14px"><span class="m" style="font-size: 13px; color: #67d69e">01</span><h3 class="dsp" style="margin: 0; font-size: clamp(26px, 3vw, 40px); line-height: 1">Assess</h3></div>
+          <div style="flex: 2 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+            <p style="margin: 0; color: #f3f5f2; font-size: 18px; text-wrap: pretty">Risk assessment and a reality check of your product, your CI and where things fail.</p>
+            <p class="lbl" style="margin: 6px 0 0">You get</p>
+            <ul style="margin: 0; padding-left: 18px; color: #c9cfca; display: flex; flex-direction: column; gap: 6px"><li>Risk map by module</li><li>Top issues and quick wins</li><li>Prioritized test backlog by level: smoke, regression, E2E, API</li></ul>
+          </div>
+        </div>
+
+        <div style="position: relative; padding: 0 0 64px 48px; display: flex; flex-wrap: wrap; gap: 14px 48px">
+          <span class="tdot" aria-hidden="true" style="position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #252a26; border: 3px solid #000000; box-sizing: border-box"></span>
+          <div style="flex: 1 1 260px; min-width: 0; position: sticky; top: 96px; align-self: flex-start; display: flex; align-items: baseline; gap: 14px"><span class="m" style="font-size: 13px; color: #67d69e">02</span><h3 class="dsp" style="margin: 0; font-size: clamp(26px, 3vw, 40px); line-height: 1">Plan</h3></div>
+          <div style="flex: 2 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+            <p style="margin: 0; color: #f3f5f2; font-size: 18px; text-wrap: pretty">Test strategy, coverage plan and quality gates you can measure.</p>
+            <p class="lbl" style="margin: 6px 0 0">You get</p>
+            <ul style="margin: 0; padding-left: 18px; color: #c9cfca; display: flex; flex-direction: column; gap: 6px"><li>A 1–2 page test strategy, ready to execute</li><li>Risk-to-coverage matrix</li><li>CI/CD gates: what blocks a merge or a release, and who owns it</li></ul>
+          </div>
+        </div>
+
+        <div style="position: relative; padding: 0 0 64px 48px; display: flex; flex-wrap: wrap; gap: 14px 48px">
+          <span class="tdot" aria-hidden="true" style="position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #252a26; border: 3px solid #000000; box-sizing: border-box"></span>
+          <div style="flex: 1 1 260px; min-width: 0; position: sticky; top: 96px; align-self: flex-start; display: flex; align-items: baseline; gap: 14px"><span class="m" style="font-size: 13px; color: #67d69e">03</span><h3 class="dsp" style="margin: 0; font-size: clamp(26px, 3vw, 40px); line-height: 1">Deliver</h3></div>
+          <div style="flex: 2 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+            <p style="margin: 0; color: #f3f5f2; font-size: 18px; text-wrap: pretty">Testing scoped to each change, and automation where it pays off.</p>
+            <p class="lbl" style="margin: 6px 0 0">You get</p>
+            <ul style="margin: 0; padding-left: 18px; color: #c9cfca; display: flex; flex-direction: column; gap: 6px"><li>Release and PR test reports with evidence</li><li>An automation increment with maintenance rules</li><li>A pre-deploy exit checklist</li></ul>
+          </div>
+        </div>
+
+        <div style="position: relative; padding: 0 0 24px 48px; display: flex; flex-wrap: wrap; gap: 14px 48px">
+          <span class="tdot" aria-hidden="true" style="position: absolute; left: 0; top: 6px; width: 16px; height: 16px; border-radius: 50%; background: #252a26; border: 3px solid #000000; box-sizing: border-box"></span>
+          <div style="flex: 1 1 260px; min-width: 0; position: sticky; top: 96px; align-self: flex-start; display: flex; align-items: baseline; gap: 14px"><span class="m" style="font-size: 13px; color: #67d69e">04</span><h3 class="dsp" style="margin: 0; font-size: clamp(26px, 3vw, 40px); line-height: 1">Stabilize</h3></div>
+          <div style="flex: 2 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+            <p style="margin: 0; color: #f3f5f2; font-size: 18px; text-wrap: pretty">Pipeline visibility, flaky-test triage and CI hardening.</p>
+            <p class="lbl" style="margin: 6px 0 0">You get</p>
+            <ul style="margin: 0; padding-left: 18px; color: #c9cfca; display: flex; flex-direction: column; gap: 6px"><li>Stability dashboard: flakes, failures, runtime</li><li>A decision, root cause and owner for each flaky test</li><li>CI hardening summary, before and after</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="plans" style="border-top: 1px solid #252a26">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) clamp(16px, 3.2vw, 40px); box-sizing: border-box">
+      <div class="rv" style="display: flex; flex-wrap: wrap; gap: 16px 48px; margin-bottom: 40px">
+        <p class="lbl" style="margin: 0; flex: 0 0 160px">03 / Plans</p>
+        <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+          <h2 class="dsp" style="margin: 0; font-size: clamp(27px, 3.4vw, 42px); line-height: 1; text-wrap: balance">Ways to work with us</h2>
+          <p style="margin: 0; color: #c9cfca; max-width: 62ch; text-wrap: pretty">Pick the one that fits where your product is today. Each is sized to your scope, runs month-to-month, and you can move between them.</p>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 24px">
+        <div class="rv" style="display: flex; flex-wrap: wrap; gap: 1px; background: #252a26; border: 1px solid #252a26">
+          <div style="flex: 1 1 300px; min-width: 0; background: #000000; padding: 24px 22px; display: flex; flex-direction: column; gap: 10px">
+            <h3 class="dsp" style="margin: 0; font-size: 24px">Quality Check</h3>
+            <p style="margin: 0; color: #67d69e; font-weight: 500">Manual functional QA, by project</p>
+            <p style="margin: 0; color: #c9cfca; font-size: 15.5px">Find functional defects before go-live and lower the risk of big changes or new modules.</p>
+          </div>
+          <div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+            <div class="spot" onMouseMove="{{ spot }}" style="background-color: #000000; display: flex; flex-wrap: wrap; gap: 6px 24px; padding: 18px 22px"><div style="flex: 0 0 190px"><b style="font-size: 17px; font-weight: 600">Standard</b><span class="m" style="display: block; font-size: 12px; color: #9aa39c">small or medium module</span></div><p style="flex: 1 1 260px; margin: 0; color: #c9cfca; font-size: 15.5px">A new module or related features. 5–10 screens or flows, moderate business rules.</p><p class="m" style="flex: 0 0 170px; margin: 0; font-size: 12.5px; color: #9aa39c">1 senior QA + 1 QA</p></div>
+            <div class="spot" onMouseMove="{{ spot }}" style="background-color: #000000; display: flex; flex-wrap: wrap; gap: 6px 24px; padding: 18px 22px"><div style="flex: 0 0 190px"><b style="font-size: 17px; font-weight: 600">Medium</b><span class="m" style="display: block; font-size: 12px; color: #9aa39c">complex module</span></div><p style="flex: 1 1 260px; margin: 0; color: #c9cfca; font-size: 15.5px">Important business modules. 10–20 flows and several integrations: APIs, payment gateways, internal services.</p><p class="m" style="flex: 0 0 170px; margin: 0; font-size: 12.5px; color: #9aa39c">1 senior QA + 2 QAs</p></div>
+            <div class="spot" onMouseMove="{{ spot }}" style="background-color: #000000; display: flex; flex-wrap: wrap; gap: 6px 24px; padding: 18px 22px"><div style="flex: 0 0 190px"><b style="font-size: 17px; font-weight: 600">Premium</b><span class="m" style="display: block; font-size: 12px; color: #9aa39c">high impact</span></div><p style="flex: 1 1 260px; margin: 0; color: #c9cfca; font-size: 15.5px">High-impact changes. 20+ flows, many integrations, end-to-end flows validated from start to finish.</p><p class="m" style="flex: 0 0 170px; margin: 0; font-size: 12.5px; color: #9aa39c">1 senior QA + 2–3 QAs</p></div>
+          </div>
+        </div>
+
+        <div class="rv" style="display: flex; flex-wrap: wrap; gap: 1px; background: #252a26; border: 1px solid #252a26">
+          <div style="flex: 1 1 300px; min-width: 0; background: #000000; padding: 24px 22px; display: flex; flex-direction: column; gap: 10px">
+            <h3 class="dsp" style="margin: 0; font-size: 24px">Quality Booster</h3>
+            <p style="margin: 0; color: #67d69e; font-weight: 500">Continuous regression and automation kickstart</p>
+            <p style="margin: 0; color: #c9cfca; font-size: 15.5px">A working automation framework with a first automated regression set on your critical flows.</p>
+          </div>
+          <div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+            <div class="spot" onMouseMove="{{ spot }}" style="background-color: #000000; display: flex; flex-wrap: wrap; gap: 6px 24px; padding: 18px 22px"><div style="flex: 0 0 190px"><b style="font-size: 17px; font-weight: 600">Kickstart Basic</b><span class="m" style="display: block; font-size: 12px; color: #9aa39c">small product</span></div><p style="flex: 1 1 260px; margin: 0; color: #c9cfca; font-size: 15.5px">Small apps or modules, 1–2 critical flows. Base framework and the first automated set.</p><p class="m" style="flex: 0 0 170px; margin: 0; font-size: 12.5px; color: #9aa39c">1 senior automation QA + 1 automation QA</p></div>
+            <div class="spot" onMouseMove="{{ spot }}" style="background-color: #000000; display: flex; flex-wrap: wrap; gap: 6px 24px; padding: 18px 22px"><div style="flex: 0 0 190px"><b style="font-size: 17px; font-weight: 600">Kickstart Standard</b><span class="m" style="display: block; font-size: 12px; color: #9aa39c">medium product</span></div><p style="flex: 1 1 260px; margin: 0; color: #c9cfca; font-size: 15.5px">Several modules and 2–3 user roles. Framework with reporting and pipelines, stabilization and docs.</p><p class="m" style="flex: 0 0 170px; margin: 0; font-size: 12.5px; color: #9aa39c">1 senior + 1–2 automation QAs</p></div>
+            <div class="spot" onMouseMove="{{ spot }}" style="background-color: #000000; display: flex; flex-wrap: wrap; gap: 6px 24px; padding: 18px 22px"><div style="flex: 0 0 190px"><b style="font-size: 17px; font-weight: 600">Kickstart Full</b><span class="m" style="display: block; font-size: 12px; color: #9aa39c">complex product</span></div><p style="flex: 1 1 260px; margin: 0; color: #c9cfca; font-size: 15.5px">Core systems with complex rules. Full stabilization, complete documentation and team training.</p><p class="m" style="flex: 0 0 170px; margin: 0; font-size: 12.5px; color: #9aa39c">1 senior + 2 automation QAs</p></div>
+          </div>
+        </div>
+
+        <div class="rv" style="display: flex; flex-wrap: wrap; gap: 1px; background: #252a26; border: 1px solid #252a26">
+          <div style="flex: 1 1 300px; min-width: 0; background: #000000; padding: 24px 22px; display: flex; flex-direction: column; gap: 10px">
+            <h3 class="dsp" style="margin: 0; font-size: 24px">Quality Squad</h3>
+            <p style="margin: 0; color: #67d69e; font-weight: 500">A dedicated QA team</p>
+            <p style="margin: 0; color: #c9cfca; font-size: 15.5px">Steady QA capacity for teams with little or no QA in-house, working inside your sprints.</p>
+          </div>
+          <div style="flex: 2 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 1px">
+            <div class="spot" onMouseMove="{{ spot }}" style="background-color: #000000; display: flex; flex-wrap: wrap; gap: 6px 24px; padding: 18px 22px"><div style="flex: 0 0 190px"><b style="font-size: 17px; font-weight: 600">Part-time</b><span class="m" style="display: block; font-size: 12px; color: #9aa39c">flexible support</span></div><p style="flex: 1 1 260px; margin: 0; color: #c9cfca; font-size: 15.5px">QA assigned to one or more projects. Joins key ceremonies, designs and runs functional tests, reports progress regularly.</p><p class="m" style="flex: 0 0 170px; margin: 0; font-size: 12.5px; color: #9aa39c">shared across your projects</p></div>
+            <div class="spot" onMouseMove="{{ spot }}" style="background-color: #000000; display: flex; flex-wrap: wrap; gap: 6px 24px; padding: 18px 22px"><div style="flex: 0 0 190px"><b style="font-size: 17px; font-weight: 600">Full-time</b><span class="m" style="display: block; font-size: 12px; color: #9aa39c">full dedication</span></div><p style="flex: 1 1 260px; margin: 0; color: #c9cfca; font-size: 15.5px">QA on your critical projects: dailies, planning, refinement, continuous functional and exploratory testing, full defect tracking.</p><p class="m" style="flex: 0 0 170px; margin: 0; font-size: 12.5px; color: #9aa39c">dedicated to your team</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="audits" style="border-top: 1px solid #252a26">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) clamp(16px, 3.2vw, 40px); box-sizing: border-box">
+      <div class="rv" style="display: flex; flex-wrap: wrap; gap: 16px 48px; margin-bottom: 40px">
+        <p class="lbl" style="margin: 0; flex: 0 0 160px">04 / Audits</p>
+        <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+          <h2 class="dsp" style="margin: 0; font-size: clamp(27px, 3.4vw, 42px); line-height: 1; text-wrap: balance">Audits and test automation</h2>
+          <p style="margin: 0; color: #c9cfca; max-width: 62ch; text-wrap: pretty">On their own or alongside any plan. Each one ends with findings your engineers can act on and a way to re-test them.</p>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr)); gap: 1px; background: #252a26; border: 1px solid #252a26">
+
+        <div class="spot rv" onMouseMove="{{ spot }}" style="background-color: #000000; display: flex; flex-direction: column">
+          <div aria-hidden="true" style="position: relative; height: 128px; border-bottom: 1px solid #252a26; padding: 18px 20px 14px; box-sizing: border-box; display: flex; align-items: flex-end; gap: 5px">
+            <span class="m" style="position: absolute; top: 10px; right: 12px; font-size: 10.5px; color: #5b635c">example</span>
+            <span class="bar" style="flex: 1; height: 26%; background: #3a403b; transform-origin: bottom"></span><span class="bar" style="flex: 1; height: 34%; background: #3a403b; transform-origin: bottom"></span><span class="bar" style="flex: 1; height: 22%; background: #3a403b; transform-origin: bottom"></span><span class="bar" style="flex: 1; height: 40%; background: #3a403b; transform-origin: bottom"></span><span class="bar" style="flex: 1; height: 30%; background: #3a403b; transform-origin: bottom"></span><span class="bar" style="flex: 1; height: 28%; background: #3a403b; transform-origin: bottom"></span><span class="hotbar" style="flex: 1; height: 92%; background: #f87171; transform-origin: bottom"></span><span class="bar" style="flex: 1; height: 36%; background: #3a403b; transform-origin: bottom"></span><span class="bar" style="flex: 1; height: 24%; background: #3a403b; transform-origin: bottom"></span><span class="bar" style="flex: 1; height: 32%; background: #3a403b; transform-origin: bottom"></span><span class="bar" style="flex: 1; height: 27%; background: #3a403b; transform-origin: bottom"></span><span class="bar" style="flex: 1; height: 35%; background: #3a403b; transform-origin: bottom"></span>
+          </div>
+          <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+            <h3 style="margin: 0; font-size: 20px; font-weight: 600">Performance audit</h3>
+            <p style="margin: 0; color: #c9cfca; font-size: 15.5px">Baselines for your critical journeys and the bottlenecks behind them, backed by measured runs.</p>
+            <a class="lnk cta" href="#" style="margin-top: auto; color: #67d69e; text-decoration: none; font-weight: 600; font-size: 15px; min-height: 44px; display: inline-flex; align-items: center; gap: 8px">Performance audit <span class="arr" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <div class="spot rv" onMouseMove="{{ spot }}" style="background-color: #000000; display: flex; flex-direction: column">
+          <div aria-hidden="true" class="m" style="position: relative; height: 128px; border-bottom: 1px solid #252a26; padding: 22px 20px 12px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; font-size: 12px">
+            <span style="position: absolute; top: 10px; right: 12px; font-size: 10.5px; color: #5b635c">example</span>
+            <span class="rv" style="display: flex; justify-content: space-between; gap: 8px; color: #c9cfca"><span>POST /refunds</span><span style="color: #67d69e">auth ✓</span></span>
+            <span class="rv" style="display: flex; justify-content: space-between; gap: 8px; color: #c9cfca"><span>GET /users/:id</span><span style="color: #f87171">authorization ✗</span></span>
+            <span class="rv" style="display: flex; justify-content: space-between; gap: 8px; color: #c9cfca"><span>PUT /roles</span><span style="color: #67d69e">auth ✓</span></span>
+          </div>
+          <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+            <h3 style="margin: 0; font-size: 20px; font-weight: 600">Security review</h3>
+            <p style="margin: 0; color: #c9cfca; font-size: 15.5px">Manual security testing focused on what your next release puts at risk, with remediation guidance.</p>
+            <a class="lnk cta" href="#" style="margin-top: auto; color: #67d69e; text-decoration: none; font-weight: 600; font-size: 15px; min-height: 44px; display: inline-flex; align-items: center; gap: 8px">Security review <span class="arr" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <div class="spot rv" onMouseMove="{{ spot }}" style="background-color: #000000; display: flex; flex-direction: column">
+          <div aria-hidden="true" class="m" style="position: relative; height: 128px; border-bottom: 1px solid #252a26; padding: 22px 20px 12px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; gap: 7px; font-size: 11.5px; color: #9aa39c">
+            <span style="position: absolute; top: 10px; right: 12px; font-size: 10.5px; color: #5b635c">example</span>
+            <span style="display: grid; grid-template-columns: 1fr 44%; gap: 10px; align-items: center"><span>duplicated checkout logic</span><span class="barx" style="height: 6px; background: #f87171; transform-origin: left"></span></span>
+            <span style="display: grid; grid-template-columns: 1fr 44%; gap: 10px; align-items: center"><span>untyped API client</span><span class="barx" style="height: 6px; width: 72%; background: #fbbf24; transform-origin: left"></span></span>
+            <span style="display: grid; grid-template-columns: 1fr 44%; gap: 10px; align-items: center"><span>dead feature flags</span><span class="barx" style="height: 6px; width: 40%; background: #3a403b; transform-origin: left"></span></span>
+          </div>
+          <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+            <h3 style="margin: 0; font-size: 20px; font-weight: 600">Code quality review</h3>
+            <p style="margin: 0; color: #c9cfca; font-size: 15.5px">Quality gates that match real risk, and technical debt ordered by impact.</p>
+            <a class="lnk cta" href="#" style="margin-top: auto; color: #67d69e; text-decoration: none; font-weight: 600; font-size: 15px; min-height: 44px; display: inline-flex; align-items: center; gap: 8px">Code quality review <span class="arr" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+
+        <div class="spot rv" onMouseMove="{{ spot }}" style="background-color: #000000; display: flex; flex-direction: column">
+          <div aria-hidden="true" class="m" style="position: relative; height: 128px; border-bottom: 1px solid #252a26; padding: 22px 20px 12px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: flex-end; gap: 6px; font-size: 12px; color: #c9cfca">
+            <span style="position: absolute; top: 10px; right: 12px; font-size: 10.5px; color: #5b635c">example</span>
+            <span class="rv" style="display: flex; justify-content: space-between"><span>smoke</span><span style="color: #67d69e">12 ✓</span></span>
+            <span class="rv" style="display: flex; justify-content: space-between"><span>regression</span><span style="color: #67d69e">86 ✓</span></span>
+            <span class="rv" style="display: flex; justify-content: space-between"><span>end-to-end</span><span style="color: #67d69e">31 ✓</span></span>
+          </div>
+          <div style="padding: 20px 20px 22px; display: flex; flex-direction: column; gap: 10px; flex: 1">
+            <h3 style="margin: 0; font-size: 20px; font-weight: 600">Test automation</h3>
+            <p style="margin: 0; color: #c9cfca; font-size: 15.5px">Risk-based automation in your framework, with evidence your CI can show.</p>
+            <a class="lnk cta" href="#" style="margin-top: auto; color: #67d69e; text-decoration: none; font-weight: 600; font-size: 15px; min-height: 44px; display: inline-flex; align-items: center; gap: 8px">Test automation <span class="arr" aria-hidden="true">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="team" style="border-top: 1px solid #252a26">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) clamp(16px, 3.2vw, 40px); box-sizing: border-box">
+      <div style="display: flex; flex-wrap: wrap; gap: 16px 48px">
+        <p class="lbl" style="margin: 0; flex: 0 0 160px">05 / Team</p>
+        <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+          <h2 class="dsp" style="margin: 0; font-size: clamp(27px, 3.4vw, 42px); line-height: 1; text-wrap: balance">Senior people lead every engagement</h2>
+          <p style="margin: 0; font-size: clamp(22px, 2.5vw, 32px); line-height: 1.3; font-weight: 500; max-width: 34ch; view-timeline-name: --tr"><sc-for list="{{ reveal }}" as="r" hint-placeholder-count="20"><span class="wd" style="animation-range: cover {{ r.a }} cover {{ r.b }}">{{ r.w }} </span></sc-for></p>
+          <div style="display: flex; flex-wrap: wrap; gap: 24px 48px">
+            <p style="flex: 1 1 300px; margin: 0; color: #c9cfca; text-wrap: pretty">We work in English or Spanish from Argentina (UTC−3), so most of our day overlaps with yours.</p>
+            <div style="flex: 1 1 300px; border-top: 1px solid #252a26; padding-top: 14px; display: flex; flex-direction: column; gap: 8px">
+              <p class="lbl" style="margin: 0">Track record</p>
+              <p style="margin: 0; color: #9aa39c; text-wrap: pretty">Our engineers have delivered QA on teams at <span style="color: #f3f5f2">Disney, FIFA, PayPal, Royal Caribbean, Deloitte, Globant</span> and <span style="color: #f3f5f2">Numerade</span>.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="start" style="border-top: 1px solid #252a26">
+    <div style="max-width: 1280px; margin: 0 auto; padding: clamp(56px, 8vw, 104px) clamp(16px, 3.2vw, 40px); box-sizing: border-box">
+      <div class="rv" style="display: flex; flex-wrap: wrap; gap: 16px 48px; margin-bottom: 40px">
+        <p class="lbl" style="margin: 0; flex: 0 0 160px">06 / Start</p>
+        <div style="flex: 1 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+          <h2 class="dsp" style="margin: 0; font-size: clamp(27px, 3.4vw, 42px); line-height: 1; text-wrap: balance">How it starts</h2>
+          <p style="margin: 0; color: #c9cfca; max-width: 62ch; text-wrap: pretty">Month-to-month, no long contract. You pay to start, and if the first month doesn't work for you, you stop there.</p>
+        </div>
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 48px; align-items: flex-start">
+        <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 28px">
+          <ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; border-top: 1px solid #252a26">
+            <li class="rv" style="display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 16px 0; border-bottom: 1px solid #252a26"><span class="m" style="color: #67d69e; font-size: 14px">01</span><div><b style="display: block; font-weight: 600">A 15-minute call</b><span style="color: #c9cfca; font-size: 15.5px">Your product, your stack and what's hurting today.</span></div></li>
+            <li class="rv" style="display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 16px 0; border-bottom: 1px solid #252a26"><span class="m" style="color: #67d69e; font-size: 14px">02</span><div><b style="display: block; font-weight: 600">Week 1: the coverage map</b><span style="color: #c9cfca; font-size: 15.5px">Risk map by module, top issues with quick wins and a prioritized test backlog, built from your code.</span></div></li>
+            <li class="rv" style="display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 16px 0; border-bottom: 1px solid #252a26"><span class="m" style="color: #67d69e; font-size: 14px">03</span><div><b style="display: block; font-weight: 600">Plan</b><span style="color: #c9cfca; font-size: 15.5px">Test strategy, coverage plan and quality gates you can measure.</span></div></li>
+            <li class="rv" style="display: grid; grid-template-columns: 40px minmax(0, 1fr); gap: 12px; padding: 16px 0; border-bottom: 1px solid #252a26"><span class="m" style="color: #67d69e; font-size: 14px">04</span><div><b style="display: block; font-weight: 600">Delivery</b><span style="color: #c9cfca; font-size: 15.5px">Testing and automation inside your sprints, with flaky tests triaged and the pipeline hardened.</span></div></li>
+          </ol>
+          <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px">
+            <a class="btn btn-p cta" href="#" style="display: inline-flex; align-items: center; gap: 12px; min-height: 50px; box-sizing: border-box; padding: 0 20px; background: #67d69e; border: 1px solid #67d69e; color: #000000; border-radius: 2px; text-decoration: none; font-weight: 600; font-size: 16px"><span>Book a 15-minute call</span><span class="arr" aria-hidden="true">→</span></a>
+            <a class="lnk m" href="#" style="color: #9aa39c; font-size: 13px; min-height: 44px; display: inline-flex; align-items: center">martin.backhaus@code-assurance.com</a>
+          </div>
+        </div>
+
+        <div class="beam" style="flex: 1 1 420px; min-width: 0; border: 1px solid #252a26; border-radius: 4px; padding: 24px 22px; box-sizing: border-box; background: #000000">
+          <sc-if value="{{ notSent }}" hint-placeholder-val="{{ true }}">
+            <form style="display: flex; flex-direction: column; gap: 16px">
+              <p class="lbl" style="margin: 0">Or send us a note</p>
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr)); gap: 16px">
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #c9cfca">Name<input class="field" type="text" name="name" style="min-height: 46px; box-sizing: border-box; padding: 10px 12px; background: #000000; border: 1px solid #3a403b; border-radius: 2px; color: #f3f5f2; font: inherit; font-size: 16px"></label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #c9cfca">Work email<input class="field" type="email" name="email" style="min-height: 46px; box-sizing: border-box; padding: 10px 12px; background: #000000; border: 1px solid #3a403b; border-radius: 2px; color: #f3f5f2; font: inherit; font-size: 16px"></label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #c9cfca">Company<input class="field" type="text" name="company" style="min-height: 46px; box-sizing: border-box; padding: 10px 12px; background: #000000; border: 1px solid #3a403b; border-radius: 2px; color: #f3f5f2; font: inherit; font-size: 16px"></label>
+                <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #c9cfca">Phone <span style="color: #9aa39c">(optional)</span><input class="field" type="tel" name="phone" style="min-height: 46px; box-sizing: border-box; padding: 10px 12px; background: #000000; border: 1px solid #3a403b; border-radius: 2px; color: #f3f5f2; font: inherit; font-size: 16px"></label>
+              </div>
+              <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: #c9cfca">What do you need?<textarea class="field" name="message" rows="4" placeholder="Your product, your stack, what's breaking…" style="box-sizing: border-box; padding: 10px 12px; background: #000000; border: 1px solid #3a403b; border-radius: 2px; color: #f3f5f2; font: inherit; font-size: 16px; resize: vertical"></textarea></label>
+              <button type="button" class="btn btn-g" onClick="{{ send }}" style="align-self: flex-start; min-height: 48px; padding: 0 20px; background: transparent; border: 1px solid #9aa39c; color: #f3f5f2; border-radius: 2px; font: inherit; font-weight: 600; font-size: 16px">Send message</button>
+            </form>
+          </sc-if>
+          <sc-if value="{{ sent }}" hint-placeholder-val="{{ false }}">
+            <div style="display: flex; flex-direction: column; gap: 8px; animation: land 200ms cubic-bezier(.23,1,.32,1) both">
+              <p class="m" style="margin: 0; color: #67d69e; font-size: 14px">✓ Message sent</p>
+              <p style="margin: 0; color: #c9cfca">We'll get back to you by email.</p>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top: 1px solid #252a26; overflow: hidden">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 40px clamp(16px, 3.2vw, 40px); box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 32px 64px">
+      <div style="flex: 2 1 280px; min-width: 0; display: flex; align-items: center; gap: 14px">
+        <img src="/_blob/94060485768a19d7c83e33a6311065b7" alt="" width="40" height="46" style="display: block; width: 40px; height: 46px">
+        <div><p style="margin: 0; font-weight: 800; font-size: 20px; letter-spacing: -0.01em; line-height: 1.1">Code Assurance</p><p style="margin: 4px 0 0; font-weight: 600; font-size: 13.5px; color: #9aa39c">Building Trust Through Quality Code</p></div>
+      </div>
+      <nav style="flex: 1 1 140px; display: flex; flex-direction: column; gap: 2px; font-size: 15px">
+        <a class="lnk" href="#agent" style="color: #9aa39c; text-decoration: none; min-height: 32px; display: flex; align-items: center">How the agent works</a>
+        <a class="lnk" href="#process" style="color: #9aa39c; text-decoration: none; min-height: 32px; display: flex; align-items: center">Process</a>
+        <a class="lnk" href="#plans" style="color: #9aa39c; text-decoration: none; min-height: 32px; display: flex; align-items: center">Plans</a>
+        <a class="lnk" href="#audits" style="color: #9aa39c; text-decoration: none; min-height: 32px; display: flex; align-items: center">Audits</a>
+      </nav>
+      <div style="flex: 1 1 200px; display: flex; flex-direction: column; gap: 2px; font-size: 15px">
+        <a class="lnk" href="#" style="color: #9aa39c; text-decoration: none; min-height: 32px; display: flex; align-items: center">martin.backhaus@code-assurance.com</a>
+        <a class="lnk" href="#" style="color: #9aa39c; text-decoration: none; min-height: 32px; display: flex; align-items: center">+54 9 351 268 2001</a>
+        <a class="lnk" href="#" style="color: #9aa39c; text-decoration: none; min-height: 32px; display: flex; align-items: center">Privacy policy</a>
+      </div>
+    </div>
+    <div class="wm" onMouseMove="{{ spot }}" aria-hidden="true" style="position: relative; max-width: 1280px; margin: 0 auto; padding: 8px clamp(16px, 3.2vw, 40px) 0; box-sizing: border-box; font-family: 'Archivo', sans-serif; font-stretch: 125%; font-weight: 800; text-transform: uppercase; font-size: clamp(36px, 8.4vw, 110px); line-height: 0.9; letter-spacing: -0.01em">
+      <div style="color: transparent; -webkit-text-stroke: 1px #252a26">Code Assurance</div>
+      <div class="wm-hot" style="position: absolute; inset: 8px clamp(16px, 3.2vw, 40px) 0; color: transparent; -webkit-text-stroke: 1px #67d69e">Code Assurance</div>
+    </div>
+    <div class="m" style="max-width: 1280px; margin: 0 auto; padding: 16px clamp(16px, 3.2vw, 40px) 28px; box-sizing: border-box; border-top: 1px solid #252a26; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; color: #9aa39c; font-size: 13px">
+      <span>© 2026 Code Assurance</span>
+      <span><span style="color: #f3f5f2">EN</span> / <a class="lnk" href="#" style="color: #9aa39c">ES</a></span>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"motion":{"editor":"boolean","default":true,"section":"Motion"},"$preview":{"width":1280,"height":9200}}'>
+class Component extends DCLogic {
+  componentDidMount() {
+    const reduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    this.live = (this.props.motion ?? true) && !reduce;
+    if (this.live) {
+      this.rotTimer = setInterval(() => {
+        const wi = (this.state && this.state.wi) || 0;
+        this.setState({ wi: (wi + 1) % 5 });
+      }, 2600);
+    }
+    this.startGrid(!this.live);
+    if (!this.live || !this.termEl || !('IntersectionObserver' in window)) {
+      this.setState({ run: true });
+    } else {
+      this.termIo = new IntersectionObserver((entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          this.setState({ run: true });
+          this.termIo.disconnect();
+        }
+      }, { threshold: 0.35 });
+      this.termIo.observe(this.termEl);
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.rotTimer);
+    cancelAnimationFrame(this.raf);
+    if (this.termIo) this.termIo.disconnect();
+    if (this.gridIo) this.gridIo.disconnect();
+  }
+
+  startGrid(still) {
+    const c = this.canvasEl;
+    if (!c || !c.getContext) return;
+    const ctx = c.getContext('2d');
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const step = 10;
+    const size = 3;
+    const r = c.getBoundingClientRect();
+    c.width = Math.max(1, Math.round(r.width * dpr));
+    c.height = Math.max(1, Math.round(r.height * dpr));
+    const cols = Math.ceil(r.width / step);
+    const rows = Math.ceil(r.height / step);
+    const op = new Float32Array(cols * rows);
+    for (let i = 0; i < op.length; i++) op[i] = Math.random() * 0.3;
+    const paint = () => {
+      ctx.clearRect(0, 0, c.width, c.height);
+      for (let i = 0; i < op.length; i++) {
+        const x = (i % cols) * step;
+        const y = Math.floor(i / cols) * step;
+        ctx.fillStyle = 'rgba(103,214,158,' + op[i].toFixed(3) + ')';
+        ctx.fillRect(x * dpr, y * dpr, size * dpr, size * dpr);
+      }
+    };
+    paint();
+    if (still) return;
+    let visible = true;
+    let last = 0;
+    if ('IntersectionObserver' in window) {
+      this.gridIo = new IntersectionObserver((entries) => { visible = entries[0].isIntersecting; });
+      this.gridIo.observe(c);
+    }
+    const loop = (t) => {
+      if (visible && t - last > 80) {
+        last = t;
+        for (let i = 0; i < op.length; i++) if (Math.random() < 0.025) op[i] = Math.random() * 0.3;
+        paint();
+      }
+      this.raf = requestAnimationFrame(loop);
+    };
+    this.raf = requestAnimationFrame(loop);
+  }
+
+  renderVals() {
+    const s = this.state || {};
+    if (!this._refs) {
+      this._refs = {
+        canvas: (el) => { this.canvasEl = el; },
+        term: (el) => { this.termEl = el; },
+        spot: (e) => {
+          const el = e.currentTarget;
+          const b = el.getBoundingClientRect();
+          el.style.setProperty('--x', (e.clientX - b.left) + 'px');
+          el.style.setProperty('--y', (e.clientY - b.top) + 'px');
+        },
+      };
+    }
+    const words = ['product', 'stack', 'sprints', 'business rules', 'release rhythm'];
+    const wi = s.wi || 0;
+    const rot = words.map((w, i) => ({
+      on: i === wi,
+      letters: w.split('').map((c, j) => ({ c: c === ' ' ? ' ' : c, d: (j * 22) + 'ms' })),
+    }));
+
+    const K = {
+      covered: { label: 'covered', bg: '#67d69e', bd: '#67d69e', num: '#f3f5f2', plus: false, color: '#9aa39c' },
+      added: { label: 'tests added', bg: 'transparent', bd: '#67d69e', num: '#67d69e', plus: true, color: '#9aa39c' },
+      bug: { label: 'tests added, 1 application bug', bg: '#f87171', bd: '#f87171', num: '#67d69e', plus: true, color: '#f87171' },
+      pending: { label: 'locator fix awaiting approval', bg: '#fbbf24', bd: '#fbbf24', num: '#f3f5f2', plus: false, color: '#fbbf24' },
+      gap: { label: 'gap, in backlog', bg: 'transparent', bd: '#5b635c', num: '#5b635c', plus: false, color: '#9aa39c' },
+    };
+    const raw = [
+      ['login', 'auth/login', 18, 'covered', '18 existing tests, all passing. Nothing to add.'],
+      ['reset', 'auth/password-reset', 7, 'added', 'No tests before. 7 added: request, expired link, reused link, rate limit.'],
+      ['invoices', 'billing/invoices', 24, 'covered', '24 existing tests, all passing.'],
+      ['refunds', 'billing/refunds', 9, 'bug', '9 tests added. A partial refund leaves the order total unchanged: sent to your developers with steps and logs.'],
+      ['cart', 'checkout/cart', 15, 'covered', '15 existing tests, all passing.'],
+      ['payment', 'checkout/payment', 21, 'pending', '21 existing tests. One locator broke after a refactor; the fix waits for your approval.'],
+      ['roles', 'roles/permissions', 11, 'bug', '11 tests added. A downgraded user keeps admin access until the next login: sent to your developers.'],
+      ['search', 'search', 9, 'covered', '9 existing tests, all passing.'],
+      ['notif', 'notifications', 6, 'covered', '6 existing tests, all passing.'],
+      ['admin', 'admin/users', 12, 'covered', '12 existing tests, all passing.'],
+      ['export', 'reports/export', 0, 'gap', 'No tests. Low risk, so it stays in the backlog for now.'],
+      ['onboarding', 'onboarding', 8, 'covered', '8 existing tests, all passing.'],
+      ['profile', 'settings/profile', 7, 'covered', '7 existing tests, all passing.'],
+      ['webhooks', 'api/webhooks', 4, 'added', 'No tests before. 4 added for signature checks and retries.'],
+    ];
+    const sel = s.sel || 'refunds';
+    const cells = raw.map((r, i) => {
+      const k = K[r[3]];
+      const on = r[0] === sel;
+      return {
+        path: r[1],
+        to: r[2],
+        numClass: k.plus ? 'num plus' : 'num',
+        numColor: k.num,
+        swBg: k.bg,
+        swBd: k.bd,
+        label: k.label,
+        labelColor: k.color,
+        d: (150 + i * 45) + 'ms',
+        bg: on ? '#0c0f0d' : '#000000',
+        ring: on ? '#67d69e' : 'transparent',
+        pressed: on ? 'true' : 'false',
+        aria: r[1] + ': ' + k.label,
+        pick: () => this.setState({ sel: r[0] }),
+      };
+    });
+    const cur = raw.find((r) => r[0] === sel) || raw[3];
+    const detail = { path: cur[1], label: K[cur[3]].label, color: K[cur[3]].color, note: cur[4] };
+
+    const sentence = "A QA engineer with 8+ years of experience owns the strategy, reviews every test the agent writes and works in your team's cadence.";
+    const reveal = sentence.split(' ').map((w, i) => ({ w: w, a: (18 + i * 1.6).toFixed(1) + '%', b: (22 + i * 1.6).toFixed(1) + '%' }));
+
+    const approved = !!s.approved;
+    const sent = !!s.sent;
+    return {
+      playClass: (this.props.motion ?? true) ? 'play' : '',
+      canvasRef: this._refs.canvas,
+      termRef: this._refs.term,
+      termClass: s.run ? 'term run' : 'term',
+      spot: this._refs.spot,
+      rot: rot,
+      cells: cells,
+      detail: detail,
+      reveal: reveal,
+      approved: approved,
+      pending: !approved,
+      fixClass: approved ? '' : 'shine',
+      sent: sent,
+      notSent: !sent,
+      approve: () => this.setState({ approved: true }),
+      undo: () => this.setState({ approved: false }),
+      send: () => this.setState({ sent: true }),
+    };
+  }
+}
+</script>
+</body>
+</html>
