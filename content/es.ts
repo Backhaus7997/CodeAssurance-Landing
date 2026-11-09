@@ -25,7 +25,7 @@ export const es: SiteContent = {
     label: "00 / Resumen",
     titleBefore: "QA a medida de tu",
     rotatingWords: ["producto", "stack", "equipo", "negocio", "ritmo de releases"],
-    titleAfter: ", no de una plantilla",
+    titleAfter: "no de una plantilla",
     lead: "Ingenieros de QA senior y un agente de QA con IA que trabaja dentro de tus repositorios, tus tickets y el framework de testing que ya usás. Probamos a mano, automatizamos lo que vale la pena automatizar y mantenemos la suite sana release tras release.",
     primaryCta: "Agendá una llamada de 15 minutos",
     secondaryCta: "Mirá cómo trabaja el agente",

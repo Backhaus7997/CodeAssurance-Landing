@@ -1,17 +1,18 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion, useInView } from "motion/react";
 import { useId, useRef, useState } from "react";
 
+import { useLiveMotion } from "@/hooks/use-live-motion";
 import { cn } from "@/lib/utils";
 
 // Adapted from Aceternity UI's TextHoverEffect: a wide viewBox that fits the wordmark, the mint
-// palette, unique SVG ids, the outline drawn once when it scrolls into view (skipped with reduced
-// motion), and the mask position set from the pointer without an effect.
+// palette, unique SVG ids, the outline drawn once when it scrolls into view (the server, no-JS and
+// reduced-motion renders show it complete), and the mask position set from the pointer without an effect.
 export const TextHoverEffect = ({ text, className }: { text: string; className?: string }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const inView = useInView(svgRef, { once: true, amount: 0.4 });
-  const reduce = useReducedMotion();
+  const live = useLiveMotion();
   const [hovered, setHovered] = useState(false);
   const [mask, setMask] = useState({ cx: "50%", cy: "50%" });
   const uid = useId().replace(/:/g, "");
@@ -72,9 +73,9 @@ export const TextHoverEffect = ({ text, className }: { text: string; className?:
       <motion.text
         {...textProps}
         stroke="#4a514b"
-        initial={reduce ? false : { strokeDashoffset: 1600, strokeDasharray: 1600 }}
-        animate={inView || reduce ? { strokeDashoffset: 0, strokeDasharray: 1600 } : undefined}
-        transition={{ duration: 2.4, ease: [0.23, 1, 0.32, 1] }}
+        initial={false}
+        animate={live && !inView ? { strokeDashoffset: 1600, strokeDasharray: 1600 } : { strokeDashoffset: 0, strokeDasharray: 1600 }}
+        transition={live && inView ? { duration: 2.4, ease: [0.23, 1, 0.32, 1] } : { duration: 0 }}
       >
         {text}
       </motion.text>

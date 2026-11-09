@@ -1,7 +1,9 @@
 "use client"
 
-import { useEffect, useRef, useSyncExternalStore, type ComponentPropsWithoutRef } from "react"
-import { useInView, useMotionValue, useReducedMotion, useSpring } from "motion/react"
+import { useEffect, useRef, type ComponentPropsWithoutRef } from "react"
+import { useInView, useMotionValue, useSpring } from "motion/react"
+
+import { useHydrated, useLiveMotion } from "@/hooks/use-live-motion"
 
 import { cn } from "@/lib/utils"
 
@@ -16,8 +18,6 @@ interface NumberTickerProps extends ComponentPropsWithoutRef<"span"> {
 // Adapted: the server renders the final value (no JavaScript still shows real numbers). Under
 // html.js the digits stay hidden until hydration (globals.css, [data-ticker]), then count up from
 // startValue; with reduced motion they show the final value without counting.
-const subscribeNoop = () => () => {}
-
 export function NumberTicker({
   value,
   startValue = 0,
@@ -34,9 +34,8 @@ export function NumberTicker({
     stiffness: 100,
   })
   const isInView = useInView(ref, { once: true, margin: "0px" })
-  const hydrated = useSyncExternalStore(subscribeNoop, () => true, () => false)
-  const reduce = useReducedMotion()
-  const live = hydrated && !reduce
+  const hydrated = useHydrated()
+  const live = useLiveMotion()
 
   useEffect(() => {
     let timer: ReturnType<typeof setTimeout> | null = null

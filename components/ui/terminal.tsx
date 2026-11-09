@@ -8,19 +8,18 @@ import {
   useMemo,
   useRef,
   useState,
-  useSyncExternalStore,
   type ComponentType,
   type RefAttributes,
 } from "react"
 import {
   motion,
   useInView,
-  useReducedMotion,
   type DOMMotionComponents,
   type HTMLMotionProps,
   type MotionProps,
 } from "motion/react"
 
+import { useLiveMotion } from "@/hooks/use-live-motion"
 import { cn } from "@/lib/utils"
 
 interface SequenceContextValue {
@@ -37,13 +36,7 @@ const ItemIndexContext = createContext<number | null>(null)
 const useItemIndex = () => useContext(ItemIndexContext)
 
 // Adapted: on the server, without JavaScript and with reduced motion every line renders complete
-// and visible. The typing sequence only runs on the client after hydration.
-const subscribeNoop = () => () => {}
-function useLiveMotion() {
-  const isClient = useSyncExternalStore(subscribeNoop, () => true, () => false)
-  const reduce = useReducedMotion()
-  return isClient && !reduce
-}
+// and visible (useLiveMotion). The typing sequence only runs on the client after hydration.
 
 const motionElements = {
   article: motion.article,

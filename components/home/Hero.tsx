@@ -16,10 +16,10 @@ export function Hero({ content }: { content: SiteContent }) {
           <div className="flex min-w-0 flex-[2_1_560px] flex-col gap-6">
             <p className="eyebrow m-0">{hero.label}</p>
             <h1 className="display m-0 text-[clamp(31px,4.9vw,62px)] leading-[0.98]">
-              <span>{hero.titleBefore} </span>
-              <span className="sr-only">{hero.rotatingWords[0]}</span>
-              <RotatingWord words={hero.rotatingWords} />
-              <span>{hero.titleAfter}</span>
+              <span className="block">{hero.titleBefore}</span>
+              <span className="sr-only"> {hero.rotatingWords[0]}, </span>
+              <RotatingWord words={hero.rotatingWords} suffix="," />
+              <span className="block">{hero.titleAfter}</span>
             </h1>
           </div>
           <div className="flex min-w-0 flex-[1_1_320px] flex-col gap-5">

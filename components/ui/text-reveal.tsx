@@ -3,12 +3,13 @@
 import {
   Fragment,
   useRef,
-  useSyncExternalStore,
   type ComponentPropsWithoutRef,
   type FC,
   type ReactNode,
 } from "react"
-import { motion, MotionValue, useReducedMotion, useScroll, useTransform } from "motion/react"
+import { motion, MotionValue, useScroll, useTransform } from "motion/react"
+
+import { useLiveMotion } from "@/hooks/use-live-motion"
 
 import { cn } from "@/lib/utils"
 
@@ -20,17 +21,13 @@ export interface TextRevealProps extends ComponentPropsWithoutRef<"div"> {
 // Adapted from Magic UI: the scroll track is 115vh on phones and 140vh above instead of 200vh, the colors use the site
 // tokens, the server, no-JS and reduced-motion renders show the sentence at full opacity, and words
 // are separated by real spaces (the original used margins, so the text read as one long word).
-const subscribeNoop = () => () => {}
-
 export const TextReveal: FC<TextRevealProps> = ({ children, className, textClassName }) => {
   const sectionRef = useRef<HTMLDivElement | null>(null)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start 0.8", "end end"],
   })
-  const hydrated = useSyncExternalStore(subscribeNoop, () => true, () => false)
-  const reduce = useReducedMotion()
-  const live = hydrated && !reduce
+  const live = useLiveMotion()
 
   if (typeof children !== "string") {
     throw new Error("TextReveal: children must be a string")

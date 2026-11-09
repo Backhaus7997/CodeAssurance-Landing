@@ -13,6 +13,8 @@ export type FieldError = "required" | "invalidEmail" | "tooShort";
 export type SendResult = { ok: true } | { ok: false; reason: "rejected" | "network"; detail?: string };
 
 export const FORMSPREE_ENDPOINT = "https://formspree.io/f/mlglpzgn";
+export const CONTACT_SUBJECT = "New website lead - Code Assurance";
+const TIMEOUT_MS = 15_000;
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -26,7 +28,7 @@ export function validateContact(f: ContactFields): Partial<Record<"name" | "emai
   return errors;
 }
 
-export async function sendContact(f: ContactFields, fetchImpl: typeof fetch = fetch): Promise<SendResult> {
+export async function sendContact(f: ContactFields, fetchImpl: typeof fetch = fetch, timeoutMs = TIMEOUT_MS): Promise<SendResult> {
   // Bots get a success screen and no request is sent.
   if (f.gotcha) return { ok: true };
 
@@ -36,12 +38,18 @@ export async function sendContact(f: ContactFields, fetchImpl: typeof fetch = fe
   body.append("company", f.company.trim());
   body.append("phone", f.phone.trim());
   body.append("message", f.message.trim());
-  body.append("_subject", "New website lead - Code Assurance");
+  body.append("_subject", CONTACT_SUBJECT);
 
   let res: Response;
   try {
-    res = await fetchImpl(FORMSPREE_ENDPOINT, { method: "POST", body, headers: { Accept: "application/json" } });
+    res = await fetchImpl(FORMSPREE_ENDPOINT, {
+      method: "POST",
+      body,
+      headers: { Accept: "application/json" },
+      signal: AbortSignal.timeout(timeoutMs),
+    });
   } catch {
+    // Offline, DNS, CORS or the timeout: the form shows the network message with the email fallback.
     return { ok: false, reason: "network" };
   }
   if (res.ok) return { ok: true };
@@ -51,7 +59,13 @@ export async function sendContact(f: ContactFields, fetchImpl: typeof fetch = fe
 }
 
 async function firstErrorMessage(res: Response): Promise<string | undefined> {
-  const text = await res.text();
+  let text: string;
+  try {
+    text = await res.text();
+  } catch {
+    // The connection dropped while reading the error body: still a rejection, just without detail.
+    return undefined;
+  }
   try {
     const data: unknown = JSON.parse(text);
     if (data && typeof data === "object" && "errors" in data && Array.isArray(data.errors)) {

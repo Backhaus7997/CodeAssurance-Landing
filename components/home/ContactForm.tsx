@@ -3,14 +3,14 @@
 import { useRef, useState, type FormEvent } from "react";
 import { CONTACT_EMAIL } from "@/content/site";
 import type { FormContent } from "@/content/types";
-import { sendContact, validateContact, type ContactFields, type FieldError } from "@/lib/contact";
+import { CONTACT_SUBJECT, FORMSPREE_ENDPOINT, sendContact, validateContact, type ContactFields, type FieldError } from "@/lib/contact";
 import { cn } from "@/lib/utils";
 
 type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent" } | { kind: "failed"; reason: "rejected" | "network" };
 type Errors = Partial<Record<"name" | "email" | "message", FieldError>>;
 
-const FIELD =
-  "min-h-[46px] w-full rounded-[2px] border bg-ink px-3 py-2.5 text-[16px] text-paper outline-none placeholder:text-dim focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-mint";
+// Focus uses the global :focus-visible ring (globals.css).
+const FIELD = "min-h-[46px] w-full rounded-[2px] border bg-ink px-3 py-2.5 text-[16px] text-paper placeholder:text-dim";
 
 function read(form: HTMLFormElement): ContactFields {
   const data = new FormData(form);
@@ -45,9 +45,12 @@ export function ContactForm({ form }: { form: FormContent }) {
 
     sending.current = true;
     setStatus({ kind: "sending" });
-    const result = await sendContact(fields);
-    sending.current = false;
-    setStatus(result.ok ? { kind: "sent" } : { kind: "failed", reason: result.reason });
+    try {
+      const result = await sendContact(fields);
+      setStatus(result.ok ? { kind: "sent" } : { kind: "failed", reason: result.reason });
+    } finally {
+      sending.current = false;
+    }
   }
 
   if (status.kind === "sent") {
@@ -77,8 +80,11 @@ export function ContactForm({ form }: { form: FormContent }) {
   const label = "flex flex-col gap-1.5 text-[14px] text-soft";
 
   return (
-    <form data-testid="contact-form" noValidate onSubmit={onSubmit} className="flex flex-col gap-4">
+    // action/method make the form post to Formspree even before (or without) JavaScript; with JS,
+    // onSubmit takes over and validates inline.
+    <form data-testid="contact-form" action={FORMSPREE_ENDPOINT} method="POST" noValidate onSubmit={onSubmit} className="flex flex-col gap-4">
       <p className="eyebrow m-0">{form.label}</p>
+      <input type="hidden" name="_subject" value={CONTACT_SUBJECT} />
       <input type="text" name="_gotcha" tabIndex={-1} autoComplete="off" aria-hidden="true" className="sr-only" />
       <div className="grid grid-cols-[repeat(auto-fit,minmax(min(180px,100%),1fr))] gap-4">
         <label htmlFor="contact-name" className={label}>

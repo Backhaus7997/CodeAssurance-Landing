@@ -76,6 +76,26 @@ describe("sendContact", () => {
     await expect(sendContact(valid, fetchImpl)).resolves.toEqual({ ok: false, reason: "rejected" });
   });
 
+  it("reports a rejection when the error body cannot be read", async () => {
+    const broken = new ReadableStream({
+      start(controller) {
+        controller.error(new Error("connection reset"));
+      },
+    });
+    const fetchImpl = vi.fn<typeof fetch>().mockResolvedValue(new Response(broken, { status: 500 }));
+    await expect(sendContact(valid, fetchImpl)).resolves.toEqual({ ok: false, reason: "rejected" });
+  });
+
+  it("gives up on a request that never answers", async () => {
+    const fetchImpl = vi.fn<typeof fetch>().mockImplementation(
+      (_url, init) =>
+        new Promise((_resolve, reject) => {
+          init?.signal?.addEventListener("abort", () => reject(init.signal?.reason));
+        }),
+    );
+    await expect(sendContact(valid, fetchImpl, 20)).resolves.toEqual({ ok: false, reason: "network" });
+  });
+
   it("reports a network failure", async () => {
     const fetchImpl = vi.fn<typeof fetch>().mockRejectedValue(new TypeError("Failed to fetch"));
     await expect(sendContact(valid, fetchImpl)).resolves.toEqual({ ok: false, reason: "network" });

@@ -57,26 +57,22 @@ export function TriageDemo({ triage }: { triage: TriageContent }) {
             <div className="bg-[#1d1212] px-2.5 py-1.5 whitespace-pre text-[#fca5a5]">{locator.removed}</div>
             <div className="bg-[#0f1d16] px-2.5 py-1.5 whitespace-pre text-[#a7e9c6]">{locator.added}</div>
           </div>
-          <div aria-live="polite" className="flex flex-wrap items-center gap-x-4 gap-y-2.5">
-            {approved ? (
-              <>
-                <span className="font-mono text-[13px] text-mint">✓ {locator.applied}</span>
-                <button type="button" onClick={() => setApproved(false)} className={`${button} border-line bg-transparent text-paper hover:border-muted`}>
-                  {locator.undo}
-                </button>
-              </>
-            ) : (
-              <>
-                <button
-                  type="button"
-                  onClick={() => setApproved(true)}
-                  className={`${button} border-mint bg-mint text-ink hover:border-mint-hover hover:bg-mint-hover`}
-                >
-                  {locator.approve}
-                </button>
-                <span className="text-[14px] text-muted">{locator.approveHint}</span>
-              </>
-            )}
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2.5">
+            {/* One button that changes its label, so keyboard focus stays on it after approving or undoing. */}
+            <button
+              type="button"
+              onClick={() => setApproved((value) => !value)}
+              className={
+                approved
+                  ? `${button} border-line bg-transparent text-paper hover:border-muted`
+                  : `${button} border-mint bg-mint text-ink hover:border-mint-hover hover:bg-mint-hover`
+              }
+            >
+              {approved ? locator.undo : locator.approve}
+            </button>
+            <span aria-live="polite" className={approved ? "font-mono text-[13px] text-mint" : "text-[14px] text-muted"}>
+              {approved ? `✓ ${locator.applied}` : locator.approveHint}
+            </span>
           </div>
         </div>
       </article>

@@ -1,8 +1,9 @@
 "use client";
 
-import { motion, useInView, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { useRef, useSyncExternalStore, type ReactNode } from "react";
+import { motion, useInView, useScroll, useTransform } from "motion/react";
+import { useRef, type ReactNode } from "react";
 
+import { useLiveMotion } from "@/hooks/use-live-motion";
 import { cn } from "@/lib/utils";
 
 export interface TimelineEntry {
@@ -13,17 +14,9 @@ export interface TimelineEntry {
 
 // Adapted from Aceternity UI's Timeline: no demo header, site tokens, the beam grows with scaleY
 // (a transform) instead of height, and without JavaScript or with reduced motion the line is full.
-const subscribeNoop = () => () => {};
-
-function useLive() {
-  const hydrated = useSyncExternalStore(subscribeNoop, () => true, () => false);
-  const reduce = useReducedMotion();
-  return hydrated && !reduce;
-}
-
 export const Timeline = ({ data, className }: { data: TimelineEntry[]; className?: string }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const live = useLive();
+  const live = useLiveMotion();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start 70%", "end 60%"] });
   const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
 

@@ -63,6 +63,6 @@ test.describe("with reduced motion", () => {
   test("the headline stays on 'product'", async ({ page }) => {
     await page.goto("/");
     await page.waitForTimeout(3000);
-    await expect(page.getByTestId("hero-rotating")).toHaveText("product");
+    await expect(page.getByTestId("hero-rotating")).toHaveText("product,");
   });
 });

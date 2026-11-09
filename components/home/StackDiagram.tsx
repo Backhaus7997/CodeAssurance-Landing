@@ -1,10 +1,11 @@
 "use client";
 
-import { useReducedMotion } from "motion/react";
+import { useInView } from "motion/react";
 import { forwardRef, useRef, type ReactNode } from "react";
 import { Logo } from "@/components/site/Logo";
 import { AnimatedBeam } from "@/components/ui/animated-beam";
 import type { StackContent } from "@/content/types";
+import { useLiveMotion } from "@/hooks/use-live-motion";
 
 const Node = forwardRef<HTMLSpanElement, { children: ReactNode }>(function Node({ children }, ref) {
   return (
@@ -27,8 +28,11 @@ const BEAM_STYLE = {
 };
 
 export function StackDiagram({ diagram }: { diagram: StackContent["diagram"] }) {
-  const still = useReducedMotion() ?? false;
   const container = useRef<HTMLDivElement>(null);
+  const live = useLiveMotion();
+  const inView = useInView(container);
+  // The beams loop: static paths for reduced motion, and paused while the diagram is off screen.
+  const still = !live || !inView;
   const agent = useRef<HTMLSpanElement>(null);
   const in0 = useRef<HTMLSpanElement>(null);
   const in1 = useRef<HTMLSpanElement>(null);

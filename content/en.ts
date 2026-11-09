@@ -25,7 +25,7 @@ export const en: SiteContent = {
     label: "00 / Overview",
     titleBefore: "QA built around your",
     rotatingWords: ["product", "stack", "sprints", "business rules", "release rhythm"],
-    titleAfter: ", not a template",
+    titleAfter: "not a template",
     lead: "Senior QA engineers plus an AI QA agent that works inside your repositories, your tickets and the test framework you already use. We test manually, automate what's worth automating and keep the suite healthy release after release.",
     primaryCta: "Book a 15-minute call",
     secondaryCta: "See how the agent works",

@@ -1,10 +1,10 @@
 "use client";
 
-import { useReducedMotion } from "motion/react";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
+import { useLiveMotion } from "@/hooks/use-live-motion";
 
 export function HeroGrid() {
-  const reduce = useReducedMotion();
+  const live = useLiveMotion();
   return (
     <FlickeringGrid
       aria-hidden="true"
@@ -14,7 +14,7 @@ export function HeroGrid() {
       color="#67d69e"
       maxOpacity={0.28}
       flickerChance={0.12}
-      animate={!reduce}
+      animate={live}
     />
   );
 }

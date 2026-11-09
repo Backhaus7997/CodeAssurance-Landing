@@ -1,9 +1,13 @@
 import type { ReactNode } from "react";
 import type { Locale } from "@/content/types";
 import { fontVariables } from "@/lib/fonts";
+import { HydrationMark } from "./HydrationMark";
 
 // Marks the document as scripted before first paint, so reveal styles only apply when JS runs.
-const JS_FLAG = "document.documentElement.classList.add('js')";
+// Failsafe: if the app hasn't hydrated 2.5 s later (slow network, blocked or broken scripts), the
+// flag is removed and every piece of content shows in its final state.
+const JS_FLAG =
+  "var d=document.documentElement;d.classList.add('js');setTimeout(function(){if(!d.hasAttribute('data-hydrated'))d.classList.remove('js')},2500)";
 
 export function RootDocument({ locale, children }: { locale: Locale; children: ReactNode }) {
   return (
@@ -12,7 +16,10 @@ export function RootDocument({ locale, children }: { locale: Locale; children: R
       <head>
         <script dangerouslySetInnerHTML={{ __html: JS_FLAG }} />
       </head>
-      <body>{children}</body>
+      <body>
+        <HydrationMark />
+        {children}
+      </body>
     </html>
   );
 }

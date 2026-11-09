@@ -25,7 +25,7 @@ export interface AnimatedBeamProps {
   startYOffset?: number
   endXOffset?: number
   endYOffset?: number
-  /** Adapted: draws only the static path, without the moving gradient (reduced motion). */
+  /** Adapted: draws only the static path; the moving gradient and its loop are not rendered. */
   still?: boolean
 }
 
@@ -154,6 +154,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
           strokeLinecap="round"
         />
       )}
+      {!still && (
       <defs>
         <motion.linearGradient
           className="transform-gpu"
@@ -189,6 +190,7 @@ export const AnimatedBeam: React.FC<AnimatedBeamProps> = ({
           ></stop>
         </motion.linearGradient>
       </defs>
+      )}
     </svg>
   )
 }
