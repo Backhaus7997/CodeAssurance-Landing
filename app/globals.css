@@ -90,6 +90,37 @@
   }
 }
 
+/* Coverage map: each module lands in sequence, then one scan pass sweeps the grid. */
+@keyframes ca-land {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}
+
+@keyframes ca-scan {
+  from {
+    transform: translateX(-100%);
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    transform: translateX(500%);
+    opacity: 0;
+  }
+}
+
+.ca-land {
+  animation: ca-land 220ms var(--ease-out-strong) both;
+}
+
+.ca-scan {
+  opacity: 0;
+  animation: ca-scan 1200ms cubic-bezier(0.4, 0, 0.2, 1) 120ms both;
+}
+
 /* Number tickers start from 0 on the client: hide the server value until hydration. */
 html.js [data-ticker]:not([data-ready]) {
   visibility: hidden;

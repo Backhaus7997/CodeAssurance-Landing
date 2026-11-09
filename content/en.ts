@@ -29,6 +29,7 @@ export const en: SiteContent = {
     lead: "Senior QA engineers plus an AI QA agent that works inside your repositories, your tickets and the test framework you already use. We test manually, automate what's worth automating and keep the suite healthy release after release.",
     primaryCta: "Book a 15-minute call",
     secondaryCta: "See how the agent works",
+    emailCta: "Email us",
     emailPrefix: "or",
   },
   map: {
@@ -261,6 +262,7 @@ export const en: SiteContent = {
       { title: "Delivery", text: "Testing and automation inside your sprints, with flaky tests triaged and the pipeline hardened." },
     ],
     primaryCta: "Book a 15-minute call",
+    emailCta: "Email us",
   },
   form: {
     label: "Or send us a note",

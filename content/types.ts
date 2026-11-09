@@ -83,7 +83,7 @@ export type TeamContent = {
   trackRecord: string;
 };
 
-export type StartContent = SectionIntro & { steps: StartStep[]; primaryCta: string };
+export type StartContent = SectionIntro & { steps: StartStep[]; primaryCta: string; emailCta: string };
 
 export type FormContent = {
   label: string;
@@ -108,6 +108,7 @@ export type SiteContent = {
     lead: string;
     primaryCta: string;
     secondaryCta: string;
+    emailCta: string;
     emailPrefix: string;
   };
   map: {
@@ -145,7 +146,7 @@ export type SiteContent = {
 
 export type HowWeWorkContent = {
   meta: { title: string; description: string };
-  hero: { title: string; lead: string; primaryCta: string; secondaryCta: string; emailPrefix: string };
+  hero: { title: string; lead: string; primaryCta: string; secondaryCta: string; emailCta: string; emailPrefix: string };
   pr: PullRequestContent;
   stack: SectionIntro & StackContent;
   agent: SectionIntro & {

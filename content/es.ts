@@ -29,6 +29,7 @@ export const es: SiteContent = {
     lead: "Ingenieros de QA senior y un agente de QA con IA que trabaja dentro de tus repositorios, tus tickets y el framework de testing que ya usás. Probamos a mano, automatizamos lo que vale la pena automatizar y mantenemos la suite sana release tras release.",
     primaryCta: "Agendá una llamada de 15 minutos",
     secondaryCta: "Mirá cómo trabaja el agente",
+    emailCta: "Escribinos",
     emailPrefix: "o",
   },
   map: {
@@ -261,6 +262,7 @@ export const es: SiteContent = {
       { title: "Entrega", text: "Pruebas y automatización dentro de tus sprints, con los tests inestables resueltos y el pipeline más robusto." },
     ],
     primaryCta: "Agendá una llamada de 15 minutos",
+    emailCta: "Escribinos",
   },
   form: {
     label: "O dejanos un mensaje",
