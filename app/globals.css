@@ -121,6 +121,51 @@
   animation: ca-scan 1200ms cubic-bezier(0.4, 0, 0.2, 1) 120ms both;
 }
 
+/* Audit illustrations: final state by default; under html.js they wait for their card's reveal. */
+.ca-audit-bar {
+  transform-origin: bottom;
+  transition: transform 500ms var(--ease-out-strong);
+}
+
+.ca-audit-hot {
+  background: var(--color-mint);
+  transform: scaleY(0.36);
+  transform-origin: bottom;
+  transition:
+    transform 600ms var(--ease-out-strong) 700ms,
+    background-color 300ms ease-out 700ms;
+}
+
+.ca-audit-barx {
+  transform-origin: left;
+  transition: transform 500ms var(--ease-out-strong);
+}
+
+.ca-audit-row {
+  transition:
+    opacity 300ms var(--ease-out-strong),
+    transform 300ms var(--ease-out-strong);
+}
+
+html.js [data-reveal]:not([data-in]) .ca-audit-bar {
+  transform: scaleY(0);
+}
+
+html.js [data-reveal]:not([data-in]) .ca-audit-hot {
+  background: var(--color-bug);
+  transform: scaleY(1);
+  transition: none;
+}
+
+html.js [data-reveal]:not([data-in]) .ca-audit-barx {
+  transform: scaleX(0);
+}
+
+html.js [data-reveal]:not([data-in]) .ca-audit-row {
+  opacity: 0;
+  transform: translateY(4px);
+}
+
 /* Number tickers start from 0 on the client: hide the server value until hydration. */
 html.js [data-ticker]:not([data-ready]) {
   visibility: hidden;

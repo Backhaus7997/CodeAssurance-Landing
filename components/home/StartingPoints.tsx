@@ -7,7 +7,7 @@ const TONE = { mint: "text-mint", wait: "text-wait", muted: "text-muted" } as co
 
 export function StartingPoints({ items, className }: { items: StartingPoint[]; className?: string }) {
   return (
-    <div className={cn("grid grid-cols-[repeat(auto-fit,minmax(min(300px,100%),1fr))] gap-px border border-line bg-line", className)}>
+    <div className={cn("grid grid-cols-1 gap-px border border-line bg-line md:grid-cols-3", className)}>
       {items.map((item, i) => (
         <Reveal key={item.title} delay={i * 80} className="relative flex flex-col gap-2 bg-ink px-5 pt-[22px] pb-6">
           <GlowingEffect disabled={false} proximity={64} spread={36} inactiveZone={0.01} borderWidth={1} />
