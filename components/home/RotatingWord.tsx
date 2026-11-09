@@ -15,6 +15,7 @@ export function RotatingWord({ words }: { words: string[] }) {
           texts={words}
           as="span"
           rotationInterval={2600}
+          animatePresenceMode="popLayout"
           staggerDuration={0.022}
           mainClassName="inline-flex"
           elementLevelClassName="overflow-hidden"
