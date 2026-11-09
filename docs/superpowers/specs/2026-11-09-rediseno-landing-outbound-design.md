@@ -220,13 +220,10 @@ el sitio ("Reducí…"). Reglas:
 - El agente no tiene nombre propio y nunca se dice dónde se distribuye.
 - Las herramientas (Azure DevOps, Jira, Playwright…) se presentan siempre como ejemplos: "These are
   examples, not requirements".
-- Afirmaciones permitidas, todas confirmadas por el usuario: QA senior con 8+ años; mes a mes, se paga para
-  empezar y se puede cortar después del primer mes; trabajo en inglés o español desde Argentina (UTC−3); el
-  mapa de cobertura es el entregable de la semana 1.
-- **Pendiente de confirmar:** la línea "Our engineers have delivered QA on teams at Disney, FIFA, PayPal,
-  Royal Caribbean, Deloitte, Globant and Numerade". El usuario tiene que confirmar que ningún NDA lo impide. La
-  línea vive en un solo lugar del contenido (`teamTrackRecord`), y si no está confirmada al terminar, se saca
-  de la home y de `/how-we-work/`; las secciones funcionan sin ella.
+- Afirmaciones permitidas, todas confirmadas por el usuario: QA senior con 8+ años; experiencia del equipo en
+  Disney, FIFA, PayPal, Royal Caribbean, Deloitte, Globant y Numerade (confirmado el 2026-11-09: ningún NDA lo
+  impide); mes a mes, se paga para empezar y se puede cortar después del primer mes; trabajo en inglés o
+  español desde Argentina (UTC−3); el mapa de cobertura es el entregable de la semana 1.
 - Todo número del mapa, la terminal, el PR y las mini animaciones de auditoría es de ejemplo, está marcado
   como "example" y cierra entre sí: 14 módulos, 120 tests existentes, 31 agregados, 2 bugs y 1 locator.
 - Planes y auditorías con el contenido actual del sitio, todos visibles (sin pestañas que escondan planes).
@@ -310,6 +307,4 @@ reemplazar.
 - Publicar (sección 8).
 - Link de Cal.com: cuando exista, se carga en la variable y se recompila.
 - Razón social y país para la página de privacidad.
-- Confirmar que ningún NDA impide nombrar a Disney, FIFA, PayPal, Royal Caribbean, Deloitte, Globant y
-  Numerade (sección 6).
 - Una `og-image` nueva con el wordmark: la actual usa una versión anterior del escudo, con el `</>` oscuro.
