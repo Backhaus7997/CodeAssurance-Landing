@@ -4,7 +4,7 @@ import { useReducedMotion } from "motion/react";
 import { BorderBeam } from "@/components/ui/border-beam";
 
 // The beam is a loop: it is not rendered at all for people who asked for less motion.
-export function PrBeam() {
+export function CardBeam() {
   const reduce = useReducedMotion();
   if (reduce) return null;
   // The moving square is masked but still takes layout space: clip it so it can't widen the page.

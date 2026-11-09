@@ -5,6 +5,7 @@ import { Audits } from "./Audits";
 import { Hero } from "./Hero";
 import { Plans } from "./Plans";
 import { ProcessTimeline } from "./ProcessTimeline";
+import { Start } from "./Start";
 import { Team } from "./Team";
 
 export function HomePage({ content }: { content: SiteContent }) {
@@ -22,6 +23,7 @@ export function HomePage({ content }: { content: SiteContent }) {
       </section>
       <Audits audits={content.audits} servicesBase={content.locale === "en" ? "/services" : "/es/services"} />
       <Team team={content.team} />
+      <Start start={content.start} form={content.form} />
     </>
   );
 }

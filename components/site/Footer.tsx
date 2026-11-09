@@ -1,5 +1,6 @@
 import { CONTACT_EMAIL, CONTACT_PHONE } from "@/content/site";
 import type { SiteContent } from "@/content/types";
+import { TextHoverEffect } from "@/components/ui/text-hover-effect";
 import { LanguageSwitch } from "./LanguageSwitch";
 import { Logo } from "./Logo";
 
@@ -45,6 +46,9 @@ export function Footer({
             {footer.privacy}
           </a>
         </div>
+      </div>
+      <div className="container-page pt-2">
+        <TextHoverEffect text="Code Assurance" />
       </div>
       <div className="container-page flex flex-wrap justify-between gap-x-6 gap-y-2 border-t border-line pt-4 pb-7 font-mono text-[13px] text-muted">
         <span>

@@ -25,6 +25,9 @@ export const TextHoverEffect = ({ text, className }: { text: string; className?:
     textAnchor: "middle" as const,
     dominantBaseline: "middle" as const,
     strokeWidth: 0.6,
+    // Fit the wordmark exactly to the viewBox whatever the font metrics.
+    textLength: 1160,
+    lengthAdjust: "spacingAndGlyphs" as const,
     style: { fontStretch: "125%" },
     className: "fill-transparent font-sans text-[104px] font-extrabold uppercase",
   };
@@ -68,7 +71,7 @@ export const TextHoverEffect = ({ text, className }: { text: string; className?:
       </defs>
       <motion.text
         {...textProps}
-        stroke="#3a403b"
+        stroke="#4a514b"
         initial={reduce ? false : { strokeDashoffset: 1600, strokeDasharray: 1600 }}
         animate={inView || reduce ? { strokeDashoffset: 0, strokeDasharray: 1600 } : undefined}
         transition={{ duration: 2.4, ease: [0.23, 1, 0.32, 1] }}

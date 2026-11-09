@@ -1,6 +1,6 @@
 import type { PullRequestContent } from "@/content/types";
 import { cn } from "@/lib/utils";
-import { PrBeam } from "./PrBeam";
+import { CardBeam } from "./CardBeam";
 
 const TONE = { bug: "text-bug", wait: "text-wait" } as const;
 
@@ -8,7 +8,7 @@ export function DraftPullRequest({ pr, className }: { pr: PullRequestContent; cl
   return (
     <figure className={cn("m-0 flex flex-col gap-3", className)}>
       <div className="relative rounded-[4px] border border-line bg-surface text-[15px]">
-        <PrBeam />
+        <CardBeam />
         <div className="flex flex-col gap-2.5 border-b border-line px-5 pt-[18px] pb-3.5">
           <p className="m-0 text-[18px] leading-[1.35] font-semibold">
             {pr.title} <span className="font-normal text-muted">{pr.ticket}</span>
