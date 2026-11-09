@@ -2,6 +2,8 @@ import { describe, expect, it } from "vitest";
 import { en } from "./en";
 import { es } from "./es";
 import { howWeWork } from "./how-we-work";
+import { servicesEn } from "./services/en";
+import { servicesEs } from "./services/es";
 
 // Terms that must never reach the public site (see the spec, section 6).
 const BANNED = [
@@ -26,7 +28,7 @@ function strings(node: unknown, path = "$"): Leaf[] {
   return [];
 }
 
-const sources = { en, es, howWeWork };
+const sources = { en, es, howWeWork, servicesEn, servicesEs };
 
 describe.each(Object.entries(sources))("%s content", (_name, source) => {
   const leaves = strings(source);
@@ -86,5 +88,27 @@ describe("the hero rotates words", () => {
   it("starts with the accessible word in both languages", () => {
     expect(en.hero.rotatingWords[0]).toBe("product");
     expect(es.hero.rotatingWords.length).toBeGreaterThan(1);
+  });
+});
+
+describe("service pages", () => {
+  it("exist for the same four slugs in both languages", () => {
+    expect(Object.keys(servicesEs).sort()).toEqual(Object.keys(servicesEn).sort());
+    expect(Object.keys(servicesEn).sort()).toEqual(["automated-testing", "code-quality", "performance-audit", "security-review"]);
+  });
+
+  it("have the same number of blocks and FAQs in both languages", () => {
+    const shape = (s: (typeof servicesEn)[keyof typeof servicesEn]) => [
+      s.promise.length,
+      s.deliverables.length,
+      s.howItWorks.map((h) => h.bullets.length),
+      s.evidence.length,
+      s.tools.length,
+      s.faqs.length,
+    ];
+    for (const slug of Object.keys(servicesEn) as (keyof typeof servicesEn)[]) {
+      expect(shape(servicesEs[slug])).toEqual(shape(servicesEn[slug]));
+      expect(servicesEn[slug].faqs).toHaveLength(8);
+    }
   });
 });
