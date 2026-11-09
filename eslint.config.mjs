@@ -12,6 +12,16 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Static export copied to the repo root for GitHub Pages (see README).
+    "_next/**",
+    "docs/**",
+    "es/**",
+    "services/**",
+    "404/**",
+    "_not-found/**",
+    // Test artifacts.
+    "test-results/**",
+    "playwright-report/**",
   ]),
 ]);
 
