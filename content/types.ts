@@ -99,7 +99,7 @@ export type FormContent = {
 export type SiteContent = {
   locale: Locale;
   meta: { title: string; description: string; ogAlt: string };
-  header: { nav: NavItem[]; book: string; switchLabel: string; switchTo: string };
+  header: { nav: NavItem[]; book: string; contact: string; switchLabel: string; switchTo: string };
   hero: {
     label: string;
     titleBefore: string;
@@ -134,7 +134,7 @@ export type SiteContent = {
   start: StartContent;
   form: FormContent;
   footer: { tagline: string; nav: NavItem[]; privacy: string; rights: string };
-  notFound: { title: string; text: string };
+  notFound: { title: string; text: string; homeEn: string; homeEs: string };
   privacy: {
     meta: { title: string; description: string };
     title: string;

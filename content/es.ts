@@ -17,6 +17,7 @@ export const es: SiteContent = {
       { label: "Auditorías", section: "audits" },
     ],
     book: "Agendá una llamada",
+    contact: "Contacto",
     switchLabel: "View in English",
     switchTo: "EN",
   },
@@ -299,6 +300,8 @@ export const es: SiteContent = {
   notFound: {
     title: "Esta página no existe",
     text: "Puede que el link sea viejo o tenga un error. Estos te llevan a algo útil:",
+    homeEn: "Code Assurance in English",
+    homeEs: "Code Assurance en español",
   },
   privacy: {
     meta: {
