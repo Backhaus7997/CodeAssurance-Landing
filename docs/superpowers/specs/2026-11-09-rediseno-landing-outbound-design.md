@@ -13,7 +13,7 @@ Assurance, por qué es distinto y cómo empezar, y que nada en la página le hag
 
 ### Criterios de éxito (todos verificables)
 
-1. El HTML exportado de `/` y de `/es/` ya contiene el titular, el mapa del codebase y todas las secciones: se
+1. El HTML exportado de `/`, `/es/` y `/how-we-work/` ya contiene el titular, el mapa del codebase y todas las secciones: se
    ven sin esperar JavaScript. No hay preloader.
 2. Ningún texto de la web contiene cifras sin respaldo (`99.9%`, `10x`, `Zero downtime`) ni menciona NPM,
    `npx`, "package" referido al agente o `qaa-agent`. El agente se llama siempre "our AI QA agent" /
@@ -54,6 +54,7 @@ app/
   (en)/page.tsx                        /
   (en)/services/[slug]/page.tsx        /services/<slug>/   (generateStaticParams con los 4 slugs)
   (en)/privacy/page.tsx                /privacy/           (nueva)
+  (en)/how-we-work/page.tsx            /how-we-work/       (nueva: el one-pager de outbound, ver 7.1)
   (es)/es/layout.tsx                   <html lang="es">
   (es)/es/page.tsx                     /es/
   (es)/es/services/[slug]/page.tsx     /es/services/<slug>/
@@ -77,6 +78,7 @@ app/
   tengan las mismas claves.
 - `content/services/en.ts` y `content/services/es.ts`: el texto actual de las 8 páginas de servicio,
   pasado a datos sin cambiar el contenido.
+- `content/how-we-work.ts`: el texto del one-pager de outbound, solo en inglés.
 - Los componentes reciben el contenido por props. No hay componentes duplicados por idioma.
 
 ### 3.3 Componentes
@@ -218,10 +220,13 @@ el sitio ("Reducí…"). Reglas:
 - El agente no tiene nombre propio y nunca se dice dónde se distribuye.
 - Las herramientas (Azure DevOps, Jira, Playwright…) se presentan siempre como ejemplos: "These are
   examples, not requirements".
-- Afirmaciones permitidas, todas confirmadas por el usuario: QA senior con 8+ años; experiencia del equipo en
-  Disney, FIFA, PayPal, Royal Caribbean, Deloitte, Globant y Numerade; mes a mes, se paga para empezar y se
-  puede cortar después del primer mes; trabajo en inglés o español desde Argentina (UTC−3); el mapa de
-  cobertura es el entregable de la semana 1.
+- Afirmaciones permitidas, todas confirmadas por el usuario: QA senior con 8+ años; mes a mes, se paga para
+  empezar y se puede cortar después del primer mes; trabajo en inglés o español desde Argentina (UTC−3); el
+  mapa de cobertura es el entregable de la semana 1.
+- **Pendiente de confirmar:** la línea "Our engineers have delivered QA on teams at Disney, FIFA, PayPal,
+  Royal Caribbean, Deloitte, Globant and Numerade". El usuario tiene que confirmar que ningún NDA lo impide. La
+  línea vive en un solo lugar del contenido (`teamTrackRecord`), y si no está confirmada al terminar, se saca
+  de la home y de `/how-we-work/`; las secciones funcionan sin ella.
 - Todo número del mapa, la terminal, el PR y las mini animaciones de auditoría es de ejemplo, está marcado
   como "example" y cierra entre sí: 14 módulos, 120 tests existentes, 31 agregados, 2 bugs y 1 locator.
 - Planes y auditorías con el contenido actual del sitio, todos visibles (sin pestañas que escondan planes).
@@ -235,6 +240,36 @@ el sitio ("Reducí…"). Reglas:
   mensaje), para qué se usan (responder), quién los procesa (Formspree), cuánto se guardan, cómo pedir que se
   borren (mail) y que el sitio no usa cookies propias de seguimiento. Firma "Code Assurance" y el mail de
   contacto. **Pendiente antes de publicar:** razón social y país, que el usuario tiene que confirmar.
+### 7.1 One-pager de outbound: `/how-we-work/`
+
+Es la página que va enlazada en el segundo mail (E2) de la secuencia a CTOs y VPs de Ingeniería de EE.UU. El
+texto es el del one-pager aprobado (`codeassurance-outbound/onepager/index.html`) y se porta tal cual. Usa el
+mismo sistema visual, los mismos componentes y el escudo menta.
+
+- **Ruta:** `/how-we-work/`, en lugar de `/qa-agent` como se sugirió. Va en el link de un mail frío, y
+  conviene que la URL no se parezca al nombre del paquete del agente. Además, "See how we work" ya es el CTA
+  del one-pager.
+- **Solo en inglés.** El selector de idioma lleva a `/es/`. Va con `robots: noindex`: repite contenido de la
+  home y es una página de campaña, así no le compite a la home en buscadores.
+- **Orden, igual que el one-pager:**
+  1. Hero: el titular, el texto, los CTA y el PR en borrador de ejemplo (`DraftPullRequest` con Border Beam),
+     con su aclaración: "An example of what lands in your repository. Nothing is merged until your team
+     approves it."
+  2. "We adapt to your stack, your process and your business rules": las 6 filas del one-pager (Code,
+     Tickets, Test cases, Frameworks, Languages, Platforms), con Azure DevOps como una opción más, y el
+     `StackDiagram`.
+  3. "How the agent works on your codebase": las 8 etapas con su descripción (Blur Fade escalonado), los tres
+     puntos de partida (`StartingPoints`) y los tres extras del one-pager: "From ticket to tests", "Broken
+     locators, fixed with approval" (con la `TriageDemo`) y "Audits with a score".
+  4. "Ways to work with us": `Plans` y la línea de auditorías especializadas.
+  5. "Senior people lead every engagement" (`Team`) y "How it starts" en 4 pasos.
+  6. Cierre: "Month-to-month, no long contract", con agendar o mandar un mail.
+- **CTA:** agendar si existe `NEXT_PUBLIC_BOOKING_URL`; si no, mail a `martin.backhaus@code-assurance.com`.
+- **URL final:** `https://www.code-assurance.com/how-we-work/`, que existe recién cuando se publica (ver 8).
+  Ahí se le avisa a la sesión del pipeline para cargarla como `ONEPAGER_URL`.
+
+### 7.2 Otras piezas
+
 - **404** (`global-not-found`): mismo header, "This page doesn't exist" y links a la home en EN y ES.
 - **Íconos**: `app/icon.svg` (el escudo), `app/favicon.ico` (16, 32 y 48 px, generado desde el SVG) y
   `app/apple-icon.png` (180 px, escudo sobre negro). Se borra el `favicon.ico` de la plantilla.
@@ -275,5 +310,6 @@ reemplazar.
 - Publicar (sección 8).
 - Link de Cal.com: cuando exista, se carga en la variable y se recompila.
 - Razón social y país para la página de privacidad.
-- Alinear el one-pager de outbound con este estilo.
+- Confirmar que ningún NDA impide nombrar a Disney, FIFA, PayPal, Royal Caribbean, Deloitte, Globant y
+  Numerade (sección 6).
 - Una `og-image` nueva con el wordmark: la actual usa una versión anterior del escudo, con el `</>` oscuro.
