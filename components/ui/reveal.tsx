@@ -36,7 +36,9 @@ export function Reveal({
           io.disconnect();
         }
       },
-      { rootMargin: "0px 0px -8% 0px" },
+      // The huge top margin counts anything already above the viewport as seen: a fast scroll or an
+      // anchor jump can carry an element past the screen without an intersection ever being observed.
+      { rootMargin: "100000px 0px -8% 0px" },
     );
     io.observe(el);
     return () => io.disconnect();

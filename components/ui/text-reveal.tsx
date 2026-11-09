@@ -17,7 +17,7 @@ export interface TextRevealProps extends ComponentPropsWithoutRef<"div"> {
   textClassName?: string
 }
 
-// Adapted from Magic UI: the scroll track is 140vh instead of 200vh, the colors use the site
+// Adapted from Magic UI: the scroll track is 115vh on phones and 140vh above instead of 200vh, the colors use the site
 // tokens, the server, no-JS and reduced-motion renders show the sentence at full opacity, and words
 // are separated by real spaces (the original used margins, so the text read as one long word).
 const subscribeNoop = () => () => {}
@@ -39,7 +39,7 @@ export const TextReveal: FC<TextRevealProps> = ({ children, className, textClass
   const words = children.split(" ")
 
   return (
-    <div ref={sectionRef} className={cn("relative z-0", live && "h-[140vh]", className)}>
+    <div ref={sectionRef} className={cn("relative z-0", live && "h-[115vh] md:h-[140vh]", className)}>
       <div className={cn(live && "sticky top-[22vh]")}>
         <p className={cn("m-0", textClassName)}>
           {live

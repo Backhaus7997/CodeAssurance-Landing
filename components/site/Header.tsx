@@ -11,7 +11,7 @@ export function Header({ content, homeHref, alternateHref }: { content: SiteCont
   return (
     <header className="sticky top-0 z-30 border-b border-line bg-black/75 backdrop-blur-md">
       <div className="container-page flex items-center justify-between gap-x-7 gap-y-3 py-3">
-        <a href={homeHref} className="text-[18px] text-paper no-underline">
+        <a href={homeHref} className="text-[16px] whitespace-nowrap text-paper no-underline min-[420px]:text-[18px]">
           <Logo />
         </a>
         <nav aria-label={content.locale === "en" ? "Main" : "Principal"} className="hidden items-center gap-7 min-[760px]:flex">
