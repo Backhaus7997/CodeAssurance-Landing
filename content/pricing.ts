@@ -69,6 +69,6 @@ export const pricing: PageCopy = {
       a: "A short call about your product and how you ship. If you can share a test environment or your repository, the assessment is more precise, and so is the quote.",
     },
   ],
-  related: ["/services/", "/services/automated-testing/", "/services/dedicated-qa-engineers/", "/services/ai-qa-agent/"],
+  related: ["/services/", "/services/automated-testing/", "/services/dedicated-qa-engineers/", "/services/ai-qa-agent/", "/guides/qa-outsourcing-cost/", "/guides/how-to-hire-a-qa-company/"],
   updated: "2026-11-10",
 };

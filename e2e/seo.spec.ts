@@ -3,6 +3,9 @@ import { join, relative, sep } from "node:path";
 import { expect, test, type APIRequestContext } from "@playwright/test";
 import { AI_CRAWLERS } from "../lib/robots";
 
+// Several tests visit every page in the sitemap; WebKit needs more than the default 30 s for that.
+test.describe.configure({ timeout: 120_000 });
+
 const SITE = "https://www.code-assurance.com";
 const OUT = join(__dirname, "..", "out");
 
@@ -105,4 +108,42 @@ test("/pricing/ answers how pricing works", async ({ page }) => {
   expect(await page.getByTestId("faq").locator("details").count()).toBeGreaterThanOrEqual(4);
   const types = await jsonLdTypes(page);
   expect(types).toEqual(expect.arrayContaining(["FAQPage", "BreadcrumbList"]));
+});
+
+const GUIDES = [
+  "/guides/how-to-hire-a-qa-company/",
+  "/guides/qa-outsourcing-vs-in-house-qa/",
+  "/guides/how-to-improve-qa-in-your-company/",
+  "/guides/qa-outsourcing-cost/",
+];
+
+test("/guides/ lists the four guides", async ({ page }) => {
+  const res = await page.goto("/guides/");
+  expect(res?.status()).toBe(200);
+  await expect(page.locator("h1")).toHaveText("QA guides");
+  const hrefs = await page.getByTestId("hub-list").locator("a").evaluateAll((links) => links.map((a) => a.getAttribute("href")));
+  expect(hrefs.sort()).toEqual([...GUIDES].sort());
+});
+
+for (const path of GUIDES) {
+  test(`${path} is a signed, dated article`, async ({ page }) => {
+    const res = await page.goto(path);
+    expect(res?.status()).toBe(200);
+    await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.getByTestId("byline")).toContainText("Martin Backhaus");
+    await expect(page.getByTestId("byline").locator("time[datetime]").first()).toBeVisible();
+    const blocks = (await page.locator('script[type="application/ld+json"]').allTextContents()).map((b) => JSON.parse(b));
+    const article = blocks.flat().find((node: { "@type": string }) => node["@type"] === "Article");
+    expect(article?.author?.name).toBe("Martin Backhaus");
+    const types = await jsonLdTypes(page);
+    expect(types).toEqual(expect.arrayContaining(["FAQPage", "BreadcrumbList"]));
+  });
+}
+
+test("every page except the home has breadcrumbs", async ({ page, request }) => {
+  for (const path of await sitemapPaths(request)) {
+    if (path === "/" || path === "/es/") continue;
+    await page.goto(path);
+    expect(await jsonLdTypes(page), path).toContain("BreadcrumbList");
+  }
 });

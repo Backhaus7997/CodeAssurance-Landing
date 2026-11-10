@@ -5,6 +5,7 @@ import { en } from "./en";
 import { es } from "./es";
 import { howWeWork } from "./how-we-work";
 import { servicesEn } from "./services/en";
+import { guides } from "./guides";
 import type { PageCopy } from "./pages/types";
 import { pricing } from "./pricing";
 import { servicesEs } from "./services/es";
@@ -36,7 +37,7 @@ function strings(node: unknown, path = "$"): Leaf[] {
 const sources = { en, es, howWeWork, servicesEn, servicesEs };
 
 /** Collections added by the SEO work (services, pricing, guides). Every rule below runs on them too. */
-const PAGES: { name: string; copy: PageCopy }[] = [{ name: "pricing", copy: pricing }];
+const PAGES: { name: string; copy: PageCopy }[] = [{ name: "pricing", copy: pricing }, ...guides.map((g) => ({ name: `guide ${g.slug}`, copy: g }))];
 
 const COPY: { name: string; copy: unknown }[] = [...PAGES];
 
@@ -188,6 +189,23 @@ describe.each(PAGES.map((p) => [p.name, p.copy] as const))("%s page", (_name, co
   it("links only to indexable pages", () => expect(copy.related.filter((href) => !paths.has(href))).toEqual([]));
 
   it("is dated", () => expect(copy.updated).toMatch(/^\d{4}-\d{2}-\d{2}$/));
+});
+
+describe.each(guides.map((g) => [g.slug, g] as const))("guide %s", (_slug, guide) => {
+  const text = [
+    guide.answer,
+    ...guide.sections.flatMap((s) => [s.heading, ...s.paragraphs, ...(s.bullets ?? [])]),
+    ...guide.faq.flatMap((f) => [f.q, f.a]),
+  ].join(" ");
+
+  it("has at least 1,000 words", () => expect(wordCount(text)).toBeGreaterThanOrEqual(1000));
+
+  it("is signed by Martin Backhaus", () => expect(guide.author.name).toBe("Martin Backhaus"));
+
+  it("was updated on or after it was published", () => {
+    expect(guide.published).toMatch(/^\d{4}-\d{2}-\d{2}$/);
+    expect(guide.updated >= guide.published).toBe(true);
+  });
 });
 
 describe("privacy pages", () => {

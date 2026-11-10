@@ -1,7 +1,8 @@
 import { en } from "@/content/en";
 import { es } from "@/content/es";
 import { servicesEn } from "@/content/services/en";
-import { servicesHub } from "@/content/hubs";
+import { guides } from "@/content/guides";
+import { guidesHub, servicesHub } from "@/content/hubs";
 import { pricing } from "@/content/pricing";
 import { servicesEs } from "@/content/services/es";
 import { BRAND } from "@/content/site";
@@ -108,7 +109,29 @@ export function indexablePages(): IndexablePage[] {
     section: "pricing",
   };
 
-  return [home("en"), home("es"), servicesIndex, pricingPage, ...services, ...englishOnlyServices, privacy("en"), privacy("es")];
+  const guidesIndex: IndexablePage = {
+    path: "/guides/",
+    locale: "en",
+    label: guidesHub.h1,
+    title: guidesHub.seo.title,
+    description: guidesHub.seo.description,
+    updated: guidesHub.updated,
+    section: "guides",
+  };
+
+  const guidePages = guides.map(
+    (guide): IndexablePage => ({
+      path: `/guides/${guide.slug}/`,
+      locale: "en",
+      label: guide.h1,
+      title: guide.seo.title,
+      description: guide.seo.description,
+      updated: guide.updated,
+      section: "guides",
+    }),
+  );
+
+  return [home("en"), home("es"), servicesIndex, pricingPage, guidesIndex, ...guidePages, ...services, ...englishOnlyServices, privacy("en"), privacy("es")];
 }
 
 export function pageByPath(path: string): IndexablePage | undefined {
