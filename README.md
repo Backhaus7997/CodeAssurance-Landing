@@ -64,6 +64,7 @@ npm test            # Vitest: content rules, booking URL, contact form
 npm run test:e2e    # builds, then Playwright on desktop, 375 px and iPhone (WebKit)
 node scripts/first-load-js.mjs out/index.html   # gzip size of the scripts the home loads
 node scripts/make-icons.mjs                     # favicon.ico and apple-icon.png from app/icon.svg
+node scripts/indexnow.mjs --dry-run             # the IndexNow request for the sitemap in out/
 ```
 
 The first time, install the test browsers with `npx playwright install chromium webkit`.
@@ -74,10 +75,13 @@ GitHub Pages serves the repository root of `main`, so the build output is copied
 committed. `CNAME` and `.nojekyll` (which lets Pages serve `_next/`) stay as they are.
 
 ```bash
-NEXT_PUBLIC_BOOKING_URL="https://cal.com/<your-link>" npm run build
+NEXT_PUBLIC_BOOKING_URL="https://cal.com/<your-link>" \
+NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION="<code, optional>" \
+NEXT_PUBLIC_BING_SITE_VERIFICATION="<code, optional>" \
+npm run build
 rm -rf _next 404 404.html _not-found _not-found.html _not-found.txt __next.*.txt index.html index.txt \
-  es services privacy how-we-work favicon.ico icon.svg apple-icon.png logo.svg \
-  file.svg globe.svg next.svg vercel.svg window.svg sitemap.xml robots.txt og-image.png
+  es services pricing guides privacy how-we-work favicon.ico icon.svg apple-icon.png logo.svg \
+  file.svg globe.svg next.svg vercel.svg window.svg sitemap.xml robots.txt llms.txt llms-full.txt og-image.png
 cp -R out/. .
 git add -A
 git commit -m "Publish site"
@@ -85,4 +89,11 @@ git push origin main
 ```
 
 The site updates one or two minutes after the push. If the old version still shows, hard-refresh
-or open a private window.
+or open a private window. Once it is live, tell Bing and the other IndexNow engines what changed:
+
+```bash
+node scripts/indexnow.mjs            # --dry-run prints the request without sending it
+```
+
+The IndexNow key is the `<32 hex characters>.txt` file in `public/`. It is public by design (search
+engines read it from the site root), so it is not a secret; keep exactly one such file.

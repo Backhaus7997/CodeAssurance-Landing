@@ -1,3 +1,4 @@
+import { readFileSync, readdirSync } from "node:fs";
 import { describe, expect, it } from "vitest";
 import { brandNearClient, hasPriceFigure, wordCount } from "@/lib/content-checks";
 import { indexablePages } from "@/lib/routes";
@@ -232,5 +233,18 @@ describe("privacy pages", () => {
       expect(text).toContain("Backhaustin S.A.S.");
       expect(text).toContain("30-71929587-4");
     }
+  });
+});
+
+describe("IndexNow", () => {
+  // The key is public by design: search engines read it at https://www.code-assurance.com/<key>.txt.
+  // The file in public/ is its only copy; scripts/indexnow.mjs finds it the same way.
+  const dir = new URL("../public/", import.meta.url);
+  const keyFiles = readdirSync(dir).filter((name) => /^[0-9a-f]{32}\.txt$/.test(name));
+
+  it("has exactly one key file at the site root", () => expect(keyFiles).toHaveLength(1));
+
+  it("whose content is its own name", () => {
+    expect(readFileSync(new URL(keyFiles[0], dir), "utf8").trim()).toBe(keyFiles[0].slice(0, -4));
   });
 });
