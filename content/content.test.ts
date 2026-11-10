@@ -61,6 +61,13 @@ describe.each(allSources)("%s content", (_name, source) => {
     expect(leaves.filter((l) => hasPriceFigure(l.value)).map((l) => `${l.path}: "${l.value}"`)).toEqual([]);
   });
 
+  it("names the team's past employers only in the approved sentence", () => {
+    const brands = /Disney|FIFA|PayPal|Royal Caribbean|Numerade|Deloitte|Globant/i;
+    const approved = /have delivered QA on teams at|hicieron QA en equipos de/;
+    const hits = leaves.filter((l) => brands.test(l.value) && !approved.test(l.value)).map((l) => `${l.path}: "${l.value}"`);
+    expect(hits).toEqual([]);
+  });
+
   it("never presents the team's past employers as clients", () => {
     const hits = leaves.flatMap((l) => {
       const sentence = brandNearClient(l.value);

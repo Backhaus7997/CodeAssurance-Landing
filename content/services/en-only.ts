@@ -296,7 +296,7 @@ export const servicesEnOnly: Record<EnOnlyServiceSlug, ServiceContent> = {
     updated: "2026-11-10",
     title: "Mobile app testing services for Android and iOS",
     answer:
-      "We test your Android and iOS apps on real devices and emulators before every release. That covers functional and regression testing, compatibility across OS versions, screen sizes and device models, and behavior on poor networks. Stable checks can be automated with Appium, and our engineers bring hands-on mobile testing experience from teams at Numerade.",
+      "We test your Android and iOS apps on real devices and emulators before every release. That covers functional and regression testing, compatibility across OS versions, screen sizes and device models, and behavior on poor networks. Stable checks can be automated with Appium, so the flows you run on every build don't depend on someone tapping through them by hand.",
     related: ["/services/manual-qa-testing/", "/services/automated-testing/", "/services/api-testing/", "/pricing/", "/guides/how-to-hire-a-qa-company/"],
     promiseLabel: "Promise",
     promise: [

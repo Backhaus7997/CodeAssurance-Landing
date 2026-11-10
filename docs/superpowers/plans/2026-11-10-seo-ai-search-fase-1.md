@@ -22,7 +22,7 @@
 - Hechos que se pueden afirmar (y ningún otro): ingenieros con 8+ años de experiencia; trabajo en inglés o español desde Argentina (UTC−3), con buena superposición horaria con EE.UU.; mes a mes, sin contrato largo, y si el primer mes no sirve se corta ahí; el primer entregable es el mapa de cobertura del código (semana 1); el agente es un pipeline de agentes especializados que un QA senior opera y revisa; los tests llegan como pull requests en GitHub, GitLab o Azure DevOps; los casos de prueba van a la herramienta del cliente (Azure DevOps Test Plans incluido); cuando un locator se rompe, el agente lo vuelve a encontrar en la página y propone el arreglo, que espera aprobación; herramientas: las que ya figuran en el sitio, más Appium, Provar y Postman; la cotización sale de un assessment en una llamada.
 - Límites: `seo.title` ≤ 60 caracteres y único en el sitio; `seo.description` 120–160; `answer` 40–70 palabras; `faq` ≥ 3; guías ≥ 1,000 palabras.
 - Fechas ISO `YYYY-MM-DD`; `updated` y `published` = fecha del día en que se escribe el texto.
-- Autor de las guías: `{ name: "Martin Backhaus", role: "Founder" }` (rol confirmado por el usuario al revisar este plan).
+- Autor de las guías: `{ name: "Martin Backhaus", role: "Founder" }` (rol pendiente de confirmar por el usuario antes de publicar la fase 1).
 - Contenido nuevo solo en inglés. Lo que se toca en español usa voseo.
 - JavaScript de primera carga: `/` ≤ 259,103 bytes gzip; cada página de texto nueva ≤ la de `/privacy/`.
 - No se hace push ni se publica: la publicación es aparte, con el OK del usuario después de revisar los textos.
