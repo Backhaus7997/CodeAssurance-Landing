@@ -1,4 +1,4 @@
-import { CONTACT_EMAIL } from "./site";
+import { CONTACT_EMAIL, LEGAL_ENTITY, LEGAL_TAX_ID } from "./site";
 import type { SiteContent } from "./types";
 
 export const en: SiteContent = {
@@ -315,7 +315,10 @@ export const en: SiteContent = {
     sections: [
       {
         heading: "What this covers",
-        body: ["Code Assurance provides software quality assurance services. This page explains what happens with the information you send us through this website."],
+        body: [
+          `Code Assurance provides software quality assurance services and is operated by ${LEGAL_ENTITY} (CUIT ${LEGAL_TAX_ID}), a company registered in Argentina, which is responsible for the information described here.`,
+          "This page explains what happens with the information you send us through this website.",
+        ],
       },
       {
         heading: "What we collect",

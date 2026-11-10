@@ -112,3 +112,13 @@ describe("service pages", () => {
     }
   });
 });
+
+describe("privacy pages", () => {
+  it("name the company responsible for the data in both languages", () => {
+    for (const site of [en, es]) {
+      const text = site.privacy.sections.flatMap((section) => section.body).join(" ");
+      expect(text).toContain("Backhaustin S.A.S.");
+      expect(text).toContain("30-71929587-4");
+    }
+  });
+});
