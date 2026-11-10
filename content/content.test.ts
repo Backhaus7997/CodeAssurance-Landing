@@ -7,6 +7,7 @@ import { es } from "./es";
 import { howWeWork } from "./how-we-work";
 import { servicesEn } from "./services/en";
 import { guides } from "./guides";
+import { guidesHub, servicesHub } from "./hubs";
 import type { PageCopy } from "./pages/types";
 import { pricing } from "./pricing";
 import { servicesEs } from "./services/es";
@@ -40,7 +41,7 @@ const sources = { en, es, howWeWork, servicesEn, servicesEs };
 /** Collections added by the SEO work (services, pricing, guides). Every rule below runs on them too. */
 const PAGES: { name: string; copy: PageCopy }[] = [{ name: "pricing", copy: pricing }, ...guides.map((g) => ({ name: `guide ${g.slug}`, copy: g }))];
 
-const COPY: { name: string; copy: unknown }[] = [...PAGES];
+const COPY: { name: string; copy: unknown }[] = [...PAGES, { name: "servicesHub", copy: servicesHub }, { name: "guidesHub", copy: guidesHub }];
 
 const allSources: [string, unknown][] = [...Object.entries(sources), ...COPY.map((c): [string, unknown] => [c.name, c.copy])];
 
@@ -206,6 +207,16 @@ describe.each(guides.map((g) => [g.slug, g] as const))("guide %s", (_slug, guide
   it("was updated on or after it was published", () => {
     expect(guide.published).toMatch(/^\d{4}-\d{2}-\d{2}$/);
     expect(guide.updated >= guide.published).toBe(true);
+  });
+});
+
+describe.each([
+  ["servicesHub", servicesHub],
+  ["guidesHub", guidesHub],
+] as const)("%s", (_name, hub) => {
+  it("has a 40 to 70 word answer", () => {
+    expect(wordCount(hub.answer)).toBeGreaterThanOrEqual(40);
+    expect(wordCount(hub.answer)).toBeLessThanOrEqual(70);
   });
 });
 

@@ -1,5 +1,5 @@
 import { pageByPath } from "@/lib/routes";
-import { Block } from "./Block";
+import { Section } from "./Section";
 
 /** Links to related pages, labelled with each page's h1. An unknown path stops the build. */
 export function RelatedLinks({ title, hrefs }: { title: string; hrefs: string[] }) {
@@ -10,7 +10,7 @@ export function RelatedLinks({ title, hrefs }: { title: string; hrefs: string[] 
     return { href, label: page.label, description: page.description };
   });
   return (
-    <Block title={title} testId="related">
+    <Section title={title} testId="related">
       <ul className="m-0 grid list-none grid-cols-1 gap-px border border-line bg-line p-0 md:grid-cols-2">
         {links.map((link) => (
           <li key={link.href} className="bg-ink">
@@ -21,6 +21,6 @@ export function RelatedLinks({ title, hrefs }: { title: string; hrefs: string[] 
           </li>
         ))}
       </ul>
-    </Block>
+    </Section>
   );
 }

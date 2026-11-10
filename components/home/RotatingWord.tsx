@@ -10,8 +10,6 @@ import { useLiveMotion } from "@/hooks/use-live-motion";
 // never reflows when the word changes. It only rotates while on screen.
 // The stacked words (and the still word without motion) are drawn by ::before from data-word, so
 // they are not text in the document: crawlers read the h1 sentence once (SEO spec, 4.4).
-const WORD = "before:content-[attr(data-word)]";
-
 export function RotatingWord({ words, suffix }: { words: string[]; suffix: string }) {
   const ref = useRef<HTMLSpanElement>(null);
   const live = useLiveMotion();
@@ -22,7 +20,7 @@ export function RotatingWord({ words, suffix }: { words: string[]; suffix: strin
     // No kerning or ligatures, so the plain-text sizers measure exactly like the letter-by-letter animation.
     <span ref={ref} aria-hidden="true" className="grid text-mint [font-kerning:none] [font-variant-ligatures:none]">
       {texts.map((text) => (
-        <span key={text} data-word={text} className={`invisible col-start-1 row-start-1 ${WORD}`} />
+        <span key={text} data-word={text} className="ghost-word invisible col-start-1 row-start-1" />
       ))}
       {live ? (
         <span data-testid="hero-rotating" className="col-start-1 row-start-1">
@@ -39,7 +37,7 @@ export function RotatingWord({ words, suffix }: { words: string[]; suffix: strin
           />
         </span>
       ) : (
-        <span data-testid="hero-rotating" data-word={texts[0]} className={`col-start-1 row-start-1 ${WORD}`} />
+        <span data-testid="hero-rotating" data-word={texts[0]} className="ghost-word col-start-1 row-start-1" />
       )}
     </span>
   );

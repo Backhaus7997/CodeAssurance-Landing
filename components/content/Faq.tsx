@@ -1,6 +1,6 @@
 import type { FaqItem } from "@/content/pages/types";
 import { faqLd } from "@/lib/jsonld";
-import { Block } from "./Block";
+import { Section } from "./Section";
 import { JsonLd } from "./JsonLd";
 
 const DETAILS = "group border-b border-line [&_summary::-webkit-details-marker]:hidden";
@@ -9,7 +9,7 @@ const SUMMARY = "flex min-h-12 cursor-pointer list-none items-start justify-betw
 /** Visible questions and answers, plus the same pairs as FAQPage data. */
 export function Faq({ title, items }: { title: string; items: FaqItem[] }) {
   return (
-    <Block title={title} testId="faq">
+    <Section title={title} testId="faq">
       <JsonLd data={faqLd(items)} />
       <div className="border-t border-line">
         {items.map((faq) => (
@@ -24,6 +24,6 @@ export function Faq({ title, items }: { title: string; items: FaqItem[] }) {
           </details>
         ))}
       </div>
-    </Block>
+    </Section>
   );
 }

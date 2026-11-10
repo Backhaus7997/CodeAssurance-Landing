@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
-import { Start } from "@/components/home/Start";
 import type { PageCopy } from "@/content/pages/types";
 import type { SiteContent } from "@/content/types";
+import { CtaBand } from "./CtaBand";
 import { AnswerLead } from "./AnswerLead";
 import { Breadcrumbs, type Crumb } from "./Breadcrumbs";
 import { ContentSections } from "./ContentSections";
@@ -36,7 +36,7 @@ export function TopicPage({ copy, breadcrumbs, relatedTitle, faqTitle, site, chi
       </article>
       <Faq title={faqTitle} items={copy.faq} />
       <RelatedLinks title={relatedTitle} hrefs={copy.related} />
-      <Start start={site.start} form={site.form} />
+      <CtaBand start={site.start} />
     </>
   );
 }

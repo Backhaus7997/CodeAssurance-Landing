@@ -9,7 +9,7 @@ export const servicesHub: HubCopy = {
   eyebrow: "Services",
   h1: "QA services",
   answer:
-    "Code Assurance provides software QA services for product teams: test automation, manual testing, dedicated QA engineers who join your team, an AI QA agent that works on your codebase, and mobile, API, performance and security testing. Every engagement starts with a short call and an assessment, and is shaped around your product instead of a fixed package.",
+    "Code Assurance provides software QA services for product teams: test automation, manual testing, dedicated QA engineers who join your team, an AI QA agent that works on your codebase, and mobile, API, performance and security testing. Every engagement starts with a short call and an assessment, and is shaped around your product, not around a template.",
   updated: "2026-11-10",
 };
 
