@@ -2,6 +2,7 @@ import { en } from "@/content/en";
 import { es } from "@/content/es";
 import { servicesEn } from "@/content/services/en";
 import { servicesHub } from "@/content/hubs";
+import { pricing } from "@/content/pricing";
 import { servicesEs } from "@/content/services/es";
 import { BRAND } from "@/content/site";
 import { EN_ONLY_SERVICE_SLUGS, SERVICE_SLUGS, type Locale } from "@/content/types";
@@ -97,7 +98,17 @@ export function indexablePages(): IndexablePage[] {
     section: "services",
   };
 
-  return [home("en"), home("es"), servicesIndex, ...services, ...englishOnlyServices, privacy("en"), privacy("es")];
+  const pricingPage: IndexablePage = {
+    path: "/pricing/",
+    locale: "en",
+    label: pricing.h1,
+    title: pricing.seo.title,
+    description: pricing.seo.description,
+    updated: pricing.updated,
+    section: "pricing",
+  };
+
+  return [home("en"), home("es"), servicesIndex, pricingPage, ...services, ...englishOnlyServices, privacy("en"), privacy("es")];
 }
 
 export function pageByPath(path: string): IndexablePage | undefined {

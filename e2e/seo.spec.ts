@@ -96,3 +96,13 @@ test("every hreflang target exists", async ({ page, request }) => {
     }
   }
 });
+
+test("/pricing/ answers how pricing works", async ({ page }) => {
+  const res = await page.goto("/pricing/");
+  expect(res?.status()).toBe(200);
+  await expect(page.locator("h1")).toHaveText("How pricing works");
+  await expect(page.getByTestId("answer")).toBeVisible();
+  expect(await page.getByTestId("faq").locator("details").count()).toBeGreaterThanOrEqual(4);
+  const types = await jsonLdTypes(page);
+  expect(types).toEqual(expect.arrayContaining(["FAQPage", "BreadcrumbList"]));
+});

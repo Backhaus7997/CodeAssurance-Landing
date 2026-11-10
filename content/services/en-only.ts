@@ -23,7 +23,7 @@ export const servicesEnOnly: Record<EnOnlyServiceSlug, ServiceContent> = {
     title: "Manual QA testing services",
     answer:
       "Senior QA engineers test your web and mobile apps by hand before each release: functional checks of new features, regression passes over what already works, and exploratory sessions that look for the bugs nobody wrote a test for. Every bug arrives in your tracker with steps, evidence and severity, and stable checks can be automated later.",
-    related: ["/services/automated-testing/", "/services/dedicated-qa-engineers/", "/services/mobile-app-testing/"],
+    related: ["/services/automated-testing/", "/services/dedicated-qa-engineers/", "/services/mobile-app-testing/", "/pricing/"],
     promiseLabel: "Promise",
     promise: [
       "Test cases written from your real flows and business rules",
@@ -114,7 +114,7 @@ export const servicesEnOnly: Record<EnOnlyServiceSlug, ServiceContent> = {
     title: "Dedicated QA engineers for your team",
     answer:
       "Our QA engineers join your team as if they were in-house: they attend your ceremonies, work in your tools and own testing for the projects you assign them. You choose manual testers, automation engineers or a mix, part-time or full-time, month-to-month. We work from Argentina (UTC−3), so most of the day overlaps with US teams.",
-    related: ["/services/manual-qa-testing/", "/services/automated-testing/", "/services/ai-qa-agent/"],
+    related: ["/services/manual-qa-testing/", "/services/automated-testing/", "/services/ai-qa-agent/", "/pricing/"],
     promiseLabel: "Promise",
     promise: [
       "Manual or automation, part-time or full-time",
@@ -205,7 +205,7 @@ export const servicesEnOnly: Record<EnOnlyServiceSlug, ServiceContent> = {
     title: "AI QA agent for your test suite",
     answer:
       "Our AI QA agent is a pipeline of specialized agents that a senior QA engineer runs on your codebase. It maps what is covered and what is not, writes tests in the framework you already use, sends them as pull requests, and proposes fixes when a locator breaks. Nothing reaches your repository without human review. It is an add-on to any engagement.",
-    related: ["/services/automated-testing/", "/services/dedicated-qa-engineers/", "/services/code-quality/"],
+    related: ["/services/automated-testing/", "/services/dedicated-qa-engineers/", "/services/code-quality/", "/pricing/"],
     promiseLabel: "Promise",
     promise: [
       "Coverage gaps found from your code, not guessed",
@@ -297,7 +297,7 @@ export const servicesEnOnly: Record<EnOnlyServiceSlug, ServiceContent> = {
     title: "Mobile app testing services for Android and iOS",
     answer:
       "We test your Android and iOS apps on real devices and emulators before every release. That covers functional and regression testing, compatibility across OS versions, screen sizes and device models, and behavior on poor networks. Stable checks can be automated with Appium, and our engineers bring hands-on mobile testing experience from teams at Numerade.",
-    related: ["/services/manual-qa-testing/", "/services/automated-testing/", "/services/api-testing/"],
+    related: ["/services/manual-qa-testing/", "/services/automated-testing/", "/services/api-testing/", "/pricing/"],
     promiseLabel: "Promise",
     promise: [
       "Real devices and emulators, Android and iOS",
@@ -381,7 +381,7 @@ export const servicesEnOnly: Record<EnOnlyServiceSlug, ServiceContent> = {
     title: "API testing services",
     answer:
       "We test your APIs and integrations directly, before problems reach the user interface. That means functional tests for each endpoint, contract checks so a change on one side doesn't break the other, and SQL checks that the data underneath stays consistent. The tests run in your CI pipeline, so every merge gets fast feedback.",
-    related: ["/services/automated-testing/", "/services/performance-audit/", "/services/security-review/"],
+    related: ["/services/automated-testing/", "/services/performance-audit/", "/services/security-review/", "/pricing/"],
     promiseLabel: "Promise",
     promise: [
       "Fast feedback before the UI breaks",

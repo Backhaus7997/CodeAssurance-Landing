@@ -15,6 +15,7 @@ describe("indexablePages", () => {
       "/es/services/code-quality/",
       "/es/services/performance-audit/",
       "/es/services/security-review/",
+      "/pricing/",
       "/privacy/",
       "/services/",
       "/services/ai-qa-agent/",

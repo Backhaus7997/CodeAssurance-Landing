@@ -5,6 +5,8 @@ import { en } from "./en";
 import { es } from "./es";
 import { howWeWork } from "./how-we-work";
 import { servicesEn } from "./services/en";
+import type { PageCopy } from "./pages/types";
+import { pricing } from "./pricing";
 import { servicesEs } from "./services/es";
 import { EN_SERVICE_SLUGS, SERVICE_SLUGS } from "./types";
 
@@ -34,7 +36,9 @@ function strings(node: unknown, path = "$"): Leaf[] {
 const sources = { en, es, howWeWork, servicesEn, servicesEs };
 
 /** Collections added by the SEO work (services, pricing, guides). Every rule below runs on them too. */
-const COPY: { name: string; copy: unknown }[] = [];
+const PAGES: { name: string; copy: PageCopy }[] = [{ name: "pricing", copy: pricing }];
+
+const COPY: { name: string; copy: unknown }[] = [...PAGES];
 
 const allSources: [string, unknown][] = [...Object.entries(sources), ...COPY.map((c): [string, unknown] => [c.name, c.copy])];
 
@@ -169,6 +173,21 @@ describe("service pages answer directly", () => {
   it.each(all.map(([lang, s]) => [`${lang} ${s.slug}`, s] as const))("%s links only to indexable pages", (_name, s) => {
     expect(s.related.filter((href) => !paths.has(href))).toEqual([]);
   });
+});
+
+describe.each(PAGES.map((p) => [p.name, p.copy] as const))("%s page", (_name, copy) => {
+  const paths = new Set(indexablePages().map((p) => p.path));
+
+  it("has a 40 to 70 word answer", () => {
+    expect(wordCount(copy.answer)).toBeGreaterThanOrEqual(40);
+    expect(wordCount(copy.answer)).toBeLessThanOrEqual(70);
+  });
+
+  it("has at least three FAQs", () => expect(copy.faq.length).toBeGreaterThanOrEqual(3));
+
+  it("links only to indexable pages", () => expect(copy.related.filter((href) => !paths.has(href))).toEqual([]));
+
+  it("is dated", () => expect(copy.updated).toMatch(/^\d{4}-\d{2}-\d{2}$/));
 });
 
 describe("privacy pages", () => {
