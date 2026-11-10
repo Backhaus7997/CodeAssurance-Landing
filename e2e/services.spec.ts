@@ -41,3 +41,45 @@ test("tools are presented as examples", async ({ page }) => {
   await page.goto("/services/automated-testing/");
   await expect(page.getByRole("heading", { name: "Tools we often use (examples)" })).toBeVisible();
 });
+
+const NEW_PAGES = [
+  ["/services/manual-qa-testing/", "Manual QA testing services"],
+  ["/services/dedicated-qa-engineers/", "Dedicated QA engineers for your team"],
+  ["/services/ai-qa-agent/", "AI QA agent for your test suite"],
+  ["/services/mobile-app-testing/", "Mobile app testing services for Android and iOS"],
+  ["/services/api-testing/", "API testing services"],
+] as const;
+
+for (const [path, title] of NEW_PAGES) {
+  test(`${path} renders its English-only service page`, async ({ page }) => {
+    const res = await page.goto(path);
+    expect(res?.status()).toBe(200);
+    await expect(page.locator("h1")).toHaveCount(1);
+    await expect(page.locator("h1")).toHaveText(title);
+    await expect(page.getByTestId("answer")).toBeVisible();
+    expect(await page.getByTestId("faq").locator("details").count()).toBeGreaterThanOrEqual(3);
+    await expect(page.locator('link[rel="alternate"][hreflang="es"]')).toHaveCount(0);
+  });
+}
+
+test("/services/ lists all nine services", async ({ page }) => {
+  const res = await page.goto("/services/");
+  expect(res?.status()).toBe(200);
+  await expect(page.locator("h1")).toHaveText("QA services");
+  const hrefs = await page.getByTestId("hub-list").locator("a").evaluateAll((links) => links.map((a) => a.getAttribute("href")));
+  expect(hrefs.sort()).toEqual(
+    [
+      "automated-testing",
+      "performance-audit",
+      "security-review",
+      "code-quality",
+      "manual-qa-testing",
+      "dedicated-qa-engineers",
+      "ai-qa-agent",
+      "mobile-app-testing",
+      "api-testing",
+    ]
+      .map((slug) => `/services/${slug}/`)
+      .sort(),
+  );
+});

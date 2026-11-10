@@ -85,3 +85,14 @@ test("no indexable page scrolls sideways", async ({ page, request }) => {
     expect(overflow, path).toBeLessThanOrEqual(0);
   }
 });
+
+test("every hreflang target exists", async ({ page, request }) => {
+  for (const path of await sitemapPaths(request)) {
+    await page.goto(path);
+    const targets = await page.locator('link[rel="alternate"][hreflang]').evaluateAll((links) => links.map((l) => l.getAttribute("href") ?? ""));
+    for (const href of targets) {
+      const res = await request.get(href.replace(SITE, ""));
+      expect(res.status(), `${path} → ${href}`).toBe(200);
+    }
+  }
+});

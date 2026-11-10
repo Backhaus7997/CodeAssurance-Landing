@@ -6,6 +6,7 @@ import { es } from "./es";
 import { howWeWork } from "./how-we-work";
 import { servicesEn } from "./services/en";
 import { servicesEs } from "./services/es";
+import { EN_SERVICE_SLUGS, SERVICE_SLUGS } from "./types";
 
 // Terms that must never reach the public site (see the spec, section 6).
 const BANNED = [
@@ -129,8 +130,8 @@ describe("the hero rotates words", () => {
 
 describe("service pages", () => {
   it("exist for the same four slugs in both languages", () => {
-    expect(Object.keys(servicesEs).sort()).toEqual(Object.keys(servicesEn).sort());
-    expect(Object.keys(servicesEn).sort()).toEqual(["automated-testing", "code-quality", "performance-audit", "security-review"]);
+    expect(Object.keys(servicesEs).sort()).toEqual(["automated-testing", "code-quality", "performance-audit", "security-review"]);
+    expect(Object.keys(servicesEn).sort()).toEqual([...EN_SERVICE_SLUGS].sort());
   });
 
   it("have the same number of blocks and FAQs in both languages", () => {
@@ -142,7 +143,7 @@ describe("service pages", () => {
       s.tools.length,
       s.faqs.length,
     ];
-    for (const slug of Object.keys(servicesEn) as (keyof typeof servicesEn)[]) {
+    for (const slug of SERVICE_SLUGS) {
       expect(shape(servicesEs[slug])).toEqual(shape(servicesEn[slug]));
       expect(servicesEn[slug].faqs).toHaveLength(8);
     }

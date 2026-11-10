@@ -1,9 +1,10 @@
-import type { ServiceSlug } from "../types";
+import type { AnyServiceSlug, ServiceSlug } from "../types";
+import { servicesEnOnly } from "./en-only";
 import type { ServiceContent } from "./types";
 
 // Titles, direct answers, related links and the automation cases were written for search (SEO spec, 3.1);
 // the rest was ported from the previous service pages.
-export const servicesEn: Record<ServiceSlug, ServiceContent> = {
+const servicesBilingualEn: Record<ServiceSlug, ServiceContent> = {
   "automated-testing": {
     slug: "automated-testing",
     meta: {
@@ -15,7 +16,7 @@ export const servicesEn: Record<ServiceSlug, ServiceContent> = {
     title: "Test automation services",
     answer:
       "We build, extend or maintain your automated test suite in the framework your team already uses. Starting from zero, we map your codebase and automate the critical flows first; with an existing suite, we stabilize it and close the coverage gaps; after that we keep it green in CI. Our AI QA agent can be added to any engagement.",
-    related: ["/services/code-quality/", "/services/performance-audit/"],
+    related: ["/services/ai-qa-agent/", "/services/api-testing/", "/services/code-quality/", "/services/performance-audit/"],
     promiseLabel: "Promise",
     promise: [
       "Risk based coverage (not “test everything”)",
@@ -152,7 +153,7 @@ export const servicesEn: Record<ServiceSlug, ServiceContent> = {
     title: "Performance testing and audit services",
     answer:
       "We measure how your web app and APIs behave on the journeys that matter, find the bottlenecks behind slow pages and endpoints, and hand you a prioritized plan with the evidence to back it. Every finding comes from a measured run, and every fix is validated with the same measurement before we call it done.",
-    related: ["/services/automated-testing/", "/services/code-quality/"],
+    related: ["/services/api-testing/", "/services/automated-testing/", "/services/code-quality/"],
     promiseLabel: "Promise",
     promise: [
       "Baseline metrics you can track (p95/p99, error rate, slowest pages/endpoints)",
@@ -284,7 +285,7 @@ export const servicesEn: Record<ServiceSlug, ServiceContent> = {
     title: "Security testing services",
     answer:
       "We test your application the way an attacker would, focused on what your next release puts at risk. We map the attack surface, validate each finding by hand with reproducible evidence, explain how to fix it and retest after your team ships the fix. You get findings your developers can act on, not a scanner dump.",
-    related: ["/services/code-quality/", "/services/automated-testing/"],
+    related: ["/services/api-testing/", "/services/code-quality/", "/services/automated-testing/"],
     promiseLabel: "Promise",
     promise: [
       "Manual security testing aligned to deployment-critical risk",
@@ -417,7 +418,7 @@ export const servicesEn: Record<ServiceSlug, ServiceContent> = {
     title: "Code quality review services",
     answer:
       "We review your codebase to find the hotspots that keep causing regressions, set quality gates that match real risk instead of arbitrary thresholds, and order your technical debt by business impact. The result is a short list of changes your team can make in its normal cadence, with checks in CI so the gains stick.",
-    related: ["/services/automated-testing/", "/services/security-review/"],
+    related: ["/services/ai-qa-agent/", "/services/automated-testing/", "/services/security-review/"],
     promiseLabel: "Promise",
     promise: [
       "Quality gates that match real risk (not bureaucracy)",
@@ -537,5 +538,8 @@ export const servicesEn: Record<ServiceSlug, ServiceContent> = {
     ],
   },
 };
+
+/** Every English service page: the four that also exist in Spanish plus the English-only ones. */
+export const servicesEn: Record<AnyServiceSlug, ServiceContent> = { ...servicesBilingualEn, ...servicesEnOnly };
 
 export const serviceEyebrowEn = "Service";

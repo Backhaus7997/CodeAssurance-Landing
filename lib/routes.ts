@@ -1,9 +1,10 @@
 import { en } from "@/content/en";
 import { es } from "@/content/es";
 import { servicesEn } from "@/content/services/en";
+import { servicesHub } from "@/content/hubs";
 import { servicesEs } from "@/content/services/es";
 import { BRAND } from "@/content/site";
-import { SERVICE_SLUGS, type Locale } from "@/content/types";
+import { EN_ONLY_SERVICE_SLUGS, SERVICE_SLUGS, type Locale } from "@/content/types";
 
 export type PageSection = "home" | "services" | "pricing" | "guides" | "privacy";
 
@@ -73,7 +74,30 @@ export function indexablePages(): IndexablePage[] {
     return [page("en"), page("es")];
   });
 
-  return [home("en"), home("es"), ...services, privacy("en"), privacy("es")];
+  const englishOnlyServices = EN_ONLY_SERVICE_SLUGS.map((slug): IndexablePage => {
+    const service = servicesEn[slug];
+    return {
+      path: `/services/${slug}/`,
+      locale: "en",
+      label: service.title,
+      title: service.meta.title,
+      description: service.meta.description,
+      updated: service.updated,
+      section: "services",
+    };
+  });
+
+  const servicesIndex: IndexablePage = {
+    path: "/services/",
+    locale: "en",
+    label: servicesHub.h1,
+    title: servicesHub.seo.title,
+    description: servicesHub.seo.description,
+    updated: servicesHub.updated,
+    section: "services",
+  };
+
+  return [home("en"), home("es"), servicesIndex, ...services, ...englishOnlyServices, privacy("en"), privacy("es")];
 }
 
 export function pageByPath(path: string): IndexablePage | undefined {
