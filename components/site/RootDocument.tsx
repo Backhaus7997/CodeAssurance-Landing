@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import type { Locale } from "@/content/types";
 import { fontVariables } from "@/lib/fonts";
 import { HydrationMark } from "./HydrationMark";
+import { WaterBackground } from "./WaterBackground";
 
 // Marks the document as scripted before first paint, so reveal styles only apply when JS runs.
 // Failsafe: if the app hasn't hydrated 2.5 s later (slow network, blocked or broken scripts), the
@@ -17,6 +18,7 @@ export function RootDocument({ locale, children }: { locale: Locale; children: R
         <script dangerouslySetInnerHTML={{ __html: JS_FLAG }} />
       </head>
       <body>
+        <WaterBackground />
         <HydrationMark />
         {children}
       </body>

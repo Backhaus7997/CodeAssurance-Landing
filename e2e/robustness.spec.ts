@@ -105,15 +105,24 @@ test("animated loops pause when they are offscreen", async ({ page }) => {
       return original(cb);
     };
   });
+  const framesPerSecond = async () => {
+    await page.evaluate(() => ((window as unknown as { __raf: number }).__raf = 0));
+    await page.waitForTimeout(1000);
+    return page.evaluate(() => (window as unknown as { __raf: number }).__raf);
+  };
+  // The water background is fixed and always on screen, so it animates whenever the tab is visible.
+  // Measure it alone on a page with no other animation, then compare.
+  await page.goto("/privacy/");
+  await page.waitForTimeout(1500);
+  const water = await framesPerSecond();
+
   await page.goto("/");
   await page.locator("#agent").scrollIntoViewIfNeeded();
   await page.waitForTimeout(800);
   await page.locator("#plans").scrollIntoViewIfNeeded();
   // The terminal's typing sequence is finite and may finish offscreen (a few seconds); loops must not.
   await page.waitForTimeout(6500);
-  await page.evaluate(() => ((window as unknown as { __raf: number }).__raf = 0));
-  await page.waitForTimeout(1000);
-  expect(await page.evaluate(() => (window as unknown as { __raf: number }).__raf)).toBeLessThan(10);
+  expect((await framesPerSecond()) - water).toBeLessThan(10);
 });
 
 for (const width of [375, 1280]) {

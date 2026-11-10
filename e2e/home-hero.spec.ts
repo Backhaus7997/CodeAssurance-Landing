@@ -57,7 +57,8 @@ test.describe("with reduced motion", () => {
     await page.goto("/");
     await page.waitForTimeout(1500);
     expect(await page.evaluate(() => document.getAnimations().length)).toBe(0);
-    await expect(page.locator('canvas[data-animating="false"]')).toHaveCount(1);
+    // the hero grid (the water background has its own reduced-motion test in water.spec.ts)
+    await expect(page.locator('canvas[data-animating="false"]:not([data-water])')).toHaveCount(1);
   });
 
   test("the headline stays on 'product'", async ({ page }) => {
