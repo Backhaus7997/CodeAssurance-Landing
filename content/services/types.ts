@@ -3,6 +3,8 @@ import type { ServiceSlug } from "../types";
 export type ServiceContent = {
   slug: ServiceSlug;
   meta: { title: string; description: string };
+  /** ISO date of the last change to this page's text. */
+  updated: string;
   title: string;
   summary: string;
   promiseLabel: string;

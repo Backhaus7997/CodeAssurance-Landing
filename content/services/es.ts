@@ -8,6 +8,7 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
       title: "Testing Automatizado | Code Assurance",
       description: "Cobertura E2E + API/contract enfocada en flujos críticos—con estabilidad real en CI.",
     },
+    updated: "2026-11-09",
     title: "Testing Automatizado para confianza en releases",
     summary: "Cobertura E2E + API/contract enfocada en flujos críticos con estabilidad real en CI.",
     promiseLabel: "Promesa",
@@ -134,6 +135,7 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
       title: "Auditoría de Performance | Code Assurance",
       description: "Baseline + identificación de bottlenecks enfocada en journeys reales, respaldada por evidencia medible.",
     },
+    updated: "2026-11-09",
     title: "Auditoría de Performance para velocidad predecible",
     summary: "Baseline + identificación de cuellos de botella enfocada en journeys reales, respaldada por evidencia medible.",
     promiseLabel: "Promesa",
@@ -264,6 +266,7 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
       description:
         "Testing manual de seguridad + discovery de vulnerabilidades enfocado en riesgo real de despliegue, respaldado por evidencia reproducible.",
     },
+    updated: "2026-11-09",
     title: "Revisión de Seguridad para releases de alta visibilidad",
     summary:
       "Testing manual + descubrimiento de vulnerabilidades enfocado en riesgo real de despliegue, respaldado por evidencia reproducible.",
@@ -394,6 +397,7 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
       title: "Calidad de Código | Code Assurance",
       description: "Estándares, hotspots de riesgo y control de deuda técnica para que tu delivery sea predecible.",
     },
+    updated: "2026-11-09",
     title: "Calidad de Código que previene regresiones",
     summary: "Estándares, puntos críticos de riesgo y control de deuda técnica para que tu delivery sea predecible.",
     promiseLabel: "Promesa",

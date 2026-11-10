@@ -8,6 +8,7 @@ export const en: SiteContent = {
     description:
       "Senior QA engineers and an AI QA agent that work inside your repositories, tickets and test framework. Manual QA, automation and dedicated QA teams, month-to-month.",
     ogAlt: "Code Assurance — QA services and test automation",
+    updated: "2026-11-09",
   },
   header: {
     nav: [
@@ -309,6 +310,7 @@ export const en: SiteContent = {
     meta: {
       title: "Privacy policy | Code Assurance",
       description: "What Code Assurance does with the information you send through this website.",
+      updated: "2026-11-09",
     },
     title: "Privacy policy",
     updated: "Last updated: November 9, 2026",
