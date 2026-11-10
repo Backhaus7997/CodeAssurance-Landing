@@ -1,6 +1,18 @@
 import { expect, test } from "@playwright/test";
 
 test.describe("hero and coverage map", () => {
+  for (const [path, sentence] of [
+    ["/", "QA built around your product, not a template"],
+    ["/es/", "QA a medida de tu producto, no de una plantilla"],
+  ]) {
+    test(`the exported h1 of ${path} says the sentence once`, async ({ request }) => {
+      const html = await (await request.get(path)).text();
+      const inner = html.match(/<h1[^>]*>([\s\S]*?)<\/h1>/)?.[1] ?? "";
+      const text = inner.replace(/<[^>]+>/g, " ").replace(/\s+/g, " ").replace(/\s+,/g, ",").trim();
+      expect(text).toBe(sentence);
+    });
+  }
+
   test("states the offer with 'product' as the accessible word", async ({ page }) => {
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1, name: /QA built around your\s*product\s*, not a template/ })).toBeVisible();
@@ -63,6 +75,8 @@ test.describe("with reduced motion", () => {
   test("the headline stays on 'product'", async ({ page }) => {
     await page.goto("/");
     await page.waitForTimeout(3000);
-    await expect(page.getByTestId("hero-rotating")).toHaveText("product,");
+    const word = page.getByTestId("hero-rotating");
+    await expect(word).toHaveAttribute("data-word", "product,");
+    expect((await word.boundingBox())?.width ?? 0).toBeGreaterThan(0);
   });
 });
