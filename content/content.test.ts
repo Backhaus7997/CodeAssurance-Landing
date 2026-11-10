@@ -208,6 +208,23 @@ describe.each(guides.map((g) => [g.slug, g] as const))("guide %s", (_slug, guide
   });
 });
 
+describe("header and footer links", () => {
+  const paths = new Set(indexablePages().map((p) => p.path));
+
+  it.each([
+    ["en", en],
+    ["es", es],
+  ] as const)("%s links only to indexable pages", (_lang, site) => {
+    const hrefs = [...site.header.pages, ...site.footer.groups.flatMap((g) => g.links)].map((l) => l.href);
+    expect(hrefs.filter((href) => !paths.has(href))).toEqual([]);
+  });
+
+  it("the English footer lists every English service", () => {
+    const hrefs = en.footer.groups.flatMap((g) => g.links).map((l) => l.href);
+    for (const slug of EN_SERVICE_SLUGS) expect(hrefs).toContain(`/services/${slug}/`);
+  });
+});
+
 describe("privacy pages", () => {
   it("name the company responsible for the data in both languages", () => {
     for (const site of [en, es]) {

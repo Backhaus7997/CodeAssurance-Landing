@@ -11,6 +11,10 @@ export const en: SiteContent = {
     updated: "2026-11-10",
   },
   header: {
+    pages: [
+      { label: "Services", href: "/services/" },
+      { label: "Guides", href: "/guides/" },
+    ],
     nav: [
       { label: "Agent", section: "agent" },
       { label: "Process", section: "process" },
@@ -296,6 +300,29 @@ export const en: SiteContent = {
       { label: "Process", section: "process" },
       { label: "Plans", section: "plans" },
       { label: "Audits", section: "audits" },
+    ],
+    groups: [
+      {
+        title: "Services",
+        links: [
+          { label: "Test automation", href: "/services/automated-testing/" },
+          { label: "Manual QA testing", href: "/services/manual-qa-testing/" },
+          { label: "Dedicated QA engineers", href: "/services/dedicated-qa-engineers/" },
+          { label: "AI QA agent", href: "/services/ai-qa-agent/" },
+          { label: "Mobile app testing", href: "/services/mobile-app-testing/" },
+          { label: "API testing", href: "/services/api-testing/" },
+          { label: "Performance testing", href: "/services/performance-audit/" },
+          { label: "Security testing", href: "/services/security-review/" },
+          { label: "Code quality review", href: "/services/code-quality/" },
+        ],
+      },
+      {
+        title: "Resources",
+        links: [
+          { label: "Pricing", href: "/pricing/" },
+          { label: "Guides", href: "/guides/" },
+        ],
+      },
     ],
     privacy: "Privacy policy",
     rights: "Code Assurance",

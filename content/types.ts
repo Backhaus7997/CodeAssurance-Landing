@@ -22,6 +22,9 @@ export type SectionIntro = { index: string; label: string; title: string; descri
 
 export type NavItem = { label: string; section: SectionId };
 
+/** A link to another page of the site (not a section of the home). */
+export type PageLink = { label: string; href: string };
+
 export type ModuleStatus = "covered" | "added" | "bug" | "pending" | "gap";
 
 export type MapModule = { id: string; path: string; tests: number; status: ModuleStatus; note: string };
@@ -108,7 +111,7 @@ export type FormContent = {
 export type SiteContent = {
   locale: Locale;
   meta: { title: string; description: string; ogAlt: string; updated: string };
-  header: { nav: NavItem[]; book: string; contact: string; switchLabel: string; switchTo: string };
+  header: { pages: PageLink[]; nav: NavItem[]; book: string; contact: string; switchLabel: string; switchTo: string };
   hero: {
     label: string;
     titleBefore: string;
@@ -143,7 +146,7 @@ export type SiteContent = {
   team: TeamContent;
   start: StartContent;
   form: FormContent;
-  footer: { tagline: string; nav: NavItem[]; privacy: string; rights: string };
+  footer: { tagline: string; nav: NavItem[]; groups: { title: string; links: PageLink[] }[]; privacy: string; rights: string };
   notFound: { title: string; text: string; homeEn: string; homeEs: string };
   privacy: {
     meta: { title: string; description: string; updated: string };

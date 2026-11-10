@@ -47,3 +47,24 @@ test("serves the site 404 for unknown URLs", async ({ page }) => {
   expect(res?.status()).toBe(404);
   await expect(page.getByRole("heading", { name: "This page doesn't exist" })).toBeVisible();
 });
+
+for (const width of [800, 1024, 1100]) {
+  test(`the desktop header fits at ${width} px`, async ({ page, isMobile }) => {
+    test.skip(isMobile, "header widths are checked on the desktop project");
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto("/");
+    expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(width);
+    const cta = page.locator("header").getByRole("link", { name: /Book a call|Contact/ });
+    const box = await cta.boundingBox();
+    expect(box).not.toBeNull();
+    expect(box!.x + box!.width).toBeLessThanOrEqual(width);
+    await expect(page.locator("header").getByRole("link", { name: "Guides" })).toBeVisible();
+  });
+}
+
+test("footer links reach every service", async ({ page, request }) => {
+  await page.goto("/");
+  const hrefs = await page.locator("footer").locator('a[href^="/services/"]').evaluateAll((links) => links.map((a) => a.getAttribute("href") ?? ""));
+  expect(hrefs.length).toBe(9);
+  for (const href of hrefs) expect((await request.get(href)).status(), href).toBe(200);
+});

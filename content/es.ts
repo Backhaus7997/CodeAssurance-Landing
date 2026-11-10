@@ -11,6 +11,7 @@ export const es: SiteContent = {
     updated: "2026-11-10",
   },
   header: {
+    pages: [],
     nav: [
       { label: "Agente", section: "agent" },
       { label: "Proceso", section: "process" },
@@ -296,6 +297,17 @@ export const es: SiteContent = {
       { label: "Proceso", section: "process" },
       { label: "Planes", section: "plans" },
       { label: "Auditorías", section: "audits" },
+    ],
+    groups: [
+      {
+        title: "Servicios",
+        links: [
+          { label: "Automatización de pruebas", href: "/es/services/automated-testing/" },
+          { label: "Pruebas de performance", href: "/es/services/performance-audit/" },
+          { label: "Pruebas de seguridad", href: "/es/services/security-review/" },
+          { label: "Revisión de calidad de código", href: "/es/services/code-quality/" },
+        ],
+      },
     ],
     privacy: "Política de privacidad",
     rights: "Code Assurance",

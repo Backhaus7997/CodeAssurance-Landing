@@ -35,6 +35,16 @@ export function Footer({
             </a>
           ))}
         </nav>
+        {footer.groups.map((group) => (
+          <nav key={group.title} aria-label={group.title} className="flex flex-[1_1_180px] flex-col gap-0.5 text-[15px]">
+            <p className="eyebrow m-0 mb-2">{group.title}</p>
+            {group.links.map((item) => (
+              <a key={item.href} href={item.href} className={link}>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+        ))}
         <div className="flex flex-[1_1_220px] flex-col gap-0.5 text-[15px]">
           <a href={`mailto:${CONTACT_EMAIL}`} className={link}>
             {CONTACT_EMAIL}
