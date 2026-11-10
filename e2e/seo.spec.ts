@@ -147,3 +147,16 @@ test("every page except the home has breadcrumbs", async ({ page, request }) => 
     expect(await jsonLdTypes(page), path).toContain("BreadcrumbList");
   }
 });
+
+test("llms files list every English page", async ({ request }) => {
+  const llms = await request.get("/llms.txt");
+  expect(llms.status()).toBe(200);
+  const text = await llms.text();
+  for (const path of await sitemapPaths(request)) {
+    if (path.startsWith("/es/")) continue;
+    expect(text, path).toContain(`${SITE}${path})`);
+  }
+  const full = await request.get("/llms-full.txt");
+  expect(full.status()).toBe(200);
+  expect(await full.text()).toContain("# How pricing works");
+});
