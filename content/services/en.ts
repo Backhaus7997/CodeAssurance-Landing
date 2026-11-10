@@ -5,10 +5,11 @@ export const servicesEn: Record<ServiceContent["slug"], ServiceContent> = {
   "automated-testing": {
     slug: "automated-testing",
     meta: {
-      title: "Automated Testing | Code Assurance",
-      description: "E2E + API/contract coverage focused on critical flows—built to be stable in CI.",
+      title: "Test Automation Services | Code Assurance",
+      description:
+        "Test automation services in your framework: we build a suite from zero, extend the one you have or keep it maintained, with an AI QA agent as an add-on.",
     },
-    updated: "2026-11-09",
+    updated: "2026-11-10",
     title: "Automated Testing for release confidence",
     summary: "E2E + API/contract coverage focused on critical flows—built to be stable in CI.",
     promiseLabel: "Promise",
@@ -132,10 +133,11 @@ export const servicesEn: Record<ServiceContent["slug"], ServiceContent> = {
   "performance-audit": {
     slug: "performance-audit",
     meta: {
-      title: "Performance Audit | Code Assurance",
-      description: "Baseline + bottleneck identification focused on real user journeys backed by measurable evidence.",
+      title: "Performance Testing and Audit Services | Code Assurance",
+      description:
+        "Performance testing and audits for web apps and APIs: baselines for your critical user journeys, the bottlenecks behind them and a plan backed by measured runs.",
     },
-    updated: "2026-11-09",
+    updated: "2026-11-10",
     title: "Performance Audit for predictable speed",
     summary: "Baseline + bottleneck identification focused on real user journeys backed by measurable evidence.",
     promiseLabel: "Promise",
@@ -261,10 +263,11 @@ export const servicesEn: Record<ServiceContent["slug"], ServiceContent> = {
   "security-review": {
     slug: "security-review",
     meta: {
-      title: "Security Review | Code Assurance",
-      description: "Manual security testing + vulnerability discovery focused on real deployment risk backed by reproducible evidence.",
+      title: "Security Testing Services | Code Assurance",
+      description:
+        "Manual security testing focused on what your next release puts at risk: attack surface mapping, validated findings with evidence, fix guidance and retests.",
     },
-    updated: "2026-11-09",
+    updated: "2026-11-10",
     title: "Security Review for high-visibility releases",
     summary: "Manual security testing + vulnerability discovery focused on real deployment risk backed by reproducible evidence.",
     promiseLabel: "Promise",
@@ -391,10 +394,11 @@ export const servicesEn: Record<ServiceContent["slug"], ServiceContent> = {
   "code-quality": {
     slug: "code-quality",
     meta: {
-      title: "Code Quality | Code Assurance",
-      description: "Standards, risk hotspots, and technical debt control so your delivery stays predictable.",
+      title: "Code Quality Review Services | Code Assurance",
+      description:
+        "Code quality reviews that set quality gates matching real risk, find the hotspots that cause regressions and order your technical debt by business impact.",
     },
-    updated: "2026-11-09",
+    updated: "2026-11-10",
     title: "Code Quality that prevents regressions",
     summary: "Standards, risk hotspots, and technical debt control so your delivery stays predictable.",
     promiseLabel: "Promise",

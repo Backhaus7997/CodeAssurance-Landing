@@ -1,4 +1,6 @@
 import { describe, expect, it } from "vitest";
+import { brandNearClient, hasPriceFigure } from "@/lib/content-checks";
+import { indexablePages } from "@/lib/routes";
 import { en } from "./en";
 import { es } from "./es";
 import { howWeWork } from "./how-we-work";
@@ -30,7 +32,12 @@ function strings(node: unknown, path = "$"): Leaf[] {
 
 const sources = { en, es, howWeWork, servicesEn, servicesEs };
 
-describe.each(Object.entries(sources))("%s content", (_name, source) => {
+/** Collections added by the SEO work (services, pricing, guides). Every rule below runs on them too. */
+const COPY: { name: string; copy: unknown }[] = [];
+
+const allSources: [string, unknown][] = [...Object.entries(sources), ...COPY.map((c): [string, unknown] => [c.name, c.copy])];
+
+describe.each(allSources)("%s content", (_name, source) => {
   const leaves = strings(source);
 
   it("has no banned terms", () => {
@@ -41,6 +48,35 @@ describe.each(Object.entries(sources))("%s content", (_name, source) => {
   it("has no empty or placeholder links", () => {
     const bad = leaves.filter((l) => l.key === "href" && (l.value.trim() === "" || l.value.trim() === "#"));
     expect(bad).toEqual([]);
+  });
+  it("publishes no prices", () => {
+    expect(leaves.filter((l) => hasPriceFigure(l.value)).map((l) => `${l.path}: "${l.value}"`)).toEqual([]);
+  });
+
+  it("never presents the team's past employers as clients", () => {
+    const hits = leaves.flatMap((l) => {
+      const sentence = brandNearClient(l.value);
+      return sentence ? [`${l.path}: "${sentence}"`] : [];
+    });
+    expect(hits).toEqual([]);
+  });
+});
+
+describe("search titles and descriptions", () => {
+  const pages = indexablePages();
+
+  it.each(pages.map((p) => [p.path, p.title] as const))("%s has a title of at most 60 characters", (_path, title) => {
+    expect(title.length).toBeLessThanOrEqual(60);
+  });
+
+  it("are unique across the site", () => {
+    const titles = pages.map((p) => p.title);
+    expect(titles.filter((t, i) => titles.indexOf(t) !== i)).toEqual([]);
+  });
+
+  it.each(pages.map((p) => [p.path, p.description] as const))("%s has a description of 120 to 160 characters", (_path, description) => {
+    expect(description.length).toBeGreaterThanOrEqual(120);
+    expect(description.length).toBeLessThanOrEqual(160);
   });
 });
 

@@ -4,11 +4,11 @@ import type { SiteContent } from "./types";
 export const es: SiteContent = {
   locale: "es",
   meta: {
-    title: "Code Assurance — QA a medida de tu producto",
+    title: "Servicios de QA y automatización de pruebas | Code Assurance",
     description:
-      "Ingenieros de QA senior y un agente de QA con IA que trabajan dentro de tus repositorios, tus tickets y tu framework de testing. QA manual, automatización y equipos de QA dedicados, mes a mes.",
+      "Ingenieros de QA senior y un agente de QA con IA para tu producto: QA manual, automatización de pruebas y QA dedicado, mes a mes. Cotizamos tras una llamada.",
     ogAlt: "Code Assurance — servicios de QA y automatización de pruebas",
-    updated: "2026-11-09",
+    updated: "2026-11-10",
   },
   header: {
     nav: [
@@ -309,8 +309,9 @@ export const es: SiteContent = {
   privacy: {
     meta: {
       title: "Política de privacidad | Code Assurance",
-      description: "Qué hace Code Assurance con la información que enviás desde este sitio.",
-      updated: "2026-11-09",
+      description:
+        "Qué recibe Code Assurance desde este sitio, para qué lo usa, quién lo procesa, cuánto tiempo lo guarda y cómo pedir verlo, corregirlo o borrarlo.",
+      updated: "2026-11-10",
     },
     title: "Política de privacidad",
     updated: "Última actualización: 9 de noviembre de 2026",

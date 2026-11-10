@@ -5,10 +5,11 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
   "automated-testing": {
     slug: "automated-testing",
     meta: {
-      title: "Testing Automatizado | Code Assurance",
-      description: "Cobertura E2E + API/contract enfocada en flujos críticos—con estabilidad real en CI.",
+      title: "Automatización de pruebas | Code Assurance",
+      description:
+        "Automatización de pruebas en tu framework: armamos la suite desde cero, ampliamos la que ya tenés o la mantenemos, con un agente de QA con IA como add-on.",
     },
-    updated: "2026-11-09",
+    updated: "2026-11-10",
     title: "Testing Automatizado para confianza en releases",
     summary: "Cobertura E2E + API/contract enfocada en flujos críticos con estabilidad real en CI.",
     promiseLabel: "Promesa",
@@ -132,10 +133,11 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
   "performance-audit": {
     slug: "performance-audit",
     meta: {
-      title: "Auditoría de Performance | Code Assurance",
-      description: "Baseline + identificación de bottlenecks enfocada en journeys reales, respaldada por evidencia medible.",
+      title: "Pruebas y auditoría de performance | Code Assurance",
+      description:
+        "Pruebas y auditorías de performance para apps web y APIs: línea base de tus recorridos críticos, sus cuellos de botella y un plan respaldado por mediciones.",
     },
-    updated: "2026-11-09",
+    updated: "2026-11-10",
     title: "Auditoría de Performance para velocidad predecible",
     summary: "Baseline + identificación de cuellos de botella enfocada en journeys reales, respaldada por evidencia medible.",
     promiseLabel: "Promesa",
@@ -262,11 +264,11 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
   "security-review": {
     slug: "security-review",
     meta: {
-      title: "Revisión de Seguridad | Code Assurance",
+      title: "Pruebas de seguridad | Code Assurance",
       description:
-        "Testing manual de seguridad + discovery de vulnerabilidades enfocado en riesgo real de despliegue, respaldado por evidencia reproducible.",
+        "Pruebas de seguridad manuales enfocadas en lo que tu próximo release pone en riesgo: superficie de ataque, hallazgos con evidencia, guía de arreglo y retest.",
     },
-    updated: "2026-11-09",
+    updated: "2026-11-10",
     title: "Revisión de Seguridad para releases de alta visibilidad",
     summary:
       "Testing manual + descubrimiento de vulnerabilidades enfocado en riesgo real de despliegue, respaldado por evidencia reproducible.",
@@ -394,10 +396,11 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
   "code-quality": {
     slug: "code-quality",
     meta: {
-      title: "Calidad de Código | Code Assurance",
-      description: "Estándares, hotspots de riesgo y control de deuda técnica para que tu delivery sea predecible.",
+      title: "Revisión de calidad de código | Code Assurance",
+      description:
+        "Revisiones de calidad de código: quality gates acordes al riesgo real, los puntos que generan regresiones y la deuda técnica ordenada por impacto en el negocio.",
     },
-    updated: "2026-11-09",
+    updated: "2026-11-10",
     title: "Calidad de Código que previene regresiones",
     summary: "Estándares, puntos críticos de riesgo y control de deuda técnica para que tu delivery sea predecible.",
     promiseLabel: "Promesa",

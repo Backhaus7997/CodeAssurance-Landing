@@ -4,11 +4,11 @@ import type { SiteContent } from "./types";
 export const en: SiteContent = {
   locale: "en",
   meta: {
-    title: "Code Assurance — QA built around your product",
+    title: "QA Services and Test Automation | Code Assurance",
     description:
-      "Senior QA engineers and an AI QA agent that work inside your repositories, tickets and test framework. Manual QA, automation and dedicated QA teams, month-to-month.",
+      "Senior QA engineers and an AI QA agent for your product: manual QA, test automation and dedicated QA engineers, month-to-month. Quoted after a short call.",
     ogAlt: "Code Assurance — QA services and test automation",
-    updated: "2026-11-09",
+    updated: "2026-11-10",
   },
   header: {
     nav: [
@@ -308,9 +308,10 @@ export const en: SiteContent = {
   },
   privacy: {
     meta: {
-      title: "Privacy policy | Code Assurance",
-      description: "What Code Assurance does with the information you send through this website.",
-      updated: "2026-11-09",
+      title: "Privacy Policy | Code Assurance",
+      description:
+        "What Code Assurance collects through this website, why we use it, who processes it, how long we keep it and how to see, correct or delete it.",
+      updated: "2026-11-10",
     },
     title: "Privacy policy",
     updated: "Last updated: November 9, 2026",
