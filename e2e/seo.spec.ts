@@ -45,3 +45,43 @@ test("robots.txt names every AI crawler and the sitemap", async ({ request }) =>
   expect(text).toContain(`Sitemap: ${SITE}/sitemap.xml`);
   expect(text).not.toMatch(/Disallow:\s*\S/);
 });
+
+/** Every @type declared in the page's JSON-LD scripts (throws if any script is not valid JSON). */
+async function jsonLdTypes(page: import("@playwright/test").Page): Promise<string[]> {
+  const blocks = await page.locator('script[type="application/ld+json"]').allTextContents();
+  const types: string[] = [];
+  const collect = (node: unknown) => {
+    if (Array.isArray(node)) node.forEach(collect);
+    else if (node && typeof node === "object") {
+      const t = (node as Record<string, unknown>)["@type"];
+      if (typeof t === "string") types.push(t);
+      Object.values(node).forEach(collect);
+    }
+  };
+  for (const block of blocks) collect(JSON.parse(block));
+  return types;
+}
+
+test("every indexable page has valid organization data", async ({ page, request }) => {
+  for (const path of await sitemapPaths(request)) {
+    await page.goto(path);
+    const types = await jsonLdTypes(page);
+    expect(types, path).toContain("Organization");
+    expect(types, path).toContain("WebSite");
+  }
+});
+
+test("every indexable page has one h1", async ({ page, request }) => {
+  for (const path of await sitemapPaths(request)) {
+    await page.goto(path);
+    await expect(page.locator("h1"), path).toHaveCount(1);
+  }
+});
+
+test("no indexable page scrolls sideways", async ({ page, request }) => {
+  for (const path of await sitemapPaths(request)) {
+    await page.goto(path);
+    const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+    expect(overflow, path).toBeLessThanOrEqual(0);
+  }
+});
