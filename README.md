@@ -37,6 +37,14 @@ Every "Book a call" button reads `NEXT_PUBLIC_BOOKING_URL` at build time. When i
 buttons are not rendered and email becomes the main call to action. A value that does not start
 with `https://` stops the build.
 
+## Search engine verification
+
+`NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION` (Search Console) and `NEXT_PUBLIC_BING_SITE_VERIFICATION`
+(Bing Webmaster Tools) take the bare code from each console's "HTML tag" option, not the whole
+`<meta>` tag. When set, the build prints the verification meta tags; when empty (for example
+because the domain was verified with a DNS record) nothing is printed. A value with spaces, quotes
+or angle brackets stops the build.
+
 ## Animation
 
 Animated components come from 21st.dev and are installed from their MIT registries with the shadcn

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { BRAND, SITE_URL } from "@/content/site";
 import type { Locale } from "@/content/types";
+import { siteVerification } from "./verification";
 
 type PageMetadataOptions = {
   locale: Locale;
@@ -15,6 +16,7 @@ type PageMetadataOptions = {
 
 export function pageMetadata({ locale, path, title, description, alternatePath, noindex, ogAlt }: PageMetadataOptions): Metadata {
   const url = `${SITE_URL}${path}`;
+  const verification = siteVerification();
   const enPath = locale === "en" ? path : alternatePath;
   const esPath = locale === "es" ? path : alternatePath;
 
@@ -29,6 +31,7 @@ export function pageMetadata({ locale, path, title, description, alternatePath, 
         : {}),
     },
     ...(noindex ? { robots: { index: false, follow: true } } : {}),
+    ...(verification ? { verification } : {}),
     openGraph: {
       type: "website",
       locale: locale === "en" ? "en_US" : "es_ES",
