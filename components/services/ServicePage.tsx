@@ -1,36 +1,41 @@
+import { AnswerLead } from "@/components/content/AnswerLead";
+import { Block } from "@/components/content/Block";
+import { Breadcrumbs, type Crumb } from "@/components/content/Breadcrumbs";
+import { Faq } from "@/components/content/Faq";
+import { JsonLd } from "@/components/content/JsonLd";
+import { RelatedLinks } from "@/components/content/RelatedLinks";
 import { Start } from "@/components/home/Start";
 import { PrimaryCta } from "@/components/site/PrimaryCta";
 import { Reveal } from "@/components/ui/reveal";
 import type { ServiceContent } from "@/content/services/types";
 import type { SiteContent } from "@/content/types";
-
-function Block({ title, children, testId }: { title: string; children: React.ReactNode; testId?: string }) {
-  return (
-    <section data-testid={testId} className="border-t border-line">
-      <div className="container-page py-[clamp(48px,6vw,80px)]">
-        <Reveal className="mb-8">
-          <h2 className="display m-0 text-[clamp(24px,3vw,36px)] leading-none">{title}</h2>
-        </Reveal>
-        {children}
-      </div>
-    </section>
-  );
-}
+import { serviceLd } from "@/lib/jsonld";
 
 const DETAILS =
   "group border-b border-line [&_summary::-webkit-details-marker]:hidden";
 const SUMMARY =
   "flex min-h-12 cursor-pointer list-none items-start justify-between gap-4 py-3.5 text-[17px] font-semibold";
 
-export function ServicePage({ service, site, eyebrow }: { service: ServiceContent; site: SiteContent; eyebrow: string }) {
+type Props = {
+  service: ServiceContent;
+  site: SiteContent;
+  eyebrow: string;
+  path: string;
+  breadcrumbs: Crumb[];
+  relatedTitle: string;
+};
+
+export function ServicePage({ service, site, eyebrow, path, breadcrumbs, relatedTitle }: Props) {
   return (
     <>
-      <section className="container-page pt-[clamp(36px,6vw,88px)] pb-[clamp(40px,5vw,64px)]">
+      <JsonLd data={serviceLd({ name: service.title, description: service.meta.description, path, serviceType: service.title })} />
+      <section className="container-page pt-[clamp(28px,5vw,72px)] pb-[clamp(40px,5vw,64px)]">
+        <Breadcrumbs trail={breadcrumbs} className="mb-[clamp(20px,3vw,36px)]" />
         <div className="flex flex-wrap items-end gap-x-14 gap-y-8">
           <div className="flex min-w-0 flex-[2_1_520px] flex-col gap-5">
             <p className="eyebrow m-0">{eyebrow}</p>
             <h1 className="display m-0 text-[clamp(30px,4.4vw,56px)] leading-[0.98]">{service.title}</h1>
-            <p className="m-0 max-w-[56ch] text-[18px] text-soft">{service.summary}</p>
+            <AnswerLead text={service.answer} />
             <div>
               <PrimaryCta bookLabel={site.start.primaryCta} emailLabel={site.start.emailCta} />
             </div>
@@ -106,21 +111,9 @@ export function ServicePage({ service, site, eyebrow }: { service: ServiceConten
         </div>
       </Block>
 
-      <Block title={service.headings.faqs} testId="service-faq">
-        <div className="border-t border-line">
-          {service.faqs.map((faq) => (
-            <details key={faq.q} className={DETAILS}>
-              <summary className={SUMMARY}>
-                <span>{faq.q}</span>
-                <span aria-hidden="true" className="font-mono text-[22px] leading-none text-mint transition-transform duration-200 group-open:rotate-45">
-                  +
-                </span>
-              </summary>
-              <p className="m-0 max-w-[70ch] pb-5 text-soft">{faq.a}</p>
-            </details>
-          ))}
-        </div>
-      </Block>
+      <Faq title={service.headings.faqs} items={service.faqs} />
+
+      <RelatedLinks title={relatedTitle} hrefs={service.related} />
 
       <Start start={site.start} form={site.form} />
     </>

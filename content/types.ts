@@ -6,6 +6,15 @@ export type ServiceSlug = "automated-testing" | "performance-audit" | "security-
 
 export const SERVICE_SLUGS: ServiceSlug[] = ["automated-testing", "performance-audit", "security-review", "code-quality"];
 
+/** Service pages that exist only in English (SEO spec, 3.1). */
+export type EnOnlyServiceSlug = "manual-qa-testing" | "dedicated-qa-engineers" | "ai-qa-agent" | "mobile-app-testing" | "api-testing";
+
+export const EN_ONLY_SERVICE_SLUGS: EnOnlyServiceSlug[] = ["manual-qa-testing", "dedicated-qa-engineers", "ai-qa-agent", "mobile-app-testing", "api-testing"];
+
+export type AnyServiceSlug = ServiceSlug | EnOnlyServiceSlug;
+
+export const EN_SERVICE_SLUGS: AnyServiceSlug[] = [...SERVICE_SLUGS, ...EN_ONLY_SERVICE_SLUGS];
+
 /** Anchor ids of the home sections, shared by the header and the footer. */
 export type SectionId = "agent" | "process" | "plans" | "audits";
 

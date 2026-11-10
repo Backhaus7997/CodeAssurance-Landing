@@ -1,7 +1,9 @@
+import type { ServiceSlug } from "../types";
 import type { ServiceContent } from "./types";
 
-// Ported verbatim from the previous service pages; only the tools heading now says they are examples.
-export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
+// Titles, direct answers, related links and the automation cases were written for search (SEO spec, 3.1);
+// the rest was ported from the previous service pages.
+export const servicesEs: Record<ServiceSlug, ServiceContent> = {
   "automated-testing": {
     slug: "automated-testing",
     meta: {
@@ -10,8 +12,10 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
         "Automatización de pruebas en tu framework: armamos la suite desde cero, ampliamos la que ya tenés o la mantenemos, con un agente de QA con IA como add-on.",
     },
     updated: "2026-11-10",
-    title: "Testing Automatizado para confianza en releases",
-    summary: "Cobertura E2E + API/contract enfocada en flujos críticos con estabilidad real en CI.",
+    title: "Servicios de automatización de pruebas",
+    answer:
+      "Armamos, ampliamos o mantenemos tu suite de tests automatizados en el framework que tu equipo ya usa. Si arrancás de cero, mapeamos tu código y automatizamos primero los flujos críticos; si ya tenés una suite, la estabilizamos y cerramos los huecos de cobertura; después la mantenemos en verde en CI. Nuestro agente de QA con IA se suma a cualquier trabajo.",
+    related: [],
     promiseLabel: "Promesa",
     promise: [
       "Cobertura basada en riesgo (no “testear todo”)",
@@ -41,24 +45,31 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
     ],
     howItWorks: [
       {
-        title: "Estrategia de cobertura (qué se automatiza primero)",
+        title: "Si arrancás de cero: armamos la suite",
         bullets: [
-          "Primero los journeys críticos: auth, roles/permisos, aprobaciones, pagos, integraciones",
-          "Capa correcta por riesgo: API/contract donde es más barato + estable; E2E solo donde realmente hace falta",
+          "Primero mapeamos tu código y tus flujos críticos, y después montamos el framework en tu stack: Playwright por defecto, o el que prefiera tu equipo",
+          "Los primeros flujos críticos corren en CI enseguida; después la cobertura crece por riesgo: login, roles, pagos, integraciones",
         ],
       },
       {
-        title: "Confiabilidad por diseño (cómo evitamos flakiness)",
+        title: "Si ya tenés una suite: la adoptamos y la ampliamos",
         bullets: [
-          "Selectores estables + esperas determinísticas (sin automation basada en “sleep”)",
-          "Estrategia de datos + política de flakes (fix/quarantine/remove) con ownership asignado",
+          "Respetamos tu framework y tus convenciones, arreglamos lo que está roto y estandarizamos el resto",
+          "Los huecos de cobertura del mapa del código se vuelven un backlog priorizado de tests nuevos",
         ],
       },
       {
-        title: "Modelo de ejecución en CI (cómo encaja en tu pipeline)",
+        title: "Si necesitás que se mantenga: la sostenemos en verde",
         bullets: [
-          "Suite para PR (rápida): smoke + flujos críticos, diseñada para bloquear merges",
-          "Gates explícitos: reglas pass/fail atadas al riesgo (no “se ve bien”)",
+          "Una política de tests inestables con responsable: cada test inestable se arregla, se pone en cuarentena o se borra, nunca se ignora",
+          "Los tests cambian con el producto, con evidencia de las corridas en cada release",
+        ],
+      },
+      {
+        title: "Add-on: nuestro agente de QA con IA",
+        bullets: [
+          "Escribe tests en tu framework y los manda como pull requests que revisa un ingeniero de QA senior",
+          "Cuando se rompe un locator, vuelve a encontrar el elemento en la página y propone el arreglo para que lo apruebes",
         ],
       },
     ],
@@ -138,8 +149,10 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
         "Pruebas y auditorías de performance para apps web y APIs: línea base de tus recorridos críticos, sus cuellos de botella y un plan respaldado por mediciones.",
     },
     updated: "2026-11-10",
-    title: "Auditoría de Performance para velocidad predecible",
-    summary: "Baseline + identificación de cuellos de botella enfocada en journeys reales, respaldada por evidencia medible.",
+    title: "Servicios de pruebas y auditoría de performance",
+    answer:
+      "Medimos cómo se comportan tu app web y tus APIs en los recorridos que importan, encontramos los cuellos de botella detrás de las páginas y endpoints lentos y te entregamos un plan priorizado con la evidencia que lo respalda. Cada hallazgo sale de una medición, y cada arreglo se valida con la misma medición antes de darlo por cerrado.",
+    related: [],
     promiseLabel: "Promesa",
     promise: [
       "Métricas baseline para trackear (error rate, páginas/endpoints más lentos)",
@@ -269,9 +282,10 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
         "Pruebas de seguridad manuales enfocadas en lo que tu próximo release pone en riesgo: superficie de ataque, hallazgos con evidencia, guía de arreglo y retest.",
     },
     updated: "2026-11-10",
-    title: "Revisión de Seguridad para releases de alta visibilidad",
-    summary:
-      "Testing manual + descubrimiento de vulnerabilidades enfocado en riesgo real de despliegue, respaldado por evidencia reproducible.",
+    title: "Servicios de pruebas de seguridad",
+    answer:
+      "Probamos tu aplicación como lo haría un atacante, enfocados en lo que tu próximo release pone en riesgo. Mapeamos la superficie de ataque, validamos a mano cada hallazgo con evidencia reproducible, explicamos cómo arreglarlo y volvemos a probar cuando tu equipo lo corrige. Recibís hallazgos accionables, no la salida cruda de un scanner.",
+    related: [],
     promiseLabel: "Promesa",
     promise: [
       "Testing manual de seguridad alineado a riesgo crítico de despliegue",
@@ -401,8 +415,10 @@ export const servicesEs: Record<ServiceContent["slug"], ServiceContent> = {
         "Revisiones de calidad de código: quality gates acordes al riesgo real, los puntos que generan regresiones y la deuda técnica ordenada por impacto en el negocio.",
     },
     updated: "2026-11-10",
-    title: "Calidad de Código que previene regresiones",
-    summary: "Estándares, puntos críticos de riesgo y control de deuda técnica para que tu delivery sea predecible.",
+    title: "Servicios de revisión de calidad de código",
+    answer:
+      "Revisamos tu código para encontrar los puntos que generan regresiones una y otra vez, definimos quality gates acordes al riesgo real y ordenamos la deuda técnica por impacto en el negocio. El resultado es una lista corta de cambios que tu equipo puede hacer a su ritmo, con controles en CI para que las mejoras se sostengan.",
+    related: [],
     promiseLabel: "Promesa",
     promise: [
       "Quality gates que reflejan riesgo real (no burocracia)",

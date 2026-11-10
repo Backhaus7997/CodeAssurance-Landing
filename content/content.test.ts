@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { brandNearClient, hasPriceFigure } from "@/lib/content-checks";
+import { brandNearClient, hasPriceFigure, wordCount } from "@/lib/content-checks";
 import { indexablePages } from "@/lib/routes";
 import { en } from "./en";
 import { es } from "./es";
@@ -146,6 +146,27 @@ describe("service pages", () => {
       expect(shape(servicesEs[slug])).toEqual(shape(servicesEn[slug]));
       expect(servicesEn[slug].faqs).toHaveLength(8);
     }
+  });
+});
+
+describe("service pages answer directly", () => {
+  const paths = new Set(indexablePages().map((p) => p.path));
+  const all = [
+    ...Object.values(servicesEn).map((s) => ["en", s] as const),
+    ...Object.values(servicesEs).map((s) => ["es", s] as const),
+  ];
+
+  it.each(all.map(([lang, s]) => [`${lang} ${s.slug}`, s] as const))("%s has a 40 to 70 word answer", (_name, s) => {
+    expect(wordCount(s.answer)).toBeGreaterThanOrEqual(40);
+    expect(wordCount(s.answer)).toBeLessThanOrEqual(70);
+  });
+
+  it.each(all.map(([lang, s]) => [`${lang} ${s.slug}`, s] as const))("%s has at least three FAQs", (_name, s) => {
+    expect(s.faqs.length).toBeGreaterThanOrEqual(3);
+  });
+
+  it.each(all.map(([lang, s]) => [`${lang} ${s.slug}`, s] as const))("%s links only to indexable pages", (_name, s) => {
+    expect(s.related.filter((href) => !paths.has(href))).toEqual([]);
   });
 });
 
