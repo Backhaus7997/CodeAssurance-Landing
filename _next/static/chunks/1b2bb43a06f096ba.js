@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,16498,t=>{"use strict";var e=t.i(71645);function u(){return(0,e.useEffect)(()=>{document.documentElement.setAttribute("data-hydrated","")},[]),null}t.s(["HydrationMark",()=>u])}]);
