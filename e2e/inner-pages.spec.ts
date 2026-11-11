@@ -70,3 +70,21 @@ for (const path of ["/services/manual-qa-testing/", "/services/dedicated-qa-engi
     await expect.poll(() => visual.getAttribute("data-step"), { timeout: 5000 }).not.toBe(first);
   });
 }
+
+test("/pricing/ animates how a quote comes together", async ({ page }) => {
+  await page.goto("/pricing/");
+  await expect(page.locator("[data-steps] [data-step]")).toHaveCount(4);
+  await expect(page.locator('[data-section-index="01"]')).toContainText("How it works");
+});
+
+for (const [path, items] of [
+  ["/services/", 9],
+  ["/guides/", 4],
+] as const) {
+  test(`${path} shows numbered cards that glow`, async ({ page }) => {
+    await page.goto(path);
+    const cards = page.getByTestId("hub-list").locator("[data-glow-card]");
+    await expect(cards).toHaveCount(items);
+    await expect(cards.first()).toContainText("01");
+  });
+}

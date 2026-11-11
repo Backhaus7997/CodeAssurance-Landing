@@ -17,6 +17,8 @@ export type PageCopy = {
   related: string[];
   /** ISO date of the last change to the text. */
   updated: string;
+  /** Optional steps shown on the home timeline before the sections (pricing). */
+  steps?: { title: string; text: string }[];
 };
 
 export type HubCopy = Pick<PageCopy, "seo" | "eyebrow" | "h1" | "answer" | "updated">;

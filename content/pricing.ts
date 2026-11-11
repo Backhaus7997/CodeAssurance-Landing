@@ -8,6 +8,12 @@ export const pricing: PageCopy = {
       "How Code Assurance prices QA work: a short call, an assessment of your product and scope, and a written quote. No price list and no long contracts.",
   },
   eyebrow: "Pricing",
+  steps: [
+    { title: "A 15-minute call", text: "What you are building, how you ship today and where quality hurts." },
+    { title: "An assessment of your product", text: "We look at your product and, when you can share it, your code." },
+    { title: "A written quote", text: "Scope, team, dedication and month-to-month terms, in writing." },
+    { title: "Month one", text: "A coverage map of your codebase first; if the month doesn't work for you, you stop there." },
+  ],
   h1: "How pricing works",
   answer:
     "We don't publish fixed prices, because two QA engagements are rarely the same size. Instead, we start with a short call, assess your product and what you need, and send a written quote for the work. Engagements run month-to-month with no long contract, and if the first month doesn't work for you, you stop there.",
