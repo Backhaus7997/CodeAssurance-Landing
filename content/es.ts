@@ -196,28 +196,8 @@ export const es: SiteContent = {
     label: "Planes",
     title: "Formas de trabajar con nosotros",
     description:
-      "Elegí el que encaje con el momento de tu producto. Cada uno se dimensiona según tu alcance, es mes a mes y podés pasar de uno a otro.",
+      "Un equipo de QA que se suma al tuyo, part-time o full-time. Lo dimensionamos según tu alcance después de un assessment, es mes a mes y podés ampliarlo o achicarlo.",
     packages: [
-      {
-        name: "Quality Check",
-        tagline: "QA manual funcional, por proyecto",
-        summary: "Detectar defectos funcionales antes del go-live y bajar el riesgo de cambios grandes o módulos nuevos.",
-        tiers: [
-          { name: "Standard", size: "módulo chico o mediano", scope: "Un módulo nuevo o varias funcionalidades relacionadas. 5–10 pantallas o flujos, reglas de negocio moderadas.", team: "1 QA senior + 1 QA" },
-          { name: "Medium", size: "módulo complejo", scope: "Módulos de negocio importantes. 10–20 flujos y varias integraciones: APIs, pasarelas de pago, servicios internos.", team: "1 QA senior + 2 QA" },
-          { name: "Premium", size: "alto impacto", scope: "Cambios de alto impacto. Más de 20 flujos, muchas integraciones y flujos end-to-end validados de punta a punta.", team: "1 QA senior + 2–3 QA" },
-        ],
-      },
-      {
-        name: "Quality Booster",
-        tagline: "Regresión continua y arranque de automatización",
-        summary: "Un framework de automatización funcionando, con un primer set de regresión automatizada sobre tus flujos críticos.",
-        tiers: [
-          { name: "Kickstart Basic", size: "producto chico", scope: "Apps o módulos chicos, 1–2 flujos críticos. Framework base y el primer set automatizado.", team: "1 QA automation senior + 1 QA automation" },
-          { name: "Kickstart Standard", size: "producto mediano", scope: "Varios módulos y 2–3 roles de usuario. Framework con reportes y pipelines, estabilización y documentación.", team: "1 senior + 1–2 QA automation" },
-          { name: "Kickstart Full", size: "producto complejo", scope: "Sistemas core con reglas complejas. Estabilización completa, documentación y capacitación del equipo.", team: "1 senior + 2 QA automation" },
-        ],
-      },
       {
         name: "Quality Squad",
         tagline: "Un equipo de QA dedicado",

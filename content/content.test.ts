@@ -106,6 +106,10 @@ describe("English and Spanish have the same structure", () => {
     expect(es.process.steps.map((s) => s.deliverables.length)).toEqual(en.process.steps.map((s) => s.deliverables.length));
   });
 
+  it("offers only Quality Squad, part-time or full-time", () => {
+    expect(en.plans.packages.map((p) => [p.name, p.tiers.map((t) => t.name)])).toEqual([["Quality Squad", ["Part-time", "Full-time"]]]);
+  });
+
   it("has the same plans and tiers", () => {
     expect(es.plans.packages.map((p) => [p.name, p.tiers.map((t) => t.name)])).toEqual(
       en.plans.packages.map((p) => [p.name, p.tiers.map((t) => t.name)]),

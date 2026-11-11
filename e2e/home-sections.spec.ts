@@ -1,6 +1,8 @@
 import { expect, test } from "@playwright/test";
 
-const TIERS = ["Standard", "Medium", "Premium", "Kickstart Basic", "Kickstart Standard", "Kickstart Full", "Part-time", "Full-time"];
+// Only Quality Squad is offered as a plan (user decision, 2026-11-11); everything else is quoted after an assessment.
+const TIERS = ["Part-time", "Full-time"];
+const RETIRED = ["Quality Check", "Quality Booster", "Kickstart Basic", "Premium"];
 const SLUGS = ["performance-audit", "security-review", "code-quality", "automated-testing"];
 
 test.describe("process, plans, audits and team", () => {
@@ -20,6 +22,7 @@ test.describe("process, plans, audits and team", () => {
     for (const tier of TIERS) {
       await expect(plans.getByText(tier, { exact: true })).toBeVisible();
     }
+    for (const name of RETIRED) await expect(plans.getByText(name, { exact: true })).toHaveCount(0);
   });
 
   test("each audit links to its service page in English", async ({ page }) => {

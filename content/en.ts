@@ -199,28 +199,8 @@ export const en: SiteContent = {
     label: "Plans",
     title: "Ways to work with us",
     description:
-      "Pick the one that fits where your product is today. Each is sized to your scope, runs month-to-month, and you can move between them.",
+      "A QA team that joins yours, part-time or full-time. Sized to your scope after a short assessment, month-to-month, and you can scale it up or down.",
     packages: [
-      {
-        name: "Quality Check",
-        tagline: "Manual functional QA, by project",
-        summary: "Find functional defects before go-live and lower the risk of big changes or new modules.",
-        tiers: [
-          { name: "Standard", size: "small or medium module", scope: "A new module or related features. 5–10 screens or flows, moderate business rules.", team: "1 senior QA + 1 QA" },
-          { name: "Medium", size: "complex module", scope: "Important business modules. 10–20 flows and several integrations: APIs, payment gateways, internal services.", team: "1 senior QA + 2 QAs" },
-          { name: "Premium", size: "high impact", scope: "High-impact changes. 20+ flows, many integrations, end-to-end flows validated from start to finish.", team: "1 senior QA + 2–3 QAs" },
-        ],
-      },
-      {
-        name: "Quality Booster",
-        tagline: "Continuous regression and automation kickstart",
-        summary: "A working automation framework with a first automated regression set on your critical flows.",
-        tiers: [
-          { name: "Kickstart Basic", size: "small product", scope: "Small apps or modules, 1–2 critical flows. Base framework and the first automated set.", team: "1 senior automation QA + 1 automation QA" },
-          { name: "Kickstart Standard", size: "medium product", scope: "Several modules and 2–3 user roles. Framework with reporting and pipelines, stabilization and docs.", team: "1 senior + 1–2 automation QAs" },
-          { name: "Kickstart Full", size: "complex product", scope: "Core systems with complex rules. Full stabilization, complete documentation and team training.", team: "1 senior + 2 automation QAs" },
-        ],
-      },
       {
         name: "Quality Squad",
         tagline: "A dedicated QA team",
