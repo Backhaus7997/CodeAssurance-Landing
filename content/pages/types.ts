@@ -2,7 +2,8 @@ export type FaqItem = { q: string; a: string };
 
 export type Author = { name: string; role: string };
 
-export type ContentSection = { heading: string; paragraphs: string[]; bullets?: string[] };
+/** `pull`: one sentence of the section's own text, shown as a highlighted quote in guides. */
+export type ContentSection = { heading: string; paragraphs: string[]; bullets?: string[]; pull?: string };
 
 /** A text page built to be quoted: one h1, a direct answer, sections, FAQs and related links (SEO spec, 5.1). */
 export type PageCopy = {

@@ -19,6 +19,7 @@ export const qaOutsourcingCost: Guide = {
   sections: [
     {
       heading: "Why is there no standard price for QA outsourcing?",
+      pull: "A price list has to guess; an assessment doesn't.",
       paragraphs: [
         "Two requests that sound the same can be very different projects. \"Automate our regression tests\" can mean twenty flows on one web app with a clean API, or two hundred flows across web, Android and iOS with half the test environments missing. A price list has to guess; an assessment doesn't.",
         "That is why most QA companies quote after looking at the product, and why quotes from different vendors are hard to compare unless you ask what each one actually includes.",

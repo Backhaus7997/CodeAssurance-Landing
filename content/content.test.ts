@@ -296,3 +296,9 @@ describe("service visuals", () => {
     });
   });
 });
+
+describe("guide pull quotes", () => {
+  it.each(guides.map((g) => [g.slug, g] as const))("%s highlights exactly one sentence", (_slug, guide) => {
+    expect(guide.sections.filter((s) => s.pull)).toHaveLength(1);
+  });
+});

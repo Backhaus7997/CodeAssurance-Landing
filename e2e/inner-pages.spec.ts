@@ -88,3 +88,24 @@ for (const [path, items] of [
     await expect(cards.first()).toContainText("01");
   });
 }
+
+test("a guide shows reading progress and a table of contents that follows the reader", async ({ page, isMobile }) => {
+  test.skip(isMobile, "the table of contents is a desktop feature; the phone test is below");
+  await page.goto("/guides/how-to-hire-a-qa-company/");
+  const toc = page.getByRole("navigation", { name: "On this page" });
+  const sections = await page.locator('[id^="section-"]').count();
+  expect(sections).toBeGreaterThan(3);
+  await expect(toc.locator("a")).toHaveCount(sections);
+  await expect(page.getByTestId("short-answer")).toBeVisible();
+  await page.locator("#section-3").scrollIntoViewIfNeeded();
+  await page.mouse.wheel(0, 120);
+  await expect(toc.locator('a[aria-current="true"]')).toHaveAttribute("href", "#section-3");
+  const scale = await page.locator("[data-reading-progress]").evaluate((el) => new DOMMatrix(getComputedStyle(el).transform).a);
+  expect(scale).toBeGreaterThan(0);
+});
+
+test("on a phone the guide hides the table of contents", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/guides/qa-outsourcing-cost/");
+  await expect(page.getByRole("navigation", { name: "On this page" })).toBeHidden();
+});

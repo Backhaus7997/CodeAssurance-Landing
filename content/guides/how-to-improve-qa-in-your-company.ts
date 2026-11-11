@@ -87,6 +87,7 @@ export const howToImproveQaInYourCompany: Guide = {
     },
     {
       heading: "How do you know it is working?",
+      pull: "A thousand tests on low-risk screens are worth less than twenty on the flows that pay your bills.",
       paragraphs: [
         "Pick a few measures and watch them over months, not days: escaped bugs per release and how severe they are, how long it takes to know whether a build is safe to ship, how many tests are flaky or quarantined, and how much of the risk map is covered by automated checks.",
         "Avoid counting test cases. A thousand tests on low-risk screens are worth less than twenty on the flows that pay your bills.",

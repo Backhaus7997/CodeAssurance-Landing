@@ -38,6 +38,7 @@ export const howToHireAQaCompany: Guide = {
     },
     {
       heading: "Which engagement model do you need?",
+      pull: "Choose the model first: it makes vendors much easier to compare.",
       paragraphs: ["QA companies usually work in one of three ways, and choosing the model first makes vendors much easier to compare:"],
       bullets: [
         "A project with a clear end: a performance audit, a security review, or the first version of an automated test suite. It fits when the problem is specific and bounded.",

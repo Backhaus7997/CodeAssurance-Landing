@@ -36,7 +36,10 @@ test("the water stops while the tab is hidden", async ({ page }) => {
       return original(cb);
     };
   });
-  await page.goto("/privacy/");
+  // Mid-way through a long guide neither the hero grid nor the footer wordmark is on screen (both pause
+  // off screen), so the only loop left is the water's.
+  await page.goto("/guides/how-to-improve-qa-in-your-company/");
+  await page.locator("#section-5").scrollIntoViewIfNeeded();
   await page.waitForTimeout(800);
   await page.evaluate(() => {
     Object.defineProperty(document, "hidden", { configurable: true, get: () => true });

@@ -20,7 +20,7 @@ export function GuidePage({ guide, path, breadcrumbs, relatedTitle, site }: { gu
           updated: guide.updated,
         })}
       />
-      <TopicPage copy={guide} breadcrumbs={breadcrumbs} relatedTitle={relatedTitle} faqTitle="FAQs" site={site}>
+      <TopicPage copy={guide} breadcrumbs={breadcrumbs} relatedTitle={relatedTitle} faqTitle="FAQs" site={site} guide={{ shortAnswerLabel: "Short answer" }}>
         <Byline authors={guide.authors} published={guide.published} updated={guide.updated} />
       </TopicPage>
     </>

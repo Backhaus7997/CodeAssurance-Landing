@@ -84,6 +84,7 @@ export const qaOutsourcingVsInHouseQa: Guide = {
     },
     {
       heading: "What makes a mixed model work?",
+      pull: "Ownership: one person on your side decides priorities and accepts the results.",
       paragraphs: [
         "Ownership. One person on your side decides priorities and accepts the results, and every test, report and test case lives in your tools. With that in place, people can join or leave without the knowledge leaving with them.",
         "It also helps to agree on shared definitions: what counts as a blocking bug, what done means for a story, and who decides whether a release ships.",
