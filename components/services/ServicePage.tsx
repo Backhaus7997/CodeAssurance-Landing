@@ -6,6 +6,7 @@ import { JsonLd } from "@/components/content/JsonLd";
 import { EvidenceList } from "@/components/content/EvidenceList";
 import { GlowCard } from "@/components/content/GlowCard";
 import { RelatedLinks } from "@/components/content/RelatedLinks";
+import { ServiceVisual } from "@/components/content/ServiceVisual";
 import { StepsTimeline } from "@/components/content/StepsTimeline";
 import { StackMarquee } from "@/components/home/StackMarquee";
 import { Start } from "@/components/home/Start";
@@ -35,6 +36,7 @@ export function ServicePage({ service, site, eyebrow, path, breadcrumbs, related
         answer={service.answer}
         cta={{ bookLabel: site.start.primaryCta, emailLabel: site.start.emailCta }}
         secondary={{ label: service.headings.howItWorks, href: "#how" }}
+        visual={<ServiceVisual visual={service.visual} site={site} />}
       />
 
       <Block title={service.headings.deliverables} index="01">

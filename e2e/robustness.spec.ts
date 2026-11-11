@@ -127,6 +127,7 @@ test("animated loops pause when they are offscreen", async ({ page }) => {
 
 for (const width of [375, 1280]) {
   test(`the rotating word does not move the hero at ${width}px`, async ({ page }) => {
+    test.setTimeout(60_000); // samples the hero for 13.5 s; under a full parallel run the default 30 s is too tight
     await page.setViewportSize({ width, height: 900 });
     await page.goto("/");
     const heights = new Set<number>();

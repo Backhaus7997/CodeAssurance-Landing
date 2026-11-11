@@ -14,6 +14,18 @@ const headings: ServiceContent["headings"] = {
 export const servicesEnOnly: Record<EnOnlyServiceSlug, ServiceContent> = {
   "manual-qa-testing": {
     slug: "manual-qa-testing",
+    visual: {
+      kind: "checklist",
+      title: "Regression pass · checkout",
+      items: [
+        { text: "Sign up with email" },
+        { text: "Log in with single sign-on" },
+        { text: "Add items to the cart" },
+        { text: "Apply a discount code", bug: "bug found: total not updated" },
+        { text: "Pay with a saved card" },
+        { text: "Download the invoice" },
+      ],
+    },
     meta: {
       title: "Manual QA Testing Services | Code Assurance",
       description:
@@ -105,6 +117,16 @@ export const servicesEnOnly: Record<EnOnlyServiceSlug, ServiceContent> = {
 
   "dedicated-qa-engineers": {
     slug: "dedicated-qa-engineers",
+    visual: {
+      kind: "sprint",
+      columns: ["To do", "In progress", "QA", "Done"],
+      cards: [
+        { title: "Saved addresses", start: 2 },
+        { title: "Password reset", start: 1 },
+        { title: "Bulk export", start: 1 },
+        { title: "Webhook retries", start: 0 },
+      ],
+    },
     meta: {
       title: "Dedicated QA Engineers for Your Team | Code Assurance",
       description:
@@ -196,6 +218,7 @@ export const servicesEnOnly: Record<EnOnlyServiceSlug, ServiceContent> = {
 
   "ai-qa-agent": {
     slug: "ai-qa-agent",
+    visual: { kind: "pr" },
     meta: {
       title: "AI QA Agent for Your Test Suite | Code Assurance",
       description:
@@ -288,6 +311,11 @@ export const servicesEnOnly: Record<EnOnlyServiceSlug, ServiceContent> = {
 
   "mobile-app-testing": {
     slug: "mobile-app-testing",
+    visual: {
+      kind: "phone",
+      devices: ["Pixel 8 · Android 15", "iPhone 15 · iOS 18", "Galaxy A54 · Android 14"],
+      rows: ["Launch and sign in", "Push notification opens the order", "Cart syncs after going offline", "Rotate during checkout"],
+    },
     meta: {
       title: "Mobile App Testing Services (Android, iOS) | Code Assurance",
       description:
@@ -372,6 +400,12 @@ export const servicesEnOnly: Record<EnOnlyServiceSlug, ServiceContent> = {
 
   "api-testing": {
     slug: "api-testing",
+    visual: {
+      kind: "api",
+      request: ["POST /v1/orders", "{", '  "sku": "A-12",', '  "qty": 2', "}"],
+      response: ["201 Created", "{", '  "id": "ord_93f",', '  "status": "pending"', "}"],
+      checks: ["status is 201", "body matches the contract", "order stored in the database"],
+    },
     meta: {
       title: "API Testing Services | Code Assurance",
       description:

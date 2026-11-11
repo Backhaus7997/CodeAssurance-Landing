@@ -275,3 +275,24 @@ describe("IndexNow", () => {
     expect(readFileSync(new URL(keyFiles[0], dir), "utf8").trim()).toBe(keyFiles[0].slice(0, -4));
   });
 });
+
+describe("service visuals", () => {
+  it("are the same kind in English and Spanish", () => {
+    for (const slug of SERVICE_SLUGS) expect(servicesEs[slug].visual.kind, slug).toBe(servicesEn[slug].visual.kind);
+  });
+
+  it("give every English service its own visual", () => {
+    const kinds = Object.fromEntries(EN_SERVICE_SLUGS.map((slug) => [slug, servicesEn[slug].visual.kind]));
+    expect(kinds).toEqual({
+      "automated-testing": "run",
+      "performance-audit": "audit",
+      "security-review": "audit",
+      "code-quality": "audit",
+      "manual-qa-testing": "checklist",
+      "dedicated-qa-engineers": "sprint",
+      "ai-qa-agent": "pr",
+      "mobile-app-testing": "phone",
+      "api-testing": "api",
+    });
+  });
+});

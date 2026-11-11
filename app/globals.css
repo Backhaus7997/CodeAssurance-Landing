@@ -239,3 +239,11 @@ html.js [data-reveal]:not([data-in]) {
 .ghost-word::before {
   content: attr(data-word);
 }
+
+/* Cards entering a column in the sprint board visual. */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+}

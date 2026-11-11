@@ -7,6 +7,7 @@ import type { ServiceContent } from "./types";
 const servicesBilingualEn: Record<ServiceSlug, ServiceContent> = {
   "automated-testing": {
     slug: "automated-testing",
+    visual: { kind: "run" },
     meta: {
       title: "Test Automation Services | Code Assurance",
       description:
@@ -144,6 +145,7 @@ const servicesBilingualEn: Record<ServiceSlug, ServiceContent> = {
   },
   "performance-audit": {
     slug: "performance-audit",
+    visual: { kind: "audit", audit: "latency" },
     meta: {
       title: "Performance Testing and Audit Services | Code Assurance",
       description:
@@ -276,6 +278,7 @@ const servicesBilingualEn: Record<ServiceSlug, ServiceContent> = {
   },
   "security-review": {
     slug: "security-review",
+    visual: { kind: "audit", audit: "endpoints" },
     meta: {
       title: "Security Testing Services | Code Assurance",
       description:
@@ -409,6 +412,7 @@ const servicesBilingualEn: Record<ServiceSlug, ServiceContent> = {
   },
   "code-quality": {
     slug: "code-quality",
+    visual: { kind: "audit", audit: "debt" },
     meta: {
       title: "Code Quality Review Services | Code Assurance",
       description:

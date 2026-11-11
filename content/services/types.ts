@@ -1,4 +1,4 @@
-import type { AnyServiceSlug } from "../types";
+import type { AnyServiceSlug, AuditVisualKind } from "../types";
 
 export type ServiceContent = {
   slug: AnyServiceSlug;
@@ -20,4 +20,15 @@ export type ServiceContent = {
   evidenceNote: string;
   tools: { title: string; detail: string }[];
   faqs: { q: string; a: string }[];
+  visual: ServiceVisual;
 };
+
+/** The animated visual in a service page's hero (spec 2026-11-11, 4.2). Text lives here, never in components. */
+export type ServiceVisual =
+  | { kind: "run" }
+  | { kind: "pr" }
+  | { kind: "audit"; audit: AuditVisualKind }
+  | { kind: "checklist"; title: string; items: { text: string; bug?: string }[] }
+  | { kind: "sprint"; columns: [string, string, string, string]; cards: { title: string; start: 0 | 1 | 2 }[] }
+  | { kind: "phone"; devices: string[]; rows: string[] }
+  | { kind: "api"; request: string[]; response: string[]; checks: string[] };

@@ -37,3 +37,36 @@ for (const [path, sections] of [
     expect(await page.locator("[data-glow-card]").count()).toBeGreaterThanOrEqual(3);
   });
 }
+
+const VISUALS = [
+  ["/services/automated-testing/", "run"],
+  ["/services/performance-audit/", "audit"],
+  ["/services/security-review/", "audit"],
+  ["/services/code-quality/", "audit"],
+  ["/services/manual-qa-testing/", "checklist"],
+  ["/services/dedicated-qa-engineers/", "sprint"],
+  ["/services/ai-qa-agent/", "pr"],
+  ["/services/mobile-app-testing/", "phone"],
+  ["/services/api-testing/", "api"],
+  ["/es/services/automated-testing/", "run"],
+  ["/es/services/code-quality/", "audit"],
+] as const;
+
+for (const [path, kind] of VISUALS) {
+  test(`${path} shows its ${kind} visual in the hero`, async ({ page }) => {
+    await page.goto(path);
+    await expect(page.locator(`main section:first-of-type [data-visual="${kind}"]`)).toHaveCount(1);
+  });
+}
+
+for (const path of ["/services/manual-qa-testing/", "/services/dedicated-qa-engineers/", "/services/mobile-app-testing/", "/services/api-testing/"]) {
+  test(`${path} animates its visual`, async ({ page }) => {
+    await page.goto(path);
+    const visual = page.locator("[data-visual]");
+    await visual.scrollIntoViewIfNeeded(); // visuals pause off screen, which on phones is below the hero text
+    await page.waitForTimeout(300);
+    const first = await visual.getAttribute("data-step");
+    // A loop holds its last step for a pause, so wait up to one full cycle for the next step.
+    await expect.poll(() => visual.getAttribute("data-step"), { timeout: 5000 }).not.toBe(first);
+  });
+}
