@@ -7,9 +7,9 @@ const DETAILS = "group border-b border-line [&_summary::-webkit-details-marker]:
 const SUMMARY = "flex min-h-12 cursor-pointer list-none items-start justify-between gap-4 py-3.5 text-[17px] font-semibold";
 
 /** Visible questions and answers, plus the same pairs as FAQPage data. */
-export function Faq({ title, items }: { title: string; items: FaqItem[] }) {
+export function Faq({ title, items, index }: { title: string; items: FaqItem[]; index?: string }) {
   return (
-    <Section title={title} testId="faq">
+    <Section title={title} testId="faq" index={index}>
       <JsonLd data={faqLd(items)} />
       <div className="border-t border-line">
         {items.map((faq) => (

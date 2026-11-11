@@ -28,13 +28,11 @@ for (const [path, lang, title] of PAGES) {
   });
 }
 
-test("how it works opens with the keyboard", async ({ page, browserName }) => {
-  test.skip(browserName === "webkit", "Safari tabs only between form fields unless Option+Tab is used");
+test("how it works shows every step at once on the home timeline", async ({ page }) => {
   await page.goto("/services/performance-audit/");
-  const first = page.getByTestId("service-how").locator("details").nth(1);
-  await first.locator("summary").focus();
-  await page.keyboard.press("Enter");
-  await expect(first).toHaveAttribute("open", "");
+  const steps = page.getByTestId("service-how").locator("[data-step]");
+  await expect(steps).toHaveCount(3);
+  for (const step of await steps.all()) await expect(step).toBeAttached();
 });
 
 test("tools are presented as examples", async ({ page }) => {

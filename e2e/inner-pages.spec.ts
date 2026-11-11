@@ -23,3 +23,17 @@ for (const [path, h1] of HEROES) {
     expect(await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth)).toBeLessThanOrEqual(0);
   });
 }
+
+for (const [path, sections] of [
+  ["/services/automated-testing/", 6],
+  ["/es/services/automated-testing/", 5],
+] as const) {
+  test(`${path} numbers its sections like the home`, async ({ page }) => {
+    await page.goto(path);
+    const labels = await page.locator("main [data-section-index]").evaluateAll((els) => els.map((el) => el.getAttribute("data-section-index")));
+    expect(labels).toEqual(Array.from({ length: sections }, (_, i) => String(i + 1).padStart(2, "0")));
+    await expect(page.locator("[data-steps] [data-step]")).toHaveCount(4);
+    await expect(page.locator("[data-marquee]")).toHaveCount(1);
+    expect(await page.locator("[data-glow-card]").count()).toBeGreaterThanOrEqual(3);
+  });
+}
