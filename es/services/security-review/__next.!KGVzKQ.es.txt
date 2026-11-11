@@ -1,6 +1,7 @@
 1:"$Sreact.fragment"
-2:I[16498,["/_next/static/chunks/1b2bb43a06f096ba.js"],"HydrationMark"]
-3:I[39756,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
-4:I[37457,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
-:HL["/_next/static/chunks/2eda61e3e70eb282.css","style"]
-0:{"buildId":"t7x7epJU40AhHcbB0_ZW8","rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/2eda61e3e70eb282.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/1b2bb43a06f096ba.js","async":true}]],["$","html",null,{"lang":"es","className":"archivo_aefddf3b-module__UOsvBW__variable ibm_plex_mono_ad0edeba-module__MIkpna__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"var d=document.documentElement;d.classList.add('js');setTimeout(function(){if(!d.hasAttribute('data-hydrated'))d.classList.remove('js')},2500)"}}]}],["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{"parallelRouterKey":"children","template":["$","$L4",null,{}]}]]}]]}]]}],"loading":null,"isPartial":false}
+2:I[7064,["/_next/static/chunks/8bf33f8ad1bd6069.js"],"WaterBackground"]
+3:I[16498,["/_next/static/chunks/8bf33f8ad1bd6069.js"],"HydrationMark"]
+4:I[39756,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
+5:I[37457,["/_next/static/chunks/ff1a16fafef87110.js","/_next/static/chunks/d2be314c3ece3fbe.js"],"default"]
+:HL["/_next/static/chunks/ee9d1d14404764ed.css","style"]
+0:{"buildId":"KYoRPTnR_WHJoR_-uJyiK","rsc":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/ee9d1d14404764ed.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/8bf33f8ad1bd6069.js","async":true}]],["$","html",null,{"lang":"es","className":"archivo_aefddf3b-module__UOsvBW__variable ibm_plex_mono_ad0edeba-module__MIkpna__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"dangerouslySetInnerHTML":{"__html":"var d=document.documentElement;d.classList.add('js');setTimeout(function(){if(!d.hasAttribute('data-hydrated'))d.classList.remove('js')},2500)"}}]}],["$","body",null,{"children":[["$","$L2",null,{}],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","template":["$","$L5",null,{}]}]]}]]}]]}],"loading":null,"isPartial":false}
