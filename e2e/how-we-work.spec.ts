@@ -10,7 +10,9 @@ const STAGES: [string, string][] = [
   ["validate", "separates real application bugs from test mistakes"],
   ["deliver", "Opens a draft pull request"],
 ];
-const TIERS = ["Standard", "Medium", "Premium", "Kickstart Basic", "Kickstart Standard", "Kickstart Full", "Part-time", "Full-time"];
+// Only Quality Squad is offered as a plan (user decision, 2026-11-11); everything else is quoted after an assessment.
+const TIERS = ["Part-time", "Full-time"];
+const RETIRED = ["Quality Check", "Quality Booster", "Kickstart Basic", "Premium"];
 
 test("is a campaign page kept out of search results", async ({ page }) => {
   const res = await page.goto("/how-we-work/");
@@ -34,6 +36,7 @@ test("carries the approved one-pager content", async ({ page }) => {
   for (const tier of TIERS) {
     await expect(page.locator("#plans").getByText(tier, { exact: true })).toBeVisible();
   }
+  for (const name of RETIRED) await expect(page.locator("#plans").getByText(name, { exact: true })).toHaveCount(0);
   await expect(page.getByRole("heading", { name: "Month-to-month, no long contract" })).toBeVisible();
   await expect(page.locator('a[href="mailto:martin.backhaus@code-assurance.com"]').first()).toBeVisible();
 });
