@@ -1,0 +1,40 @@
+# Code Assurance
+
+> Code Assurance is a software QA company: senior QA engineers and an AI QA agent that work inside your repositories, tickets and test framework. It provides test automation, manual QA, dedicated QA engineers, and mobile, API, performance and security testing for product teams in the United States.
+
+How to work with Code Assurance: every engagement starts with a short call and an assessment of your product. Prices are not published; each engagement is quoted after the assessment, runs month-to-month with no long contract, and if the first month doesn't work for the client, it stops there. The team works in English or Spanish from Argentina (UTC−3), overlapping most of the US working day. Our AI QA agent is an add-on to any engagement, and a senior QA engineer reviews everything it produces.
+
+Book a 15-minute call at https://cal.com/martin-backhaus-0xntwz/15min or write to martin.backhaus@code-assurance.com.
+
+## Company
+
+- [Code Assurance](https://www.code-assurance.com/): Senior QA engineers and an AI QA agent for your product: manual QA, test automation and dedicated QA engineers, month-to-month. Quoted after a short call.
+
+## Services
+
+- [QA services](https://www.code-assurance.com/services/): QA services built around your product: test automation, manual QA, dedicated QA engineers, an AI QA agent, and mobile, API, performance and security testing.
+- [Test automation services](https://www.code-assurance.com/services/automated-testing/): Test automation services in your framework: we build a suite from zero, extend the one you have or keep it maintained, with an AI QA agent as an add-on.
+- [Performance testing and audit services](https://www.code-assurance.com/services/performance-audit/): Performance testing and audits for web apps and APIs: baselines for your critical user journeys, the bottlenecks behind them and a plan backed by measured runs.
+- [Security testing services](https://www.code-assurance.com/services/security-review/): Manual security testing focused on what your next release puts at risk: attack surface mapping, validated findings with evidence, fix guidance and retests.
+- [Code quality review services](https://www.code-assurance.com/services/code-quality/): Code quality reviews that set quality gates matching real risk, find the hotspots that cause regressions and order your technical debt by business impact.
+- [Manual QA testing services](https://www.code-assurance.com/services/manual-qa-testing/): Manual QA testing by senior engineers: functional, regression and exploratory testing of your web and mobile apps, with bugs reported in your own tracker.
+- [Dedicated QA engineers for your team](https://www.code-assurance.com/services/dedicated-qa-engineers/): Dedicated QA engineers who join your team: manual or automation testers in your ceremonies and tools, with US time overlap, month-to-month and no long contract.
+- [AI QA agent for your test suite](https://www.code-assurance.com/services/ai-qa-agent/): Our AI QA agent maps your codebase, writes tests in your framework and repairs broken locators, with every change reviewed by a senior QA engineer first.
+- [Mobile app testing services for Android and iOS](https://www.code-assurance.com/services/mobile-app-testing/): Mobile app testing for Android and iOS on real devices and emulators: functional, regression and compatibility testing across OS versions, plus Appium.
+- [API testing services](https://www.code-assurance.com/services/api-testing/): API testing services: functional and contract tests for your endpoints and integrations, data checks in SQL, and automated runs in your CI pipeline.
+
+## Pricing
+
+- [How pricing works](https://www.code-assurance.com/pricing/): How Code Assurance prices QA work: a short call, an assessment of your product and scope, and a written quote. No price list and no long contracts.
+
+## Guides
+
+- [QA guides](https://www.code-assurance.com/guides/): Practical QA guides for product teams: how to hire a QA company, outsourcing vs. in-house, how to improve QA and what QA outsourcing costs depend on.
+- [How to hire a QA company: a buyer's checklist](https://www.code-assurance.com/guides/how-to-hire-a-qa-company/): A practical checklist for hiring a QA company: when it makes sense, the three engagement models, questions to ask, red flags and what the first month shows.
+- [QA outsourcing vs. an in-house QA team](https://www.code-assurance.com/guides/qa-outsourcing-vs-in-house-qa/): QA outsourcing or an in-house QA team? Compare time to start, product knowledge, control, flexibility and what drives cost, then use a checklist to decide.
+- [How to improve QA in your company](https://www.code-assurance.com/guides/how-to-improve-qa-in-your-company/): A practical plan to improve QA in your company: find where bugs escape, map risk, test at the right level, automate critical flows and fix flaky tests.
+- [What QA outsourcing costs depend on](https://www.code-assurance.com/guides/qa-outsourcing-cost/): What drives the cost of QA outsourcing: engagement model, scope, platforms, the state of your test suite, team dedication and tools, and how to get a quote.
+
+## Optional
+
+- [Privacy policy](https://www.code-assurance.com/privacy/): What Code Assurance collects through this website, why we use it, who processes it, how long we keep it and how to see, correct or delete it.

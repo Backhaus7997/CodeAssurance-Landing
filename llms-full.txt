@@ -1,0 +1,1170 @@
+# Code Assurance: full text
+
+> Code Assurance is a software QA company: senior QA engineers and an AI QA agent that work inside your repositories, tickets and test framework. It provides test automation, manual QA, dedicated QA engineers, and mobile, API, performance and security testing for product teams in the United States.
+
+---
+
+# Test automation services
+
+URL: https://www.code-assurance.com/services/automated-testing/
+
+We build, extend or maintain your automated test suite in the framework your team already uses. Starting from zero, we map your codebase and automate the critical flows first; with an existing suite, we stabilize it and close the coverage gaps; after that we keep it green in CI. Our AI QA agent can be added to any engagement.
+
+## What you get
+
+- Automation plan: What to automate first + why, including flake rate / pass rate / runtime trends
+- Test suite increment: New tests + clear ownership + rules that keep the suite stable over time
+- CI execution profile: Runtime targets + execution strategy to keep CI fast and reliable
+
+## How it works
+
+### Starting from zero: we build the suite
+
+- We map your codebase and critical flows first, then set up the framework in your stack: Playwright by default, or the one your team prefers
+- The first critical flows run in CI early; coverage then grows by risk: auth, roles, payments, integrations
+
+### You already have a suite: we adopt and extend it
+
+- We keep your framework and conventions, fix what is broken and standardize the rest
+- Coverage gaps from the codebase map become a prioritized backlog of new tests
+
+### You need it maintained: we keep it green
+
+- A flake policy with an owner: every unstable test is fixed, quarantined or removed, never ignored
+- Tests change with the product, with run evidence on every release
+
+### Add-on: our AI QA agent
+
+- Writes tests in your framework and sends them as pull requests that a senior QA engineer reviews
+- When a locator breaks, it finds the element again on the live page and proposes the fix for your approval
+
+## Evidence you will actually see
+
+- PR/release run links and summaries (what was covered + what failed)
+- Logs + screenshots + traces/video (when applicable)
+- Failure clustering (top failing tests, flaky hotspots, failing components)
+- Trend snapshots: pass rate, flake rate, runtime evolution
+
+## Tools we often use (examples)
+
+- Playwright: E2E for critical journeys + traces/video to debug failures fast.
+- Cypress / Selenium: When teams already have suites or need compatibility with existing tooling.
+- Postman / API testing: Fast feedback on endpoints and integrations before UI breaks.
+- CI/CD (Jenkins + Git): PR gates, smoke suites, and run evidence tied to merges/releases.
+- Jira + TestRail: Traceability: plans, regression packs, and clear defect lifecycle.
+- SQL validation: Backend integrity checks (CRUD, consistency) where the system needs it.
+
+## FAQs
+
+### How long does it take to get a CI-ready automated regression suite?
+
+Depends on scope and maturity. We start with 3–5 critical flows + PR smoke gates, then expand iteratively while tracking pass rate, flake rate, and runtime.
+
+### What do you automate first in a new product?
+
+Critical journeys: authentication, roles/permissions, approvals, payments, integrations. We prioritize flows that block revenue or create release risk.
+
+### How do you reduce flaky tests in Playwright/Cypress?
+
+Stable-first selectors, deterministic waits (no sleep), controlled test data, and a clear flake policy (fix/quarantine/remove) with ownership.
+
+### Do you focus on API/contract testing or E2E?
+
+Both. API/contract where it’s cheaper and more stable; E2E only where UI integration is the real risk. Right layer per risk.
+
+### How do you run test automation in CI/CD?
+
+Fast PR suite to gate merges (smoke + critical flows) plus scheduled runs for broader regression. Gates are explicit and evidence-backed.
+
+### Can you work with React / .NET backends and complex workflows?
+
+Yes. We’ve validated complex business workflows and multi-module systems; we align test scope with business-critical paths.
+
+### What evidence do engineers get?
+
+Run links, logs, screenshots, traces/video (when applicable), and trend snapshots (pass rate, flake rate, runtime).
+
+### How do you handle test data and environments safely?
+
+We define test data strategy up front (fixtures/seed/reset), isolate risky operations, and avoid production impact by design.
+
+---
+
+# Performance testing and audit services
+
+URL: https://www.code-assurance.com/services/performance-audit/
+
+We measure how your web app and APIs behave on the journeys that matter, find the bottlenecks behind slow pages and endpoints, and hand you a prioritized plan with the evidence to back it. Every finding comes from a measured run, and every fix is validated with the same measurement before we call it done.
+
+## What you get
+
+- Baseline & metrics report: Key pages/endpoints, p95/p99, error rate, and performance trends.
+- Bottlenecks & root-cause hypotheses: Top slow points + likely causes (API/DB/query/render/third-party) with “where to look” guidance.
+- Action + validation plan: Prioritized fixes (impact/effort), owner suggestions, safe test plan, and a re-test checklist to confirm improvements.
+
+## How it works
+
+### Baseline first (what we measure)
+
+- Critical journeys first (login, checkout/payment, approvals, search, key dashboards)
+- Define performance expectations (p95/p99 goals, error rate) + constraints (env/data/traffic patterns)
+
+### Bottleneck isolation (how we narrow causes)
+
+- Triage across layers: UI vs API vs DB signals vs third-party dependencies
+- API-level measurements: slow endpoints, payload size, inefficient calls, timeouts
+- Data validation where relevant (SQL checks / consistency signals) to confirm impact
+
+### Verification mindset (how we keep it real)
+
+- Evidence-driven findings (numbers + reproducible runs)
+- Prioritized next steps: quick wins vs deeper investigation
+- Re-test plan to validate improvements after changes
+
+## Evidence you will actually see
+
+- Baseline snapshot: p95/p99, latency + error rate + slowest endpoints.
+- Top bottlenecks ranked by impact
+- Before/after comparison template for engineers
+- Constraints notes (data, environment, third parties)
+
+## Tools we often use (examples)
+
+- Load & performance testing (k6 / JMeter): Baselines for key journeys, p95/p99, throughput, and error rate under realistic traffic.
+- Frontend profiling (DevTools / Lighthouse): Identify render/JS/asset bottlenecks and user-perceived latency (CWV signals when relevant).
+- API & endpoint diagnostics (Postman / curl): Reproducible endpoint measurements, payload checks, timeout patterns, integration behavior.
+- Backend & DB investigation (SQL checks): Validate slow queries, N+1 patterns, data consistency signals, and “is it the DB?” confirmations.
+- Monitoring & tracing (APM: Datadog / New Relic / OpenTelemetry): Correlate slow requests across services, dependencies, and third parties with trace evidence.
+- CI execution & reporting (Jenkins + Git workflows): Repeatable runs, PR-friendly evidence, and “before/after” comparisons after changes.
+
+## FAQs
+
+### What do you measure in a Performance Audit?
+
+We baseline real journeys with p95/p99, throughput, and error rate—plus the slowest pages/endpoints.
+
+### How do you choose which journeys to test first?
+
+We start with release-critical flows (login, checkout/payment, approvals, search, key dashboards).
+
+### Do you test UI performance or API performance?
+
+Both—UI for user-perceived latency and API/DB for the underlying bottlenecks.
+
+### How do you isolate where the bottleneck is?
+
+We triage by layer (UI vs API vs DB vs third-party) and validate with reproducible runs.
+
+### Will this impact production traffic?
+
+Not by default—we use safe test plans, controlled load, and staging where possible.
+
+### What do engineers actually get at the end?
+
+A baseline report, a ranked bottleneck map with likely causes, and a prioritized action plan.
+
+### How do you prove improvements after fixes?
+
+We re-run the same scenarios and provide before/after comparisons using the same metrics.
+
+### How long does a typical audit take?
+
+Small scopes can be quick; larger systems take longer—but we deliver value early with a baseline + top bottlenecks first.
+
+---
+
+# Security testing services
+
+URL: https://www.code-assurance.com/services/security-review/
+
+We test your application the way an attacker would, focused on what your next release puts at risk. We map the attack surface, validate each finding by hand with reproducible evidence, explain how to fix it and retest after your team ships the fix. You get findings your developers can act on, not a scanner dump.
+
+## What you get
+
+- Security findings report: Validated issues with severity, impact, and reproduction steps.
+- Security test cases: Concrete test cases you can reuse for future releases and regressions.
+- Retest checklist: A practical checklist to confirm fixes before shipping.
+
+## How it works
+
+### Discovery & attack surface mapping
+
+- Identify critical flows for release (auth, roles/permissions, sensitive actions)
+- Map entry points and exposed services/endpoints
+- Baseline scan to detect obvious exposure (e.g., open ports/services)
+
+### Manual security testing (validated findings)
+
+- Manual testing to confirm real exploitability (not just scanner noise)
+- Use Nmap/Nikto to support discovery and vulnerability detection
+- Execute structured security test cases across flows
+
+### Collaboration & fix verification
+
+- Align with cross-functional teams on scope + requirements
+- Provide clear reproduction steps and expected secure behavior
+- Retest fixes to reduce release risk and prevent incidents
+
+## Evidence you will actually see
+
+- Reproduction steps (clear and repeatable)
+- Tool outputs when relevant (Nmap/Nikto summaries)
+- Security test case set (what to test next time)
+- Retest confirmation notes (fixed / still failing)
+
+## Tools we often use (examples)
+
+- Nmap (Discovery & exposure): Port/service discovery, network footprint, verification of unintended exposure.
+- Nikto (Web server baseline checks): Quick detection of common server misconfigurations and risky defaults.
+- Burp Suite / OWASP ZAP (Manual validation): Intercept traffic, reproduce issues, validate exploitability (reduce scanner noise).
+- Code scanning (SAST + dependencies): Identify risky patterns and vulnerable libraries early in PRs.
+- Threat modeling (STRIDE-lite): Map entry points, trust boundaries, and “what matters” before testing deeper.
+- Tracking & evidence (Jira + reports): Clear reproduction steps, severity, expected secure behavior, and retest notes.
+
+## FAQs
+
+### What’s included in a Security Review?
+
+Attack surface mapping + baseline scanning + manual security testing to validate real exploitability, with clear remediation guidance and fix verification.
+
+### Do you do penetration testing or just vulnerability scanning?
+
+Both. Scans help find signals fast; manual testing confirms what’s truly exploitable and removes false positives.
+
+### How do you decide what to test first?
+
+We prioritize deployment-critical flows: auth, roles/permissions, sensitive actions, integrations, and any data that creates legal or business risk.
+
+### Will this affect production or user data?
+
+We plan safe execution: test environments when possible, rate limits, non-destructive techniques, agreed scope, and clear stop conditions.
+
+### What evidence do we get from findings?
+
+Repro steps, impacted endpoints/flows, severity, proof-of-concept (safe), and expected secure behavior—plus retest results after fixes.
+
+### Can you work with React frontends and .NET / API backends?
+
+Yes. We test end-to-end flows and API surfaces, and we communicate findings in a way engineers can act on quickly.
+
+### Do you cover OWASP Top 10 and common web risks?
+
+Yes—auth/session issues, access control, injection, misconfigurations, sensitive data exposure, and insecure integrations are core focus areas.
+
+### Can you integrate security checks into CI/CD?
+
+We can recommend lightweight gates (SAST/dependency scans) and a cadence for deeper manual reviews before high-visibility releases.
+
+---
+
+# Code quality review services
+
+URL: https://www.code-assurance.com/services/code-quality/
+
+We review your codebase to find the hotspots that keep causing regressions, set quality gates that match real risk instead of arbitrary thresholds, and order your technical debt by business impact. The result is a short list of changes your team can make in its normal cadence, with checks in CI so the gains stick.
+
+## What you get
+
+- Quality baseline: Hotspots, complexity signals, churn areas, and where bugs repeat—so we fix the right things first.
+- Quality gates & standards: PR checklist + Definition of Done + automated checks aligned to your team’s workflow.
+- Prioritized debt plan: High-ROI fixes and refactors ranked by impact × likelihood (not cosmetic cleanup).
+
+## How it works
+
+### Assess quality risk (where things break)
+
+- Identify hotspots: high-churn modules, repeated bug zones, fragile boundaries
+- Map risk → recommended controls (tests, checks, refactor targets)
+
+### Enforce standards (quality gates that stick)
+
+- Define merge-ready rules: lint/format/static analysis + thresholds where applicable
+- PR hygiene: templates, checklists, ownership, review signals
+
+### Reduce debt without slowing delivery
+
+- Refactor targets chosen by business risk (bugs/rework/maintainability), not preference
+- Safe changes strategy: small PRs, guardrails, CI evidence
+
+## Evidence you will actually see
+
+- Quality baseline report (hotspots + rationale)
+- Quality gates checklist + PR template
+- Before/after examples (lint issues, duplication, flaky areas)
+- Debt backlog (impact, owner, ETA, why now)
+
+## Tools we often use (examples)
+
+- Static Analysis & Type Safety (ESLint / SonarQube / TypeScript): Lint + strict rules to prevent risky patterns, catch regressions early (contracts, nullability, unsafe calls).
+- CI Quality Gates (Jenkins + Git workflows): Merge-ready rules: lint, tests, coverage thresholds, and quality checks enforced on every PR.
+- Automation Signals (Playwright / Cypress / Selenium): CI quality signals from critical journeys/regression to keep maintainability and prevent silent breakage.
+- API & Contract Checks (Postman / contract checks): Faster feedback loops; validate integration behavior without the cost/flake risk of UI-only coverage.
+- Tracking & Test Management (Jira + TestRail): Traceability, recurring defect hotspots, ownership, and regression packs that stay actionable.
+- Safe Refactoring + Data Integrity (small PRs + guardrails + SQL validation): Refactor safely with measurable impact; verify data integrity and detect broken flows caused by backend changes.
+
+## FAQs
+
+### What do you mean by “Code Quality” in practice?
+
+Code quality is how safe it is to change the code. We focus on standards + fast CI feedback to reduce regressions.
+
+### How do you find quality hotspots quickly?
+
+We target high-churn modules, repeated bug areas, and fragile boundaries (UI/API/DB). Then we map each hotspot to a concrete control.
+
+### Do you enforce standards without slowing delivery?
+
+Yes, PR gates stay minimal but effective (format/lint + key tests). We phase in stricter rules gradually.
+
+### What should be a merge blocker vs a warning?
+
+Blockers: broken lint/format, failing critical tests, failing types/security checks.\nWarnings: style improvements and non-critical rule violations.
+
+### How do you reduce technical debt without massive rewrites?
+
+We prioritize debt by business risk, then refactor in small PRs with guardrails. Every change ships with CI evidence.
+
+### Can you work with React and .NET backends / complex workflows?
+
+Yes. We focus controls on real boundaries: permissions, integrations, and data consistency.
+
+### What deliverables do engineers actually get?
+
+A PR gate setup, a hotspot map, prioritized refactor targets, and reusable checklists. Everything is actionable.
+
+### How do you measure improvement over time?
+
+Fewer regressions and lower rework, plus more stable CI (better pass/flake rate). Faster PR throughput because issues are caught earlier.
+
+---
+
+# Manual QA testing services
+
+URL: https://www.code-assurance.com/services/manual-qa-testing/
+
+Senior QA engineers test your web and mobile apps by hand before each release: functional checks of new features, regression passes over what already works, and exploratory sessions that look for the bugs nobody wrote a test for. Every bug arrives in your tracker with steps, evidence and severity, and stable checks can be automated later.
+
+## What you get
+
+- Test plan and cases: Test cases for your critical flows, kept in your test management tool
+- Release test reports: What was tested, what passed, what failed and what is still open, per release
+- Bug reports developers can act on: Steps to reproduce, expected and actual results, evidence and severity
+
+## How it works
+
+### Functional testing of new features
+
+- We test each story against its acceptance criteria and the business rules around it
+- Edge cases, roles and permissions, and error states, not only the happy path
+
+### Regression before each release
+
+- A regression pack ordered by risk, so the critical flows are always covered
+- Passes timed to your release, with a clear go or no-go summary
+
+### Exploratory testing
+
+- Time-boxed sessions that look for what scripted tests miss
+- Findings become new test cases when they reveal a gap
+
+### Support for user acceptance testing
+
+- We prepare scenarios and data so your stakeholders can sign off faster
+- Issues found in acceptance testing are triaged with your team before the release
+
+## Evidence you will actually see
+
+- Test cases and runs in your test management tool
+- Bug reports with steps, screenshots, video and logs
+- Release reports: coverage, open issues and risk
+- Regression results per release
+
+## Tools we often use (examples)
+
+- Jira / Linear: Bugs filed where your developers already work.
+- TestRail: Test cases, runs and regression packs with traceability.
+- Azure DevOps Test Plans: Test plans and results inside your Azure DevOps project.
+- Browser developer tools: Network, console and storage evidence attached to each bug.
+
+## FAQs
+
+### Is manual testing still worth it if we have automated tests?
+
+Yes. Automation is best at repeating known checks; people are better at new features, usability problems and the unexpected. Most products need both, and we help decide what stays manual and what gets automated.
+
+### What do you need from us to start?
+
+Access to a test environment, your tracker and whatever describes the product: stories, acceptance criteria or a walkthrough with someone who knows it. In the first week we map the critical flows and agree on how bugs are reported.
+
+### Do you test mobile apps too?
+
+Yes, on Android and iOS, on real devices and emulators. Our mobile app testing page explains how we choose devices and OS versions.
+
+### Can manual test cases be automated later?
+
+Yes. Stable, repetitive checks are the best candidates. We flag them as we go, and our automation engineers or our AI QA agent can turn them into tests in your framework.
+
+### How do you report bugs?
+
+In your tracker, with steps to reproduce, expected and actual results, screenshots or video, logs when they help, and a severity agreed with your team.
+
+---
+
+# Dedicated QA engineers for your team
+
+URL: https://www.code-assurance.com/services/dedicated-qa-engineers/
+
+Our QA engineers join your team as if they were in-house: they attend your ceremonies, work in your tools and own testing for the projects you assign them. You choose manual testers, automation engineers or a mix, part-time or full-time, month-to-month. We work from Argentina (UTC−3), so most of the day overlaps with US teams.
+
+## What you get
+
+- A QA owner for your projects: Someone accountable for test strategy and release readiness on each assigned project
+- Testing in every sprint: Stories tested as they land, regression before releases and bugs triaged with your developers
+- Quality you can see: Reports your team and stakeholders can read: what was tested and what is at risk
+
+## How it works
+
+### Onboarding in the first week
+
+- We learn your product, flows and release process, and map the codebase
+- Access, tools and reporting are agreed with your leads before the first sprint
+
+### Working inside your team
+
+- Daily standups, planning, refinement and reviews, like any other team member
+- Acceptance criteria and testability questions raised during refinement, not after the code ships
+
+### Manual, automation or both
+
+- Manual testers for functional, regression and exploratory work
+- Automation engineers who build and maintain tests in your framework
+
+### A flexible engagement
+
+- Part-time across one or more projects, or full-time on your critical ones
+- Month-to-month: you can scale up or down, and if the first month doesn't work for you, you stop there
+
+## Evidence you will actually see
+
+- Test results and bug reports in your tools
+- Sprint and release QA summaries
+- Risk notes before each release
+- Test plans and coverage that stay with your team
+
+## Tools we often use (examples)
+
+- Your tracker: Jira, Linear or Azure DevOps: we work where your team works.
+- Your test framework: Playwright, Cypress, Selenium, Robot Framework or the one you already use.
+- Your communication tools: Slack or Teams, with standups and reviews on your schedule.
+- TestRail / Azure DevOps Test Plans: Test cases and runs traced back to stories.
+
+## FAQs
+
+### What is QA staff augmentation?
+
+It means adding QA engineers to your team without hiring them yourself. They work inside your process and tools, while we take care of hiring and managing them.
+
+### How much do our time zones overlap?
+
+We work from Argentina (UTC−3). With US teams most of the working day overlaps, so standups, planning and reviews happen in real time.
+
+### Can we start with one engineer and grow?
+
+Yes. You can start with one QA engineer, part-time or full-time, and add more as the product or the release pace grows. It is month-to-month.
+
+### Do your engineers work in English?
+
+Yes. We work in English or Spanish, in meetings and in writing.
+
+### Who owns the test cases and the automation?
+
+You do. Everything is written in your repositories and tools, so it stays with your team if the engagement ends.
+
+---
+
+# AI QA agent for your test suite
+
+URL: https://www.code-assurance.com/services/ai-qa-agent/
+
+Our AI QA agent is a pipeline of specialized agents that a senior QA engineer runs on your codebase. It maps what is covered and what is not, writes tests in the framework you already use, sends them as pull requests, and proposes fixes when a locator breaks. Nothing reaches your repository without human review. It is an add-on to any engagement.
+
+## What you get
+
+- Codebase coverage map: Every module, the tests it already has and the flows with none, built from your code in the first week
+- Tests as pull requests: New tests in your framework and conventions, ready for your normal code review
+- Self-repairing locators: When a selector breaks, the agent finds the element again on the live page and proposes the fix for approval
+
+## How it works
+
+### It reads before it writes
+
+- Scans your repositories to learn the stack, the framework and the conventions your team uses
+- Checks the current documentation of your test tools before writing code
+
+### It maps your coverage
+
+- Builds a map of modules, existing tests and untested flows
+- Gaps become a prioritized backlog, starting with the flows that carry the most risk
+
+### It writes and repairs tests
+
+- Writes tests in your framework and test cases in the tool you use, Azure DevOps Test Plans included
+- When a locator breaks, it re-matches the element on the live page and proposes the fix, which waits for approval
+
+### A person stays in charge
+
+- A senior QA engineer from our team runs the agent, reviews every output and decides what goes to your repository
+- Application bugs it finds go to your developers with steps and logs; the test stays red on purpose
+
+## Evidence you will actually see
+
+- The coverage map of your codebase
+- Pull requests with the tests and the reasoning behind them
+- Proposed locator fixes with the before and after
+- Bug reports with steps and logs for your developers
+
+## Tools we often use (examples)
+
+- Playwright / Cypress / Selenium: The agent writes in the framework you already use.
+- Robot Framework: Keyword-driven suites are supported too.
+- Jest / Vitest / pytest: Unit and integration tests alongside your code.
+- GitHub / GitLab / Azure DevOps: Tests arrive as pull requests in your repository.
+- Azure DevOps Test Plans: Test cases written into your existing test plans.
+
+## FAQs
+
+### Does the agent replace QA engineers?
+
+No. It does the repetitive work faster, but a senior QA engineer from our team runs it, reviews what it produces and decides what reaches your repository.
+
+### Can it merge code on its own?
+
+No. Everything arrives as a pull request or a proposed fix that waits for approval. Your normal code review stays in place.
+
+### Which frameworks does it work with?
+
+The ones your team already uses, such as Playwright, Cypress, Selenium, Robot Framework, Jest, Vitest or pytest. It follows your existing rules for how tests are written.
+
+### How do we add it?
+
+It is an add-on to any engagement: test automation, manual QA or dedicated QA engineers. We include it in the quote after the assessment call.
+
+### What happens when it finds a real bug?
+
+It doesn't hide it. The failing test stays red, and the bug goes to your developers with steps and logs.
+
+---
+
+# Mobile app testing services for Android and iOS
+
+URL: https://www.code-assurance.com/services/mobile-app-testing/
+
+We test your Android and iOS apps on real devices and emulators before every release. That covers functional and regression testing, compatibility across OS versions, screen sizes and device models, and behavior on poor networks. Stable checks can be automated with Appium, so the flows you run on every build don't depend on someone tapping through them by hand.
+
+## What you get
+
+- Device and OS matrix: The devices, OS versions and screen sizes that matter for your users, agreed up front
+- Release test passes: Functional, regression and compatibility results per build, before it reaches the stores
+- Automated mobile checks: Appium tests for stable, repetitive flows, running in your pipeline
+
+## How it works
+
+### We agree on the device matrix
+
+- Based on your analytics or your target market, we choose devices, OS versions and screen sizes
+- Real devices for what emulators cannot reproduce; emulators for breadth
+
+### Functional and regression testing
+
+- New features tested against acceptance criteria on both platforms
+- Regression passes before each release, so updates don't break what worked
+
+### Real-world conditions
+
+- Slow or unstable networks, interruptions, permissions and background states
+- Install, update and upgrade paths, not only clean installs
+
+### Automation where it pays off
+
+- Appium tests for the flows you run on every build
+- Results and evidence attached to each run in your pipeline
+
+## Evidence you will actually see
+
+- Device and OS coverage per release
+- Bug reports with device, OS version, steps and video
+- Regression results per build
+- Automated run results from your pipeline
+
+## Tools we often use (examples)
+
+- Appium: Automation for Android and iOS from one test suite.
+- Android emulators / iOS simulators: Breadth across OS versions and screen sizes.
+- Real devices: Gestures, hardware and behavior that emulators cannot reproduce.
+- Jira / TestRail: Bugs and test runs with device details attached.
+
+## FAQs
+
+### Do you test on real devices or emulators?
+
+Both. Emulators give breadth across OS versions and screen sizes; real devices catch what emulators miss, like gestures and hardware behavior. We agree on the mix with you.
+
+### Which devices and OS versions do you cover?
+
+The ones your users have. We build the matrix from your analytics or your target market, and update it as new OS versions ship.
+
+### Can you automate our mobile tests?
+
+Yes, with Appium, for the flows you run on every build. Exploratory and visual checks usually stay manual.
+
+### Do you test before App Store and Google Play releases?
+
+Yes. We run regression and compatibility passes on each release candidate, so the build you submit has been tested on the devices that matter.
+
+---
+
+# API testing services
+
+URL: https://www.code-assurance.com/services/api-testing/
+
+We test your APIs and integrations directly, before problems reach the user interface. That means functional tests for each endpoint, contract checks so a change on one side doesn't break the other, and SQL checks that the data underneath stays consistent. The tests run in your CI pipeline, so every merge gets fast feedback.
+
+## What you get
+
+- API test suite: Functional tests for your critical endpoints, in your stack and running in CI
+- Contract checks: Agreements between services and third parties, tested on every change
+- Data integrity checks: SQL validation of what the API writes, reads and updates
+
+## How it works
+
+### Critical endpoints first
+
+- We start with the endpoints behind revenue and critical flows: auth, payments, orders, integrations
+- Positive, negative and edge cases, including permissions and error responses
+
+### Contracts between services
+
+- Request and response contracts tested, so a change on one side doesn't silently break the other
+- Third-party integrations covered at the boundary you control
+
+### The data underneath
+
+- SQL checks confirm the API stored what it reported
+- Test data set up and cleaned, so runs are repeatable
+
+### Runs in your pipeline
+
+- Fast API suites gate merges; broader runs happen on a schedule
+- Failures come with the request, the response and the logs
+
+## Evidence you will actually see
+
+- Test runs in CI with request and response details
+- Contract check results per change
+- Data consistency findings with the queries behind them
+- Bug reports with reproducible requests
+
+## Tools we often use (examples)
+
+- Postman: Collections for functional API tests and fast exploration.
+- Contract checks: Request and response agreements between services, tested on every change.
+- SQL: Data validation at the database level.
+- CI/CD (Jenkins + Git workflows): API suites that gate merges and releases.
+
+## FAQs
+
+### Why test the API if we already have end-to-end tests?
+
+API tests are faster and more stable, and they pinpoint where a failure is. End-to-end tests still matter for the critical journeys, but most checks are cheaper at the API level.
+
+### What is contract testing?
+
+It checks that the requests and responses two services exchange still match what each side expects, so a change in one doesn't silently break the other.
+
+### Do you test third-party integrations?
+
+We test the boundary you control: what you send, what you accept, and how you handle errors and timeouts from the other side.
+
+### Where do the tests run?
+
+In your CI pipeline. Fast suites gate merges, and broader runs happen on a schedule or before releases.
+
+---
+
+# How pricing works
+
+URL: https://www.code-assurance.com/pricing/
+
+We don't publish fixed prices, because two QA engagements are rarely the same size. Instead, we start with a short call, assess your product and what you need, and send a written quote for the work. Engagements run month-to-month with no long contract, and if the first month doesn't work for you, you stop there.
+
+## What happens on the call?
+
+The first call takes about 15 minutes. We ask what you are building, how you ship today and where quality hurts: escaped bugs, slow releases, a test suite nobody trusts, or no QA at all.
+
+If it makes sense to continue, we look at your product and, when you can share it, your code. That assessment is what the quote is based on.
+
+## What changes the price?
+
+The price follows the work, so these are the factors we look at:
+
+- How many critical flows and integrations need coverage: payments, third-party APIs, roles and permissions
+- Which platforms are involved: web, Android, iOS, APIs
+- Where your test suite stands: starting from zero, extending one you already have, or keeping one maintained
+- Manual testing, automation or both
+- Dedication: part-time or full-time engineers, and how many
+- Whether you add our AI QA agent to the engagement
+- Focused work such as a performance audit or a security review
+
+## What does the quote include?
+
+A written scope: what we will test or automate first, what you get each month and how progress is reported.
+
+The team: who works on your product and with what dedication. And the terms: month-to-month, with no long contract.
+
+## How does an engagement run?
+
+The first deliverable of every engagement is a coverage map of your codebase, built in the first week. From there, the work follows your sprints and releases, with evidence you can check in your own tools.
+
+You can scale up, scale down or stop from one month to the next.
+
+## FAQs
+
+### Why don't you publish prices?
+
+Because scope varies too much. A regression pass on one web app and a dedicated team across three products are different projects. A quote based on your actual scope is more useful than a number that fits nobody.
+
+### Is there a long-term contract?
+
+No. Engagements are month-to-month. If the first month doesn't work for you, you stop there.
+
+### Is the AI QA agent included?
+
+It is an add-on you can include in any engagement. If you want it, it is part of the quote.
+
+### Can we start small?
+
+Yes. You can start with one engineer or one focused piece of work, like automating your critical flows or a performance audit, and grow from there.
+
+### What do you need from us to send a quote?
+
+A short call about your product and how you ship. If you can share a test environment or your repository, the assessment is more precise, and so is the quote.
+
+---
+
+# How to hire a QA company: a buyer's checklist
+
+URL: https://www.code-assurance.com/guides/how-to-hire-a-qa-company/
+
+Hire a QA company when bugs keep reaching users, releases slow down because nobody trusts the tests, or your developers spend their time testing instead of building. Choose the engagement model first: a project, a dedicated team or engineers inside your team. Then judge vendors by how they learn your product, what they deliver in the first month and who owns the work.
+
+## When does it make sense to hire a QA company?
+
+Most teams don't start with QA. Developers test their own work, someone clicks through the main flows before a release, and that is enough until it isn't. The signals that you have outgrown that stage are easy to see once you name them:
+
+- Bugs reach users that a basic regression pass would have caught
+- Releases slip because nobody is confident the build is safe to ship
+- Automated tests fail at random, so the team has learned to ignore them
+- Developers spend a large share of each sprint testing instead of building
+- A launch, an audit or an important customer is coming, and you need evidence that the product works
+
+## Is outside help the right next step?
+
+If two or more of those signals sound familiar, outside help is usually faster than hiring and training an in-house team from scratch. A QA company brings people who have already set up test strategies, automation and release checks on other products, so you skip the months of learning that a first hire would need.
+
+If none of them sound familiar, you may not need a QA company yet. A good vendor will tell you so on the first call instead of selling you a service you don't need.
+
+## Which engagement model do you need?
+
+QA companies usually work in one of three ways, and choosing the model first makes vendors much easier to compare:
+
+- A project with a clear end: a performance audit, a security review, or the first version of an automated test suite. It fits when the problem is specific and bounded.
+- A dedicated QA team that owns testing for a product: they plan, test, automate and report, and you get the outcome. It fits when you have no QA function at all.
+- Engineers inside your team, often called QA staff augmentation: testers who join your ceremonies and work in your tools. It fits when you already have a process and need more hands or skills in it.
+
+## Can you combine the models?
+
+Yes, and over time it is common. A focused project can stabilize a flaky test suite, and then one or two engineers keep it healthy inside your sprints. Or an outside team covers day-to-day testing while specialists run a performance audit before a big launch.
+
+What matters is that you know which model you are buying at each moment, because each one is judged differently: a project by what it delivers at the end, a team by the outcomes it owns, and embedded engineers by how well they work inside your process.
+
+## What should you ask a QA company before hiring it?
+
+The answers to these questions tell you more than any case study:
+
+- How will you learn our product in the first two weeks, and what will you need from us?
+- What will we have at the end of the first month that we don't have today?
+- Will you work in our framework, repositories and tracker, or bring your own?
+- Who reviews the tests you write, and how do you keep them stable?
+- How do you report bugs, and how do you report progress to people who don't read test results?
+- Who exactly will work on our product, and how much of their time will it get?
+- What happens to the test cases and the automation if we stop working together?
+- How much do our working hours overlap?
+
+## How do you judge the answers?
+
+Pay attention to how specific the answers are. A vendor who has done this before will describe the first weeks concretely: what they will look at, what they will ask for and what you will see by when. A vague answer usually means a generic process that will be adapted to your product slowly, at your expense.
+
+Also notice what they ask you. Good QA teams ask about your users, your release process and the bugs that hurt most before they talk about tools or headcount.
+
+## What are the red flags?
+
+None of these is a deal-breaker on its own, but each one deserves a direct question:
+
+- A fixed offer and price before anyone has looked at your product
+- Promises of total coverage or zero bugs; no honest QA team can guarantee either
+- Tests written in a proprietary tool that you can't run or keep without the vendor
+- Metrics that count test cases instead of risks covered or bugs caught before release
+- No clear owner on their side, or a team that changes every few weeks
+- A long contract before you have seen any results
+
+## What should the first month look like?
+
+The first month is the best test of a QA company, so agree on it before you sign. In the first week, expect questions about your product, your users, how you ship and where it hurts. A good team builds a map of what is already tested and what is not, so the work starts from risk, not from a template.
+
+By the end of the month you should see real output: bugs found and reported in your tracker, the first critical flows covered by tests that run in your pipeline, and a plan for the next months that you understand and agree with. If you can't point to any of that, the engagement is not working, and month-to-month terms let you stop there.
+
+## How should you prepare before talking to vendors?
+
+You don't need a formal requirements document. Half an hour of notes makes the first call much more useful, and the quotes you get back become easier to compare. Write down:
+
+- What the product does, who uses it, and which flows make money or would hurt most if they broke
+- How you build and release today: environments, CI, release cadence
+- What testing already exists, even if it is just a checklist
+- The last few bugs that reached users, and what they cost you
+- What a good outcome looks like in three months
+
+## How does Code Assurance work?
+
+Code Assurance offers all three models: focused projects such as test automation, performance audits and security reviews; dedicated QA for your product; and QA engineers who join your team. Every engagement starts with a short call and an assessment, the first deliverable is a coverage map built from your codebase, and the work runs month-to-month. Our AI QA agent can be added to any engagement.
+
+## FAQs
+
+### How long does it take to start working with a QA company?
+
+It depends on the vendor and on access. Once a test environment and your tools are available, a prepared team can start learning your product in the first week and produce useful output within the first month.
+
+### Should we hire a QA company or build an in-house team?
+
+It depends on how fast you need results, how steady the workload is and whether you want to manage QA yourself. Our guide on QA outsourcing vs. an in-house team compares both in detail.
+
+### Can a QA company work with our developers in the same sprint?
+
+Yes, if you choose a model where testers join your team. They attend planning and refinement, test stories as they land and file bugs where your developers already work.
+
+### Who should own the test automation, us or the vendor?
+
+You should. The tests should live in your repositories and run in your pipeline, so they keep working if the vendor leaves.
+
+### What does a QA company need from us to start?
+
+Access to a test environment, your tracker and your repositories, plus someone who knows the product and can answer questions during the first weeks.
+
+---
+
+# QA outsourcing vs. an in-house QA team
+
+URL: https://www.code-assurance.com/guides/qa-outsourcing-vs-in-house-qa/
+
+An in-house QA team gives you full control and knowledge that stays in the company, but it takes months to hire and needs someone to lead it. QA outsourcing starts in weeks, brings experience you may not have and scales with the work, but it needs clear ownership on your side. For many products, a mix of both works best.
+
+## What does an in-house QA team give you?
+
+An in-house team is part of your company: hired by you, managed by you and focused only on your product. Over time its members learn the product, the users and the history of every tricky bug, and that knowledge stays with you.
+
+- Full control over priorities, process and tools
+- Deep product knowledge that builds up over the years
+- QA voices in planning, design and product decisions every day
+- No dependency on an outside contract
+
+## What does an in-house team cost you, beyond salaries?
+
+The costs are less visible than the benefits. You need someone who knows how to hire QA engineers and judge their work, and enough steady work to keep the team busy between releases. If the workload drops, the team stays; if it spikes before a launch, hiring is too slow to help.
+
+Building a team also takes time. Sourcing, interviews and onboarding usually add up to months before the first tester is productive, and a first hire without senior guidance often has to learn test strategy and automation on your product.
+
+## What does QA outsourcing give you?
+
+With outsourcing, a QA company provides the people and often the process. Depending on the model, they own testing for a product, deliver a specific project, or place engineers inside your team.
+
+- A faster start: a prepared team can begin in weeks instead of months
+- Experience across many products and tools that a first in-house hire may not have
+- Flexibility to scale up for a launch and down after it
+- Specialized skills, such as performance or security testing, only when you need them
+
+## What are the trade-offs of outsourcing?
+
+An outside team has to learn your product, and that knowledge can leave with them unless the work lives in your repositories and tools. Continuity of the same people matters: a vendor that rotates engineers every few weeks makes you pay for onboarding again and again.
+
+You also need someone on your side who sets priorities, answers product questions and reviews the results. Outsourcing moves the testing work out of your team; it does not remove the need for an owner.
+
+## How do the two options compare?
+
+Side by side, on the points that usually decide it:
+
+- Time to start: weeks with outsourcing, months for an in-house team
+- Product knowledge: deepest in-house over the long run; with outsourcing it depends on keeping the same people
+- Control: complete in-house; shared with outsourcing, through scope, priorities and reporting
+- Flexibility: high with outsourcing; low in-house, because hiring and letting people go is slow
+- Management effort: you manage an in-house team directly; with outsourcing you manage the relationship and the results
+- Skills: an in-house team covers what you hire for; an outside team can add specialists for a few weeks
+
+## What drives the cost of each option?
+
+Comparing salaries with a vendor's quote leaves out most of the picture. For an in-house team, add recruiting, onboarding, management time, tools, and the months before the team is productive. For outsourcing, look at what the quote actually covers: the people, their dedication, the deliverables and how long you are committed.
+
+The fairest comparison is cost per outcome: what it takes, in each option, to have your critical flows covered by tests you trust and bugs caught before release. Our guide on what QA outsourcing costs depend on goes through the factors one by one.
+
+## Can you combine both?
+
+Yes, and it is often the best answer. Combinations that work well:
+
+- An outside team builds or stabilizes the test automation; an in-house engineer owns it afterwards
+- An in-house QA lead sets strategy and priorities; outsourced engineers add capacity during sprints
+- In-house testers cover day-to-day work; outside specialists handle performance or security testing before major releases
+
+## What makes a mixed model work?
+
+Ownership. One person on your side decides priorities and accepts the results, and every test, report and test case lives in your tools. With that in place, people can join or leave without the knowledge leaving with them.
+
+It also helps to agree on shared definitions: what counts as a blocking bug, what done means for a story, and who decides whether a release ships.
+
+## Which one should you choose?
+
+A simple way to decide:
+
+- Choose in-house if QA work is steady, you have someone who can lead it, and you can wait months for the team to be productive
+- Choose outsourcing if you need results this quarter, the workload changes with launches, or you lack the QA experience to hire well
+- Choose a mix if you want an in-house owner but need more capacity or specialized skills than one hire can bring
+
+## How does Code Assurance fit?
+
+We work as the outsourced part of either picture: as a dedicated QA team for your product, as engineers who join your team, or on focused projects such as test automation, performance audits and security reviews. Everything we produce lives in your tools, engagements run month-to-month, and our AI QA agent can be added to any of them. Whatever you choose, keep the work in your own repositories and tools; that one decision makes it easy to change your mind later.
+
+## FAQs
+
+### Is QA outsourcing cheaper than an in-house team?
+
+Sometimes, not always. It is usually cheaper to start and easier to scale down; over years of steady work an in-house team can cost less. Compare cost per outcome, not hourly rates.
+
+### Will an outsourced QA team understand our product?
+
+A good one will, if you give them access and time. Expect questions in the first weeks and a map of what is tested and what is not. Keeping the same people on your product matters more than anything else.
+
+### Can we move outsourced QA work in-house later?
+
+Yes, if the tests, test cases and documentation live in your repositories and tools from day one. Make that a condition before you start.
+
+### Do we need a QA lead in-house if we outsource?
+
+You need an owner, not necessarily a QA specialist: someone who sets priorities, answers product questions and reviews results. An engineering manager or a product lead often does it.
+
+### Can outsourced QA engineers join our daily standups?
+
+Yes, when they work inside your team. Time zone overlap makes this easy or hard, so ask about working hours before you sign.
+
+---
+
+# How to improve QA in your company
+
+URL: https://www.code-assurance.com/guides/how-to-improve-qa-in-your-company/
+
+Start by finding where bugs escape today, then put your testing effort where the risk is. Map your critical flows, test each one at the cheapest level that catches its bugs, automate the checks you repeat on every release, and keep the suite trustworthy by fixing or removing flaky tests. Make quality part of how stories are written, not only how they are checked.
+
+## Where are your bugs escaping today?
+
+Improvement starts with evidence. Take the last twenty or thirty bugs that reached users or were found late, and for each one write down where it should have been caught: in the requirements, in code review, in a unit test, in an API test, or in a manual check before the release.
+
+Patterns appear quickly. Maybe most escaped bugs come from one module, from integrations with a third party, or from changes nobody tested again. That pattern tells you where to invest first, which is more useful than any generic best practice.
+
+## Which flows carry the most risk?
+
+Not every part of a product deserves the same testing. A risk map lists your main modules and flows and rates each one on two questions: how likely is it to break, and how much does it hurt when it does? The usual suspects:
+
+- Flows that touch money: checkout, payments, refunds, invoices
+- Access: sign-up, login, password reset, roles and permissions
+- Integrations with third parties and with other internal services
+- Areas that change often or have a history of bugs
+- Anything with legal, security or data-loss consequences
+
+## How detailed should the risk map be?
+
+Short enough that the whole team reads it. A page listing modules, their risk and what covers them today is enough to start. Start your effort at the top of that list, and update the map whenever an escaped bug shows that a risk was rated too low.
+
+If you can, build the map from the codebase rather than from memory: which modules exist, which tests already touch them and which flows have none. It is less flattering, and much more accurate.
+
+## At which level should you test each thing?
+
+Each kind of test catches different bugs at a different cost. Unit tests are fast and cheap but don't see how the pieces work together. API tests check behavior and contracts without the fragility of the interface. End-to-end tests prove that a real user journey works, but they are slower and break more easily. Manual and exploratory testing finds what nobody thought to script.
+
+Test each behavior at the lowest level that can catch its bugs, and keep end-to-end tests for the critical journeys where the integration itself is the risk. A suite that leans on end-to-end tests for everything becomes slow, flaky and expensive to maintain.
+
+## What should you automate first?
+
+Automation pays off on what you repeat. In order:
+
+- The critical flows from your risk map, starting with a smoke suite that runs on every pull request
+- Regression checks you repeat by hand before every release
+- API checks for integrations and the contracts between services
+- Test data setup, so tests don't depend on whatever someone left in the environment
+
+## Where should automated tests run?
+
+In your CI pipeline, with their result as part of the merge decision. Tests that only run on someone's laptop don't protect anything. Keep the pull request suite fast, and run broader suites on a schedule or before releases.
+
+Make failures easy to read: the step that failed, the screenshot or the request, and the logs. When a red build takes minutes to understand instead of hours, people stop ignoring it.
+
+## How do you deal with flaky tests?
+
+A flaky test passes and fails without any change in the code. A few of them are enough to teach a team to ignore red builds, and then the suite stops protecting anyone.
+
+Set a simple policy: every flaky test has an owner and is either fixed, quarantined while it is being fixed, or removed. Track how many tests are quarantined and treat a growing number as a problem. The usual causes are unstable selectors, fixed waits instead of waiting for a condition, shared test data, and tests that depend on the order they run in.
+
+## How do you build quality into the process, not just the testing?
+
+Most bugs are cheaper to prevent than to find. A few habits do most of the work:
+
+- Write acceptance criteria that can be tested, and review them before development starts
+- Include testers in refinement, where questions are cheap to answer
+- Add a definition of done that includes tests and a look at the risk map
+- Make one person accountable for release readiness on each release
+- Review escaped bugs together every few weeks, without blame, and update the risk map
+
+## How do you know it is working?
+
+Pick a few measures and watch them over months, not days: escaped bugs per release and how severe they are, how long it takes to know whether a build is safe to ship, how many tests are flaky or quarantined, and how much of the risk map is covered by automated checks.
+
+Avoid counting test cases. A thousand tests on low-risk screens are worth less than twenty on the flows that pay your bills.
+
+## Where can outside help speed this up?
+
+Code Assurance helps teams at each step: building the risk map from your codebase, automating the critical flows in your framework, stabilizing a flaky suite, and adding QA engineers to your sprints. Our AI QA agent maps coverage and writes tests as pull requests that a senior QA engineer reviews before they reach you.
+
+## FAQs
+
+### Where should a small team start improving QA?
+
+With the escaped-bug review and a short risk map. Then automate a smoke suite for the most critical flow and run it on every pull request. That alone changes how releases feel.
+
+### Do we need a dedicated QA engineer to improve QA?
+
+Not to start. Developers can take the first steps. A dedicated QA engineer helps when testing starts to compete with building features, or when nobody owns release readiness.
+
+### How much test automation is enough?
+
+Enough that your critical flows are checked on every change and you trust the result. Coverage percentages matter less than whether the tests cover the risks on your map.
+
+### How long does it take to see results?
+
+The first changes, such as a smoke suite on pull requests and a flaky-test policy, show results within weeks. Fewer escaped bugs usually becomes visible over a few release cycles.
+
+### Should developers write tests, or testers?
+
+Both. Developers usually own unit and many API tests; testers bring the risk view, exploratory testing and the end-to-end journeys. What matters is that someone owns each level.
+
+---
+
+# What QA outsourcing costs depend on
+
+URL: https://www.code-assurance.com/guides/qa-outsourcing-cost/
+
+QA outsourcing costs depend mostly on five things: the engagement model, the scope you need covered, the platforms involved, the state of your test suite and how much dedication the work needs. Tools and environments add to it. The way to get an accurate number is an assessment of your product, not a price list, because the same label can hide very different work.
+
+## Why is there no standard price for QA outsourcing?
+
+Two requests that sound the same can be very different projects. "Automate our regression tests" can mean twenty flows on one web app with a clean API, or two hundred flows across web, Android and iOS with half the test environments missing. A price list has to guess; an assessment doesn't.
+
+That is why most QA companies quote after looking at the product, and why quotes from different vendors are hard to compare unless you ask what each one actually includes.
+
+## How does the engagement model change the cost?
+
+Each model is priced on a different basis:
+
+- A project with a defined end, such as an audit or the first version of a test suite, is priced on the scope of that work
+- A dedicated team that owns testing for a product is priced on the people and their dedication over time
+- Engineers inside your team are priced on how many people, with which skills, and for how many hours
+
+## Does the length of the commitment matter?
+
+Ongoing work runs either month to month or on longer contracts. Longer commitments are sometimes traded for better terms, but they also lock you in before you have seen results.
+
+Month-to-month terms give you an easy way out if the work isn't paying off, which makes them the safer choice while you are still evaluating a vendor.
+
+## How does scope change it?
+
+Scope is the biggest factor. These are the questions a vendor will ask:
+
+- How many critical flows and business rules need coverage?
+- How many integrations: payments, third-party APIs, internal services?
+- How many user roles and permission combinations?
+- Which platforms: web, Android, iOS, APIs, and how many browsers or devices?
+- Is the work manual testing, automation or both?
+
+## Why do platforms multiply the work?
+
+Every platform adds its own testing. The same checkout flow on the web, on Android and on iOS is three sets of tests, each with its own tools, devices and quirks. Mobile testing across a device matrix costs more than the same flows on one browser, and supporting old OS versions or many browsers adds more.
+
+Be clear about which platforms and versions really matter to your users. Testing everywhere is expensive; testing where your users are is usually enough.
+
+## How much does the state of your test suite matter?
+
+A lot. Starting from zero means choosing a framework, setting up the pipeline and test data, and writing the first tests. Extending an existing suite means learning its conventions and often fixing what is broken first. Maintaining a healthy suite is the lightest of the three, but it never stops: tests change every time the product does.
+
+Unstable environments, missing test data and flaky tests all add hidden work. A good assessment finds them before the quote, not after.
+
+## What about team size and seniority?
+
+For ongoing work, the main question is how many engineers, with which skills, and for how much of their time. A part-time tester across two small projects and a full-time automation engineer inside a busy team are different commitments.
+
+Seniority matters too. Senior engineers cost more per hour but usually need less direction and avoid expensive mistakes, such as automating the wrong flows or building a suite nobody can maintain.
+
+## What other costs should you expect?
+
+Ask each vendor which of these the quote includes and which you are expected to provide:
+
+- Test management and tracking tools, if you don't already have them
+- Device clouds or real devices for mobile testing
+- Test environments and data that are stable enough to test against
+- Load-testing infrastructure for performance work
+- Time from your own team to answer questions and review results
+
+## How should you compare quotes from different vendors?
+
+Put the quotes side by side and compare scope first: which flows, platforms and kinds of testing each one covers, what you receive each month, and who does the work. A lower total that covers half the flows is not cheaper.
+
+Then compare how each vendor reports progress and what happens to the work if you stop. Tests and documentation that stay in your tools are part of what you are paying for.
+
+## How do you get an accurate quote?
+
+Give the vendor what it needs to quote the real work:
+
+- Describe the product, its users and its critical flows
+- Share how you build and release today, and what testing exists
+- Give access to a test environment or the repository if you can
+- Say what a good outcome looks like in three months
+- Ask for a written scope, not only a number, and compare scopes, not totals
+
+## How does Code Assurance price its work?
+
+Code Assurance quotes every engagement after a short call and an assessment of your product. There is no long contract: work runs month to month, and if the first month doesn't work for you, you stop there. Our pricing page explains what the quote includes.
+
+## FAQs
+
+### Is it cheaper to outsource QA or to hire in-house?
+
+It depends on how steady the work is and how fast you need results. Our guide on QA outsourcing vs. an in-house team compares both, including the costs that are easy to miss.
+
+### Do QA companies charge by the hour or by the month?
+
+Both models exist. Ongoing work is usually priced per engineer and dedication over a month; projects are priced on their scope. Ask what is included either way.
+
+### Does test automation reduce QA costs?
+
+Over time, it reduces the cost of each release by replacing repeated manual checks. It has an upfront cost and needs maintenance, so it pays off on the flows you test often.
+
+### Why do QA quotes vary so much between vendors?
+
+Because they assume different scopes, seniority and dedication. Compare what each quote includes, not just the total.
+
+### Does Code Assurance publish prices?
+
+No. We quote after an assessment, because the same request can mean very different work. Our pricing page explains what the quote includes.
