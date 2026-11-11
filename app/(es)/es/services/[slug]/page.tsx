@@ -4,7 +4,7 @@ import { ServicePage } from "@/components/services/ServicePage";
 import { es } from "@/content/es";
 import { LABELS } from "@/content/pages/labels";
 import { serviceEyebrowEs, servicesEs } from "@/content/services/es";
-import { SERVICE_SLUGS, type ServiceSlug } from "@/content/types";
+import { EN_SERVICE_SLUGS, SERVICE_SLUGS, type ServiceSlug } from "@/content/types";
 import { pageMetadata } from "@/lib/metadata";
 
 type Props = { params: Promise<{ slug: ServiceSlug }> };
@@ -36,7 +36,7 @@ export default async function Page({ params }: Props) {
       <ServicePage
         service={service}
         site={es}
-        eyebrow={serviceEyebrowEs}
+        eyebrow={`${serviceEyebrowEs} / ${String(EN_SERVICE_SLUGS.indexOf(slug) + 1).padStart(2, "0")}`}
         path={path}
         breadcrumbs={[
           { name: LABELS.es.home, path: "/es/" },

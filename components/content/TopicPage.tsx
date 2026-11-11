@@ -2,10 +2,10 @@ import type { ReactNode } from "react";
 import type { PageCopy } from "@/content/pages/types";
 import type { SiteContent } from "@/content/types";
 import { CtaBand } from "./CtaBand";
-import { AnswerLead } from "./AnswerLead";
-import { Breadcrumbs, type Crumb } from "./Breadcrumbs";
+import type { Crumb } from "./Breadcrumbs";
 import { ContentSections } from "./ContentSections";
 import { Faq } from "./Faq";
+import { PageHero } from "./PageHero";
 import { RelatedLinks } from "./RelatedLinks";
 
 type Props = {
@@ -23,15 +23,9 @@ export function TopicPage({ copy, breadcrumbs, relatedTitle, faqTitle, site, chi
   return (
     <>
       <article>
-        <header className="container-page pt-[clamp(28px,5vw,72px)] pb-[clamp(8px,2vw,16px)]">
-          <Breadcrumbs trail={breadcrumbs} className="mb-[clamp(20px,3vw,36px)]" />
-          <div className="flex max-w-[860px] flex-col gap-5">
-            <p className="eyebrow m-0">{copy.eyebrow}</p>
-            <h1 className="display m-0 text-[clamp(32px,5vw,60px)] leading-[0.98]">{copy.h1}</h1>
-            <AnswerLead text={copy.answer} />
-            {children}
-          </div>
-        </header>
+        <PageHero breadcrumbs={breadcrumbs} eyebrow={copy.eyebrow} h1={copy.h1} answer={copy.answer}>
+          {children}
+        </PageHero>
         <ContentSections sections={copy.sections} />
       </article>
       <Faq title={faqTitle} items={copy.faq} />

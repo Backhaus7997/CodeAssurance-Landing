@@ -41,7 +41,7 @@ export default async function Page({ params }: Props) {
       <ServicePage
         service={service}
         site={en}
-        eyebrow={serviceEyebrowEn}
+        eyebrow={`${serviceEyebrowEn} / ${String(EN_SERVICE_SLUGS.indexOf(slug) + 1).padStart(2, "0")}`}
         path={path}
         breadcrumbs={[
           { name: LABELS.en.home, path: "/" },

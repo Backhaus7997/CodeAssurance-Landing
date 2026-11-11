@@ -1,13 +1,13 @@
-import { Breadcrumbs, type Crumb } from "@/components/content/Breadcrumbs";
+import type { Crumb } from "@/components/content/Breadcrumbs";
+import { PageHero } from "@/components/content/PageHero";
 import type { SiteContent } from "@/content/types";
 
 export function PrivacyPage({ privacy, breadcrumbs }: { privacy: SiteContent["privacy"]; breadcrumbs: Crumb[] }) {
   return (
-    <article className="container-page max-w-[880px] pt-[clamp(36px,6vw,80px)] pb-[clamp(56px,8vw,104px)]">
-      <Breadcrumbs trail={breadcrumbs} className="mb-[clamp(20px,3vw,36px)]" />
-      <h1 className="display m-0 text-[clamp(30px,4.4vw,52px)] leading-none">{privacy.title}</h1>
-      <p className="eyebrow m-0 mt-4">{privacy.updated}</p>
-      <div className="mt-10 flex flex-col border-t border-line">
+    <>
+      <PageHero breadcrumbs={breadcrumbs} eyebrow={privacy.updated} h1={privacy.title} />
+      <article className="container-page max-w-[880px] pt-[clamp(36px,6vw,64px)] pb-[clamp(56px,8vw,104px)]">
+      <div className="flex flex-col border-t border-line">
         {privacy.sections.map((section) => (
           <section key={section.heading} className="flex flex-wrap gap-x-10 gap-y-3 border-b border-line py-6">
             <h2 className="m-0 flex-[0_0_220px] text-[17px] font-semibold">{section.heading}</h2>
@@ -22,5 +22,6 @@ export function PrivacyPage({ privacy, breadcrumbs }: { privacy: SiteContent["pr
         ))}
       </div>
     </article>
+    </>
   );
 }

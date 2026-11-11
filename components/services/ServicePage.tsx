@@ -1,11 +1,10 @@
-import { AnswerLead } from "@/components/content/AnswerLead";
 import { Block } from "@/components/content/Block";
-import { Breadcrumbs, type Crumb } from "@/components/content/Breadcrumbs";
+import type { Crumb } from "@/components/content/Breadcrumbs";
+import { PageHero } from "@/components/content/PageHero";
 import { Faq } from "@/components/content/Faq";
 import { JsonLd } from "@/components/content/JsonLd";
 import { RelatedLinks } from "@/components/content/RelatedLinks";
 import { Start } from "@/components/home/Start";
-import { PrimaryCta } from "@/components/site/PrimaryCta";
 import { Reveal } from "@/components/ui/reveal";
 import type { ServiceContent } from "@/content/services/types";
 import type { SiteContent } from "@/content/types";
@@ -29,32 +28,27 @@ export function ServicePage({ service, site, eyebrow, path, breadcrumbs, related
   return (
     <>
       <JsonLd data={serviceLd({ name: service.title, description: service.meta.description, path, serviceType: service.title })} />
-      <section className="container-page pt-[clamp(28px,5vw,72px)] pb-[clamp(40px,5vw,64px)]">
-        <Breadcrumbs trail={breadcrumbs} className="mb-[clamp(20px,3vw,36px)]" />
-        <div className="flex flex-wrap items-end gap-x-14 gap-y-8">
-          <div className="flex min-w-0 flex-[2_1_520px] flex-col gap-5">
-            <p className="eyebrow m-0">{eyebrow}</p>
-            <h1 className="display m-0 text-[clamp(30px,4.4vw,56px)] leading-[0.98]">{service.title}</h1>
-            <AnswerLead text={service.answer} />
-            <div>
-              <PrimaryCta bookLabel={site.start.primaryCta} emailLabel={site.start.emailCta} />
-            </div>
-          </div>
-          <Reveal className="min-w-0 flex-[1_1_340px] rounded-[4px] border border-line bg-surface px-5 py-5">
-            <p className="eyebrow m-0 mb-3">{service.promiseLabel}</p>
-            <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
-              {service.promise.map((item) => (
-                <li key={item} className="flex items-start gap-3 text-[15.5px] text-soft">
-                  <span aria-hidden="true" className="mt-[7px] inline-block h-2 w-2 shrink-0 bg-mint" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </Reveal>
-        </div>
-      </section>
+      <PageHero
+        breadcrumbs={breadcrumbs}
+        eyebrow={eyebrow}
+        h1={service.title}
+        answer={service.answer}
+        cta={{ bookLabel: site.start.primaryCta, emailLabel: site.start.emailCta }}
+        secondary={{ label: service.headings.howItWorks, href: "#how" }}
+      />
 
       <Block title={service.headings.deliverables}>
+        <Reveal className="mb-6 rounded-[4px] border border-line bg-surface px-5 py-5">
+          <p className="eyebrow m-0 mb-3">{service.promiseLabel}</p>
+          <ul className="m-0 flex list-none flex-col gap-2.5 p-0">
+            {service.promise.map((item) => (
+              <li key={item} className="flex items-start gap-3 text-[15.5px] text-soft">
+                <span aria-hidden="true" className="mt-[7px] inline-block h-2 w-2 shrink-0 bg-mint" />
+                {item}
+              </li>
+            ))}
+          </ul>
+        </Reveal>
         <div className="grid grid-cols-1 gap-px border border-line bg-line md:grid-cols-3">
           {service.deliverables.map((item, i) => (
             <div key={item.title} className="bg-ink px-5 py-6">
@@ -68,7 +62,7 @@ export function ServicePage({ service, site, eyebrow, path, breadcrumbs, related
         </div>
       </Block>
 
-      <Block title={service.headings.howItWorks} testId="service-how">
+      <Block title={service.headings.howItWorks} testId="service-how" id="how">
         <div className="border-t border-line">
           {service.howItWorks.map((card, i) => (
             <details key={card.title} open={i === 0} className={DETAILS}>

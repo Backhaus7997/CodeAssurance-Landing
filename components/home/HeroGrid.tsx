@@ -8,6 +8,7 @@ export function HeroGrid() {
   return (
     <FlickeringGrid
       aria-hidden="true"
+      data-hero-grid=""
       className="pointer-events-none absolute inset-0 [mask-image:radial-gradient(ellipse_75%_70%_at_75%_20%,#000_20%,transparent_72%)]"
       squareSize={3}
       gridGap={7}

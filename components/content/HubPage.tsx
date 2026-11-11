@@ -2,8 +2,8 @@ import type { HubCopy } from "@/content/pages/types";
 import type { SiteContent } from "@/content/types";
 import { CtaBand } from "./CtaBand";
 import { itemListLd } from "@/lib/jsonld";
-import { AnswerLead } from "./AnswerLead";
-import { Breadcrumbs, type Crumb } from "./Breadcrumbs";
+import type { Crumb } from "./Breadcrumbs";
+import { PageHero } from "./PageHero";
 import { JsonLd } from "./JsonLd";
 
 export type HubItem = { label: string; href: string; description: string };
@@ -13,14 +13,7 @@ export function HubPage({ hub, items, breadcrumbs, site }: { hub: HubCopy; items
   return (
     <>
       <JsonLd data={itemListLd(items.map((item) => ({ name: item.label, path: item.href })))} />
-      <section className="container-page pt-[clamp(28px,5vw,72px)] pb-[clamp(40px,5vw,64px)]">
-        <Breadcrumbs trail={breadcrumbs} className="mb-[clamp(20px,3vw,36px)]" />
-        <div className="flex max-w-[860px] flex-col gap-5">
-          <p className="eyebrow m-0">{hub.eyebrow}</p>
-          <h1 className="display m-0 text-[clamp(32px,5vw,64px)] leading-[0.98]">{hub.h1}</h1>
-          <AnswerLead text={hub.answer} />
-        </div>
-      </section>
+      <PageHero breadcrumbs={breadcrumbs} eyebrow={hub.eyebrow} h1={hub.h1} answer={hub.answer} />
       <section className="border-t border-line">
         <ul data-testid="hub-list" className="container-page m-0 grid list-none grid-cols-1 gap-px bg-line p-0 py-px md:grid-cols-2 lg:grid-cols-3">
           {items.map((item) => (
