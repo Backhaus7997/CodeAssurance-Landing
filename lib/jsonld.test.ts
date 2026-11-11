@@ -90,19 +90,25 @@ describe("page-level builders", () => {
     });
   });
 
-  it("dates articles and names their author", () => {
+  it("dates articles and names their authors", () => {
     expect(
       articleLd({
         headline: "How to hire a QA company",
         description: "d",
         path: "/guides/how-to-hire-a-qa-company/",
-        author: { name: "Martin Backhaus", role: "Founder" },
+        authors: [
+          { name: "Martin Backhaus", role: "Founder" },
+          { name: "Mariano Backhaus", role: "Founder" },
+        ],
         published: "2026-11-10",
         updated: "2026-11-12",
       }),
     ).toMatchObject({
       "@type": "Article",
-      author: { "@type": "Person", name: "Martin Backhaus", jobTitle: "Founder" },
+      author: [
+        { "@type": "Person", name: "Martin Backhaus", jobTitle: "Founder" },
+        { "@type": "Person", name: "Mariano Backhaus", jobTitle: "Founder" },
+      ],
       publisher: { "@id": ORG_ID },
       datePublished: "2026-11-10",
       dateModified: "2026-11-12",

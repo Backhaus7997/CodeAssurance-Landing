@@ -23,4 +23,4 @@ export type HubCopy = Pick<PageCopy, "seo" | "eyebrow" | "h1" | "answer" | "upda
 
 export type GuideSlug = "how-to-hire-a-qa-company" | "qa-outsourcing-vs-in-house-qa" | "how-to-improve-qa-in-your-company" | "qa-outsourcing-cost";
 
-export type Guide = PageCopy & { slug: GuideSlug; author: Author; published: string };
+export type Guide = PageCopy & { slug: GuideSlug; authors: Author[]; published: string };

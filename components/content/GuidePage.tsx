@@ -6,7 +6,7 @@ import type { Crumb } from "./Breadcrumbs";
 import { JsonLd } from "./JsonLd";
 import { TopicPage } from "./TopicPage";
 
-/** A guide: a topic page with its author, dates and Article data. */
+/** A guide: a topic page with its authors, dates and Article data. */
 export function GuidePage({ guide, path, breadcrumbs, relatedTitle, site }: { guide: Guide; path: string; breadcrumbs: Crumb[]; relatedTitle: string; site: SiteContent }) {
   return (
     <>
@@ -15,13 +15,13 @@ export function GuidePage({ guide, path, breadcrumbs, relatedTitle, site }: { gu
           headline: guide.h1,
           description: guide.seo.description,
           path,
-          author: guide.author,
+          authors: guide.authors,
           published: guide.published,
           updated: guide.updated,
         })}
       />
       <TopicPage copy={guide} breadcrumbs={breadcrumbs} relatedTitle={relatedTitle} faqTitle="FAQs" site={site}>
-        <Byline author={guide.author} published={guide.published} updated={guide.updated} />
+        <Byline authors={guide.authors} published={guide.published} updated={guide.updated} />
       </TopicPage>
     </>
   );

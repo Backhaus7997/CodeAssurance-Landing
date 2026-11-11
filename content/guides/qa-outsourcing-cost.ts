@@ -1,10 +1,10 @@
 import type { Guide } from "../pages/types";
-import { AUTHOR } from "./author";
+import { AUTHORS } from "./author";
 
 // No figures on purpose: Code Assurance publishes no prices (SEO spec, section 2).
 export const qaOutsourcingCost: Guide = {
   slug: "qa-outsourcing-cost",
-  author: AUTHOR,
+  authors: AUTHORS,
   published: "2026-11-10",
   updated: "2026-11-10",
   seo: {

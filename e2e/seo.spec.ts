@@ -97,11 +97,11 @@ for (const path of GUIDES) {
     const res = await page.goto(path);
     expect(res?.status()).toBe(200);
     await expect(page.locator("h1")).toHaveCount(1);
-    await expect(page.getByTestId("byline")).toContainText("Martin Backhaus");
+    await expect(page.getByTestId("byline")).toContainText("By Martin Backhaus and Mariano Backhaus, Founders");
     await expect(page.getByTestId("byline").locator("time[datetime]").first()).toBeVisible();
     const blocks = (await page.locator('script[type="application/ld+json"]').allTextContents()).map((b) => JSON.parse(b));
     const article = blocks.flat().find((node: { "@type": string }) => node["@type"] === "Article");
-    expect(article?.author?.name).toBe("Martin Backhaus");
+    expect(article?.author?.map((a: { name: string }) => a.name)).toEqual(["Martin Backhaus", "Mariano Backhaus"]);
     const types = await jsonLdTypes(page);
     expect(types).toEqual(expect.arrayContaining(["FAQPage", "BreadcrumbList"]));
   });

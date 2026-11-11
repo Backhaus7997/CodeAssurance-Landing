@@ -1,9 +1,9 @@
 import type { Guide } from "../pages/types";
-import { AUTHOR } from "./author";
+import { AUTHORS } from "./author";
 
 export const qaOutsourcingVsInHouseQa: Guide = {
   slug: "qa-outsourcing-vs-in-house-qa",
-  author: AUTHOR,
+  authors: AUTHORS,
   published: "2026-11-10",
   updated: "2026-11-10",
   seo: {

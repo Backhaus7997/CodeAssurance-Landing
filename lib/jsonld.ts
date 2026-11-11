@@ -53,7 +53,7 @@ export function serviceLd(s: { name: string; description: string; path: string; 
   };
 }
 
-export function articleLd(a: { headline: string; description: string; path: string; author: Author; published: string; updated: string }): Ld {
+export function articleLd(a: { headline: string; description: string; path: string; authors: Author[]; published: string; updated: string }): Ld {
   return {
     "@context": CONTEXT,
     "@type": "Article",
@@ -61,7 +61,7 @@ export function articleLd(a: { headline: string; description: string; path: stri
     description: a.description,
     url: url(a.path),
     mainEntityOfPage: url(a.path),
-    author: { "@type": "Person", name: a.author.name, jobTitle: a.author.role, worksFor: { "@id": ORG_ID } },
+    author: a.authors.map((author) => ({ "@type": "Person", name: author.name, jobTitle: author.role, worksFor: { "@id": ORG_ID } })),
     publisher: { "@id": ORG_ID },
     datePublished: a.published,
     dateModified: a.updated,

@@ -209,7 +209,12 @@ describe.each(guides.map((g) => [g.slug, g] as const))("guide %s", (_slug, guide
 
   it("has at least 1,000 words", () => expect(wordCount(text)).toBeGreaterThanOrEqual(1000));
 
-  it("is signed by Martin Backhaus", () => expect(guide.author.name).toBe("Martin Backhaus"));
+  it("is signed by both founders", () => {
+    expect(guide.authors.map((a) => [a.name, a.role])).toEqual([
+      ["Martin Backhaus", "Founder"],
+      ["Mariano Backhaus", "Founder"],
+    ]);
+  });
 
   it("was updated on or after it was published", () => {
     expect(guide.published).toMatch(/^\d{4}-\d{2}-\d{2}$/);
