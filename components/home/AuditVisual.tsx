@@ -1,11 +1,11 @@
-import type { AuditVisualKind } from "@/content/types";
+import type { AuditVisualKind, AuditVisualText } from "@/content/types";
 
 // Decorative mini illustrations. Each animates once when its card is revealed (globals.css,
 // .ca-audit-*); without JavaScript or with reduced motion they show their final state.
 const LATENCY = [26, 34, 22, 40, 30, 28, 92, 36, 24, 32, 27, 35];
 const HOT = 6;
 
-export function AuditVisual({ kind, exampleLabel }: { kind: AuditVisualKind; exampleLabel: string }) {
+export function AuditVisual({ kind, exampleLabel, text }: { kind: AuditVisualKind; exampleLabel: string; text: AuditVisualText }) {
   return (
     <div aria-hidden="true" className="relative h-32 border-b border-line px-5 pt-[22px] pb-3 font-mono">
       <span className="absolute top-2.5 right-3 text-[10.5px] text-dim">{exampleLabel}</span>
@@ -23,9 +23,9 @@ export function AuditVisual({ kind, exampleLabel }: { kind: AuditVisualKind; exa
       {kind === "endpoints" && (
         <div className="flex h-full flex-col justify-end gap-1.5 text-[12px] text-soft">
           {[
-            ["POST /refunds", "auth ✓", "text-mint"],
-            ["GET /users/:id", "authorization ✗", "text-bug"],
-            ["PUT /roles", "auth ✓", "text-mint"],
+            ["POST /refunds", text.authOk, "text-mint"],
+            ["GET /users/:id", text.authFail, "text-bug"],
+            ["PUT /roles", text.authOk, "text-mint"],
           ].map(([route, result, color], i) => (
             <span key={route} className="ca-audit-row flex justify-between gap-2" style={{ transitionDelay: `${i * 120}ms` }}>
               <span>{route}</span>
@@ -37,9 +37,9 @@ export function AuditVisual({ kind, exampleLabel }: { kind: AuditVisualKind; exa
       {kind === "debt" && (
         <div className="flex h-full flex-col justify-end gap-[7px] text-[11.5px] text-muted">
           {[
-            ["duplicated checkout logic", "100%", "bg-bug"],
-            ["untyped API client", "72%", "bg-wait"],
-            ["dead feature flags", "40%", "bg-edge"],
+            [text.debt[0], "100%", "bg-bug"],
+            [text.debt[1], "72%", "bg-wait"],
+            [text.debt[2], "40%", "bg-edge"],
           ].map(([item, width, color], i) => (
             <span key={item} className="grid grid-cols-[1fr_44%] items-center gap-2.5">
               <span>{item}</span>
@@ -51,9 +51,9 @@ export function AuditVisual({ kind, exampleLabel }: { kind: AuditVisualKind; exa
       {kind === "suites" && (
         <div className="flex h-full flex-col justify-end gap-1.5 text-[12px] text-soft">
           {[
-            ["smoke", "12"],
-            ["regression", "86"],
-            ["end-to-end", "31"],
+            [text.suites[0], "12"],
+            [text.suites[1], "86"],
+            [text.suites[2], "31"],
           ].map(([suite, count], i) => (
             <span key={suite} className="ca-audit-row flex justify-between" style={{ transitionDelay: `${i * 140}ms` }}>
               <span>{suite}</span>

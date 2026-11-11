@@ -218,6 +218,12 @@ export const en: SiteContent = {
     title: "Audits and test automation",
     description: "On their own or alongside any plan. Each one ends with findings your engineers can act on and a way to re-test them.",
     exampleLabel: "example",
+    visualText: {
+      authOk: "auth ✓",
+      authFail: "authorization ✗",
+      debt: ["duplicated checkout logic", "untyped API client", "dead feature flags"],
+      suites: ["smoke", "regression", "end-to-end"],
+    },
     items: [
       { title: "Performance audit", summary: "Baselines for your critical journeys and the bottlenecks behind them, backed by measured runs.", slug: "performance-audit", visual: "latency", cta: "Performance audit" },
       { title: "Security review", summary: "Manual security testing focused on what your next release puts at risk, with remediation guidance.", slug: "security-review", visual: "endpoints", cta: "Security review" },

@@ -117,16 +117,52 @@ test("on a phone the guide hides the table of contents", async ({ page }) => {
 test.describe("with reduced motion", () => {
   test.use({ reducedMotion: "reduce" });
 
-  for (const path of ["/services/manual-qa-testing/", "/guides/how-to-hire-a-qa-company/"]) {
-    test(`${path} stays still and shows everything`, async ({ page }) => {
+  for (const [path, final] of [
+    ["/services/manual-qa-testing/", "6"],
+    ["/services/dedicated-qa-engineers/", "3"],
+    ["/services/mobile-app-testing/", "12"],
+    ["/services/api-testing/", "4"],
+  ] as const) {
+    test(`${path} shows its visual finished and still`, async ({ page }) => {
       await page.goto(path);
       await page.waitForTimeout(1500);
       expect(await page.evaluate(() => document.getAnimations().filter((a) => a.playState === "running").length)).toBe(0);
-      const visual = page.locator("[data-visual]");
-      if (await visual.count()) await expect(visual).toContainText(/\w/);
+      await expect(page.locator("[data-visual]")).toHaveAttribute("data-step", final);
     });
   }
+
+  test("a guide stays still", async ({ page }) => {
+    await page.goto("/guides/how-to-hire-a-qa-company/");
+    await page.waitForTimeout(1500);
+    expect(await page.evaluate(() => document.getAnimations().filter((a) => a.playState === "running").length)).toBe(0);
+  });
+
+  test("an audit visual shows its rows", async ({ page }) => {
+    await page.goto("/services/code-quality/");
+    await expect(page.locator('[data-visual="audit"]')).toContainText("untyped API client");
+  });
 });
+
+test("Spanish service pages show their visual in Spanish", async ({ page }) => {
+  await page.goto("/es/services/code-quality/");
+  await expect(page.locator('[data-visual="audit"]')).toContainText("cliente de API sin tipos");
+  await page.goto("/es/services/security-review/");
+  await expect(page.locator('[data-visual="audit"]')).toContainText("autorización");
+});
+
+test("audit visuals on service pages animate in", async ({ page }) => {
+  await page.goto("/services/performance-audit/");
+  await expect(page.locator('[data-visual="audit"] [data-reveal]')).toHaveCount(1);
+});
+
+for (const path of ["/pricing/", "/guides/how-to-hire-a-qa-company/"]) {
+  test(`${path} numbers every section in order`, async ({ page }) => {
+    await page.goto(path);
+    const labels = await page.locator("main [data-section-index]").evaluateAll((els) => els.map((el) => el.getAttribute("data-section-index")));
+    expect(labels.length).toBeGreaterThan(3);
+    expect(labels).toEqual(labels.map((_, i) => String(i + 1).padStart(2, "0")));
+  });
+}
 
 // Spec criterion 9: no inner page loads more JavaScript up front than the home.
 const OUT = join(__dirname, "..", "out");

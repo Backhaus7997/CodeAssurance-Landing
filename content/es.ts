@@ -215,6 +215,12 @@ export const es: SiteContent = {
     title: "Auditorías y automatización",
     description: "Solas o junto a cualquier plan. Cada una termina con hallazgos que tus ingenieros pueden resolver y una forma de volver a probarlos.",
     exampleLabel: "ejemplo",
+    visualText: {
+      authOk: "autenticación ✓",
+      authFail: "autorización ✗",
+      debt: ["lógica de checkout duplicada", "cliente de API sin tipos", "feature flags que nadie usa"],
+      suites: ["smoke", "regresión", "end-to-end"],
+    },
     items: [
       { title: "Auditoría de performance", summary: "Mediciones base de tus recorridos críticos y de los cuellos de botella detrás, con corridas medidas.", slug: "performance-audit", visual: "latency", cta: "Auditoría de performance" },
       { title: "Revisión de seguridad", summary: "Pruebas de seguridad manuales enfocadas en lo que tu próximo release pone en riesgo, con guía para resolverlo.", slug: "security-review", visual: "endpoints", cta: "Revisión de seguridad" },

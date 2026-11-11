@@ -79,6 +79,9 @@ export type Package = { name: string; tagline: string; summary: string; tiers: T
 
 export type Step = { title: string; summary: string; deliverables: string[] };
 
+/** Words inside the audit illustrations, per language (routes and suite names stay as they are). */
+export type AuditVisualText = { authOk: string; authFail: string; debt: [string, string, string]; suites: [string, string, string] };
+
 export type AuditVisualKind = "latency" | "endpoints" | "debt" | "suites";
 
 export type Audit = { title: string; summary: string; slug: ServiceSlug; visual: AuditVisualKind; cta: string };
@@ -142,7 +145,7 @@ export type SiteContent = {
   };
   process: SectionIntro & { deliverablesLabel: string; steps: Step[] };
   plans: SectionIntro & { packages: Package[] };
-  audits: SectionIntro & { exampleLabel: string; items: Audit[] };
+  audits: SectionIntro & { exampleLabel: string; items: Audit[]; visualText: AuditVisualText };
   team: TeamContent;
   start: StartContent;
   form: FormContent;

@@ -15,7 +15,7 @@ export function Audits({ audits, servicesBase }: { audits: SiteContent["audits"]
             <div key={audit.slug} className="relative flex flex-col bg-ink">
               <GlowingEffect disabled={false} proximity={64} spread={36} inactiveZone={0.01} borderWidth={1} />
               <Reveal delay={i * 80} className="flex flex-1 flex-col">
-                <AuditVisual kind={audit.visual} exampleLabel={audits.exampleLabel} />
+                <AuditVisual kind={audit.visual} exampleLabel={audits.exampleLabel} text={audits.visualText} />
                 <div className="flex flex-1 flex-col gap-2.5 px-5 pt-5 pb-[22px]">
                   <h3 className="m-0 text-[20px] font-semibold">{audit.title}</h3>
                   <p className="m-0 text-[15.5px] text-soft">{audit.summary}</p>

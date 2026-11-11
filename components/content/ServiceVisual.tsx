@@ -1,6 +1,7 @@
 import { AgentRun } from "@/components/home/AgentRun";
 import { AuditVisual } from "@/components/home/AuditVisual";
 import { DraftPullRequest } from "@/components/home/DraftPullRequest";
+import { Reveal } from "@/components/ui/reveal";
 import type { ServiceVisual as Visual } from "@/content/services/types";
 import type { SiteContent } from "@/content/types";
 import { ApiContract } from "./visuals/ApiContract";
@@ -25,8 +26,11 @@ export function ServiceVisual({ visual, site }: { visual: Visual; site: SiteCont
       );
     case "audit":
       return (
+        // Reveal gives the illustration its animate-in, as on the home's audit cards.
         <div data-visual="audit" aria-hidden="true" className="rounded-[6px] border border-edge bg-surface/95 p-5">
-          <AuditVisual kind={visual.audit} exampleLabel={site.audits.exampleLabel} />
+          <Reveal>
+            <AuditVisual kind={visual.audit} exampleLabel={site.audits.exampleLabel} text={site.audits.visualText} />
+          </Reveal>
         </div>
       );
     case "checklist":

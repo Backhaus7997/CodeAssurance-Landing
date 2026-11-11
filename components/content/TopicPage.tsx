@@ -28,7 +28,12 @@ type Props = {
 };
 
 /** A text page built to be quoted: h1, direct answer, sections, FAQs, related pages and the call to action. */
+const pad = (n: number) => String(n).padStart(2, "0");
+
 export function TopicPage({ copy, breadcrumbs, relatedTitle, faqTitle, stepsTitle = "How it works", guide, site, children }: Props) {
+  // Numbering runs through the whole page: steps, then each text section, then FAQs and related pages.
+  const afterSteps = copy.steps ? 2 : 1;
+  const afterSections = afterSteps + copy.sections.length;
   return (
     <>
       <article>
@@ -48,11 +53,13 @@ export function TopicPage({ copy, breadcrumbs, relatedTitle, faqTitle, stepsTitl
             <ContentSections sections={copy.sections} numbered />
           </div>
         ) : (
-          <ContentSections sections={copy.sections} />
+          <div className="container-page max-w-[880px] py-[clamp(48px,6vw,80px)]">
+            <ContentSections sections={copy.sections} numbered start={afterSteps} />
+          </div>
         )}
       </article>
-      <Faq title={faqTitle} items={copy.faq} />
-      <RelatedLinks title={relatedTitle} hrefs={copy.related} />
+      <Faq title={faqTitle} items={copy.faq} index={pad(afterSections)} />
+      <RelatedLinks title={relatedTitle} hrefs={copy.related} index={pad(afterSections + 1)} />
       <CtaBand start={site.start} />
     </>
   );
