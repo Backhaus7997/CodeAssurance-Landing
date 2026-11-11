@@ -6,12 +6,24 @@ export type ServiceSlug = "automated-testing" | "performance-audit" | "security-
 
 export const SERVICE_SLUGS: ServiceSlug[] = ["automated-testing", "performance-audit", "security-review", "code-quality"];
 
+/** Service pages that exist only in English (SEO spec, 3.1). */
+export type EnOnlyServiceSlug = "manual-qa-testing" | "dedicated-qa-engineers" | "ai-qa-agent" | "mobile-app-testing" | "api-testing";
+
+export const EN_ONLY_SERVICE_SLUGS: EnOnlyServiceSlug[] = ["manual-qa-testing", "dedicated-qa-engineers", "ai-qa-agent", "mobile-app-testing", "api-testing"];
+
+export type AnyServiceSlug = ServiceSlug | EnOnlyServiceSlug;
+
+export const EN_SERVICE_SLUGS: AnyServiceSlug[] = [...SERVICE_SLUGS, ...EN_ONLY_SERVICE_SLUGS];
+
 /** Anchor ids of the home sections, shared by the header and the footer. */
 export type SectionId = "agent" | "process" | "plans" | "audits";
 
 export type SectionIntro = { index: string; label: string; title: string; description: string };
 
 export type NavItem = { label: string; section: SectionId };
+
+/** A link to another page of the site (not a section of the home). */
+export type PageLink = { label: string; href: string };
 
 export type ModuleStatus = "covered" | "added" | "bug" | "pending" | "gap";
 
@@ -98,8 +110,8 @@ export type FormContent = {
 
 export type SiteContent = {
   locale: Locale;
-  meta: { title: string; description: string; ogAlt: string };
-  header: { nav: NavItem[]; book: string; contact: string; switchLabel: string; switchTo: string };
+  meta: { title: string; description: string; ogAlt: string; updated: string };
+  header: { pages: PageLink[]; nav: NavItem[]; book: string; contact: string; switchLabel: string; switchTo: string };
   hero: {
     label: string;
     titleBefore: string;
@@ -134,10 +146,10 @@ export type SiteContent = {
   team: TeamContent;
   start: StartContent;
   form: FormContent;
-  footer: { tagline: string; nav: NavItem[]; privacy: string; rights: string };
+  footer: { tagline: string; nav: NavItem[]; groups: { title: string; links: PageLink[] }[]; privacy: string; rights: string };
   notFound: { title: string; text: string; homeEn: string; homeEs: string };
   privacy: {
-    meta: { title: string; description: string };
+    meta: { title: string; description: string; updated: string };
     title: string;
     updated: string;
     sections: { heading: string; body: string[] }[];

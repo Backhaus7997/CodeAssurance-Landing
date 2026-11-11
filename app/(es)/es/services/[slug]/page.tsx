@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/site/PageShell";
 import { ServicePage } from "@/components/services/ServicePage";
 import { es } from "@/content/es";
+import { LABELS } from "@/content/pages/labels";
 import { serviceEyebrowEs, servicesEs } from "@/content/services/es";
 import { SERVICE_SLUGS, type ServiceSlug } from "@/content/types";
 import { pageMetadata } from "@/lib/metadata";
@@ -28,9 +29,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
+  const service = servicesEs[slug];
+  const path = `/es/services/${slug}/`;
   return (
     <PageShell locale="es" alternateHref={`/services/${slug}/`}>
-      <ServicePage service={servicesEs[slug]} site={es} eyebrow={serviceEyebrowEs} />
+      <ServicePage
+        service={service}
+        site={es}
+        eyebrow={serviceEyebrowEs}
+        path={path}
+        breadcrumbs={[
+          { name: LABELS.es.home, path: "/es/" },
+          { name: service.title, path },
+        ]}
+        relatedTitle={LABELS.es.related}
+      />
     </PageShell>
   );
 }

@@ -1,6 +1,6 @@
 // Sums the gzip size of every <script src> an exported HTML page loads up front.
 // Usage: node scripts/first-load-js.mjs out/index.html
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { gzipSync } from "node:zlib";
 
@@ -11,7 +11,16 @@ if (!htmlPath) {
 }
 
 const html = readFileSync(htmlPath, "utf8");
-const root = dirname(htmlPath);
+
+// Script paths are absolute ("/_next/..."), so resolve them from the export root: the nearest folder
+// above the page that holds _next (out/ for out/pricing/index.html).
+function exportRoot(dir) {
+  for (let current = dir; ; current = dirname(current)) {
+    if (existsSync(join(current, "_next"))) return current;
+    if (dirname(current) === current) throw new Error(`No _next folder above ${dir}`);
+  }
+}
+const root = exportRoot(dirname(htmlPath));
 const sources = [...new Set([...html.matchAll(/<script[^>]*\bsrc="([^"]+)"/g)].map((m) => m[1]))];
 
 let total = 0;

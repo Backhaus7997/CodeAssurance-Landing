@@ -15,8 +15,18 @@ export function Header({ content, homeHref, alternateHref }: { content: SiteCont
           <Logo />
         </a>
         <nav aria-label={content.locale === "en" ? "Main" : "Principal"} className="hidden items-center gap-7 min-[760px]:flex">
+          {header.pages.map((item) => (
+            <a key={item.href} href={item.href} className="eyebrow no-underline transition-colors hover:text-paper">
+              {item.label}
+            </a>
+          ))}
+          {/* Section anchors need room: with the page links they only fit from 1100 px (SEO plan, task 10). */}
           {header.nav.map((item) => (
-            <a key={item.section} href={`${homeHref}#${item.section}`} className="eyebrow no-underline transition-colors hover:text-paper">
+            <a
+              key={item.section}
+              href={`${homeHref}#${item.section}`}
+              className={`eyebrow no-underline transition-colors hover:text-paper ${header.pages.length > 0 ? "hidden min-[1100px]:inline" : ""}`}
+            >
               {item.label}
             </a>
           ))}

@@ -1,8 +1,10 @@
+import { Breadcrumbs, type Crumb } from "@/components/content/Breadcrumbs";
 import type { SiteContent } from "@/content/types";
 
-export function PrivacyPage({ privacy }: { privacy: SiteContent["privacy"] }) {
+export function PrivacyPage({ privacy, breadcrumbs }: { privacy: SiteContent["privacy"]; breadcrumbs: Crumb[] }) {
   return (
     <article className="container-page max-w-[880px] pt-[clamp(36px,6vw,80px)] pb-[clamp(56px,8vw,104px)]">
+      <Breadcrumbs trail={breadcrumbs} className="mb-[clamp(20px,3vw,36px)]" />
       <h1 className="display m-0 text-[clamp(30px,4.4vw,52px)] leading-none">{privacy.title}</h1>
       <p className="eyebrow m-0 mt-4">{privacy.updated}</p>
       <div className="mt-10 flex flex-col border-t border-line">

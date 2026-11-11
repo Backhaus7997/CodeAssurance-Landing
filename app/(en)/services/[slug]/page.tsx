@@ -2,16 +2,22 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/site/PageShell";
 import { ServicePage } from "@/components/services/ServicePage";
 import { en } from "@/content/en";
+import { LABELS } from "@/content/pages/labels";
 import { serviceEyebrowEn, servicesEn } from "@/content/services/en";
-import { SERVICE_SLUGS, type ServiceSlug } from "@/content/types";
+import { EN_SERVICE_SLUGS, SERVICE_SLUGS, type AnyServiceSlug, type ServiceSlug } from "@/content/types";
 import { pageMetadata } from "@/lib/metadata";
 
-type Props = { params: Promise<{ slug: ServiceSlug }> };
+type Props = { params: Promise<{ slug: AnyServiceSlug }> };
+
+/** The Spanish version of a service page, when there is one (English-only services have none). */
+function spanishPath(slug: AnyServiceSlug): string | undefined {
+  return (SERVICE_SLUGS as AnyServiceSlug[]).includes(slug) ? `/es/services/${slug as ServiceSlug}/` : undefined;
+}
 
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return SERVICE_SLUGS.map((slug) => ({ slug }));
+  return EN_SERVICE_SLUGS.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -20,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return pageMetadata({
     locale: "en",
     path: `/services/${slug}/`,
-    alternatePath: `/es/services/${slug}/`,
+    alternatePath: spanishPath(slug),
     title: service.meta.title,
     description: service.meta.description,
   });
@@ -28,9 +34,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function Page({ params }: Props) {
   const { slug } = await params;
+  const service = servicesEn[slug];
+  const path = `/services/${slug}/`;
   return (
-    <PageShell locale="en" alternateHref={`/es/services/${slug}/`}>
-      <ServicePage service={servicesEn[slug]} site={en} eyebrow={serviceEyebrowEn} />
+    <PageShell locale="en" alternateHref={spanishPath(slug) ?? "/es/"}>
+      <ServicePage
+        service={service}
+        site={en}
+        eyebrow={serviceEyebrowEn}
+        path={path}
+        breadcrumbs={[
+          { name: LABELS.en.home, path: "/" },
+          { name: LABELS.en.services, path: "/services/" },
+          { name: service.title, path },
+        ]}
+        relatedTitle={LABELS.en.related}
+      />
     </PageShell>
   );
 }

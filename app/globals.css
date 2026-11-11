@@ -233,3 +233,9 @@ html.js [data-reveal]:not([data-in]) {
     }
   }
 }
+
+/* Hero rotating words are drawn from data-word, so they are not text in the document and the h1 says
+   its sentence once for crawlers (SEO spec, 4.4). */
+.ghost-word::before {
+  content: attr(data-word);
+}

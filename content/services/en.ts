@@ -1,15 +1,22 @@
+import type { AnyServiceSlug, ServiceSlug } from "../types";
+import { servicesEnOnly } from "./en-only";
 import type { ServiceContent } from "./types";
 
-// Ported verbatim from the previous service pages; only the tools heading now says they are examples.
-export const servicesEn: Record<ServiceContent["slug"], ServiceContent> = {
+// Titles, direct answers, related links and the automation cases were written for search (SEO spec, 3.1);
+// the rest was ported from the previous service pages.
+const servicesBilingualEn: Record<ServiceSlug, ServiceContent> = {
   "automated-testing": {
     slug: "automated-testing",
     meta: {
-      title: "Automated Testing | Code Assurance",
-      description: "E2E + API/contract coverage focused on critical flows—built to be stable in CI.",
+      title: "Test Automation Services | Code Assurance",
+      description:
+        "Test automation services in your framework: we build a suite from zero, extend the one you have or keep it maintained, with an AI QA agent as an add-on.",
     },
-    title: "Automated Testing for release confidence",
-    summary: "E2E + API/contract coverage focused on critical flows—built to be stable in CI.",
+    updated: "2026-11-10",
+    title: "Test automation services",
+    answer:
+      "We build, extend or maintain your automated test suite in the framework your team already uses. Starting from zero, we map your codebase and automate the critical flows first; with an existing suite, we stabilize it and close the coverage gaps; after that we keep it green in CI. Our AI QA agent can be added to any engagement.",
+    related: ["/services/ai-qa-agent/", "/services/api-testing/", "/services/code-quality/", "/services/performance-audit/", "/pricing/", "/guides/how-to-improve-qa-in-your-company/"],
     promiseLabel: "Promise",
     promise: [
       "Risk based coverage (not “test everything”)",
@@ -39,24 +46,31 @@ export const servicesEn: Record<ServiceContent["slug"], ServiceContent> = {
     ],
     howItWorks: [
       {
-        title: "Coverage strategy (what gets automated first)",
+        title: "Starting from zero: we build the suite",
         bullets: [
-          "Critical journeys first: auth, roles/permissions, approvals, payments, integrations",
-          "Right level per risk: API/contract where cheaper + more stable; E2E only where truly necessary",
+          "We map your codebase and critical flows first, then set up the framework in your stack: Playwright by default, or the one your team prefers",
+          "The first critical flows run in CI early; coverage then grows by risk: auth, roles, payments, integrations",
         ],
       },
       {
-        title: "Reliability by design (how we prevent flakiness)",
+        title: "You already have a suite: we adopt and extend it",
         bullets: [
-          "Stable-first selectors + deterministic waits (no “sleep-based” automation)",
-          "Test data strategy + flake policy (fix/quarantine/remove) with owner assigned",
+          "We keep your framework and conventions, fix what is broken and standardize the rest",
+          "Coverage gaps from the codebase map become a prioritized backlog of new tests",
         ],
       },
       {
-        title: "CI execution model (how it fits your delivery pipeline)",
+        title: "You need it maintained: we keep it green",
         bullets: [
-          "PR suite (fast): smoke + critical flows, designed to gate merges",
-          "Gates are explicit: pass/fail rules tied to risk (not subjective “looks good”)",
+          "A flake policy with an owner: every unstable test is fixed, quarantined or removed, never ignored",
+          "Tests change with the product, with run evidence on every release",
+        ],
+      },
+      {
+        title: "Add-on: our AI QA agent",
+        bullets: [
+          "Writes tests in your framework and sends them as pull requests that a senior QA engineer reviews",
+          "When a locator breaks, it finds the element again on the live page and proposes the fix for your approval",
         ],
       },
     ],
@@ -131,11 +145,15 @@ export const servicesEn: Record<ServiceContent["slug"], ServiceContent> = {
   "performance-audit": {
     slug: "performance-audit",
     meta: {
-      title: "Performance Audit | Code Assurance",
-      description: "Baseline + bottleneck identification focused on real user journeys backed by measurable evidence.",
+      title: "Performance Testing and Audit Services | Code Assurance",
+      description:
+        "Performance testing and audits for web apps and APIs: baselines for your critical user journeys, the bottlenecks behind them and a plan backed by measured runs.",
     },
-    title: "Performance Audit for predictable speed",
-    summary: "Baseline + bottleneck identification focused on real user journeys backed by measurable evidence.",
+    updated: "2026-11-10",
+    title: "Performance testing and audit services",
+    answer:
+      "We measure how your web app and APIs behave on the journeys that matter, find the bottlenecks behind slow pages and endpoints, and hand you a prioritized plan with the evidence to back it. Every finding comes from a measured run, and every fix is validated with the same measurement before we call it done.",
+    related: ["/services/api-testing/", "/services/automated-testing/", "/services/code-quality/", "/pricing/", "/guides/how-to-improve-qa-in-your-company/"],
     promiseLabel: "Promise",
     promise: [
       "Baseline metrics you can track (p95/p99, error rate, slowest pages/endpoints)",
@@ -259,11 +277,15 @@ export const servicesEn: Record<ServiceContent["slug"], ServiceContent> = {
   "security-review": {
     slug: "security-review",
     meta: {
-      title: "Security Review | Code Assurance",
-      description: "Manual security testing + vulnerability discovery focused on real deployment risk backed by reproducible evidence.",
+      title: "Security Testing Services | Code Assurance",
+      description:
+        "Manual security testing focused on what your next release puts at risk: attack surface mapping, validated findings with evidence, fix guidance and retests.",
     },
-    title: "Security Review for high-visibility releases",
-    summary: "Manual security testing + vulnerability discovery focused on real deployment risk backed by reproducible evidence.",
+    updated: "2026-11-10",
+    title: "Security testing services",
+    answer:
+      "We test your application the way an attacker would, focused on what your next release puts at risk. We map the attack surface, validate each finding by hand with reproducible evidence, explain how to fix it and retest after your team ships the fix. You get findings your developers can act on, not a scanner dump.",
+    related: ["/services/api-testing/", "/services/code-quality/", "/services/automated-testing/", "/pricing/", "/guides/how-to-hire-a-qa-company/"],
     promiseLabel: "Promise",
     promise: [
       "Manual security testing aligned to deployment-critical risk",
@@ -388,11 +410,15 @@ export const servicesEn: Record<ServiceContent["slug"], ServiceContent> = {
   "code-quality": {
     slug: "code-quality",
     meta: {
-      title: "Code Quality | Code Assurance",
-      description: "Standards, risk hotspots, and technical debt control so your delivery stays predictable.",
+      title: "Code Quality Review Services | Code Assurance",
+      description:
+        "Code quality reviews that set quality gates matching real risk, find the hotspots that cause regressions and order your technical debt by business impact.",
     },
-    title: "Code Quality that prevents regressions",
-    summary: "Standards, risk hotspots, and technical debt control so your delivery stays predictable.",
+    updated: "2026-11-10",
+    title: "Code quality review services",
+    answer:
+      "We review your codebase to find the hotspots that keep causing regressions, set quality gates that match real risk instead of arbitrary thresholds, and order your technical debt by business impact. The result is a short list of changes your team can make in its normal cadence, with checks in CI so the gains stick.",
+    related: ["/services/ai-qa-agent/", "/services/automated-testing/", "/services/security-review/", "/pricing/", "/guides/how-to-improve-qa-in-your-company/"],
     promiseLabel: "Promise",
     promise: [
       "Quality gates that match real risk (not bureaucracy)",
@@ -512,5 +538,8 @@ export const servicesEn: Record<ServiceContent["slug"], ServiceContent> = {
     ],
   },
 };
+
+/** Every English service page: the four that also exist in Spanish plus the English-only ones. */
+export const servicesEn: Record<AnyServiceSlug, ServiceContent> = { ...servicesBilingualEn, ...servicesEnOnly };
 
 export const serviceEyebrowEn = "Service";
