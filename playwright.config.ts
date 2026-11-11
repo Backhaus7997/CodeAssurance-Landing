@@ -6,6 +6,9 @@ const PORT = 4173;
 export default defineConfig({
   testDir: "e2e",
   fullyParallel: true,
+  // Every page now animates (water background, hero grid, visuals); more than 3 browsers at once starve WebKit
+  // and time out tests that pass alone.
+  workers: 3,
   forbidOnly: !!process.env.CI,
   reporter: [["list"]],
   use: {

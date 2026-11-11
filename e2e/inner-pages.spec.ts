@@ -1,4 +1,8 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
+import { gzipSync } from "node:zlib";
 import { expect, test } from "@playwright/test";
+import { indexablePages } from "../lib/routes";
 
 // The inner pages share the home's design (spec 2026-11-11-inner-pages-design.md).
 const HEROES = [
@@ -108,4 +112,35 @@ test("on a phone the guide hides the table of contents", async ({ page }) => {
   await page.setViewportSize({ width: 375, height: 812 });
   await page.goto("/guides/qa-outsourcing-cost/");
   await expect(page.getByRole("navigation", { name: "On this page" })).toBeHidden();
+});
+
+test.describe("with reduced motion", () => {
+  test.use({ reducedMotion: "reduce" });
+
+  for (const path of ["/services/manual-qa-testing/", "/guides/how-to-hire-a-qa-company/"]) {
+    test(`${path} stays still and shows everything`, async ({ page }) => {
+      await page.goto(path);
+      await page.waitForTimeout(1500);
+      expect(await page.evaluate(() => document.getAnimations().filter((a) => a.playState === "running").length)).toBe(0);
+      const visual = page.locator("[data-visual]");
+      if (await visual.count()) await expect(visual).toContainText(/\w/);
+    });
+  }
+});
+
+// Spec criterion 9: no inner page loads more JavaScript up front than the home.
+const OUT = join(__dirname, "..", "out");
+function firstLoadJs(path: string): number {
+  const html = readFileSync(join(OUT, path, "index.html"), "utf8");
+  const sources = [...new Set([...html.matchAll(/<script[^>]*\bsrc="([^"]+)"/g)].map((m) => m[1]))];
+  return sources.reduce((sum, src) => sum + gzipSync(readFileSync(join(OUT, src.split("?")[0]))).length, 0);
+}
+
+test("no inner page loads more JavaScript than the home", () => {
+  const home = firstLoadJs("/");
+  const heavier = indexablePages()
+    .filter((p) => p.section !== "home")
+    .map((p) => ({ path: p.path, bytes: firstLoadJs(p.path) }))
+    .filter((p) => p.bytes > home);
+  expect(heavier).toEqual([]);
 });
